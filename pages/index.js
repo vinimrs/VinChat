@@ -1,36 +1,8 @@
 import { Box, Button, TextField, Image, Text } from "@skynexui/components";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import appConfig from "../config.json";
-
-function GlobalStyle() {
-	return (
-		<style global jstyleSheet>{`
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-				list-style: none;
-			}
-			body {
-				font-family: "Open Sans", sans-serif;
-			}
-			/* App fit Height */
-			html,
-			body,
-			#__next {
-				min-height: 100vh;
-				display: flex;
-				flex: 1;
-			}
-			#__next {
-				flex: 1;
-			}
-			#__next > * {
-				flex: 1;
-			}
-			/* ./App fit Height */
-		`}</style>
-	);
-}
+import defaultImage from "./assets/default.jpg";
 
 function Title({ children, tag }) {
 	const Tag = tag;
@@ -53,39 +25,29 @@ Title.defaultProps = {
 	tag: "h1",
 };
 
-const Img = ({ src }) => {
-	return (
-		<>
-			<img src={src} />
-			<style jsx>
-				{`
-					img {
-						border-radius: 50%;
-						margin-bottom: 16px;
-						max-width: 200px;
-					}
-				`}
-			</style>
-		</>
-	);
-};
-
-// function HomePage() {
-// 	return (
-// 		<div>
-//             <GlobalStyle />
-// 			<Title>Fala meu parceiro</Title>
-// 			<Title tag="h2" >Bem vindo ao Vini Matrix</Title>
-// 		</div>
-// 	);
-// }
-// export default HomePage;
 export default function PaginaInicial() {
-	const username = "ViniR07";
+	const [username, setUsername] = useState('Vinir07');
+    const [usernameData, setUsernameData] = useState({});
+	const roteamento = useRouter();
+
+	function handleChange(e) {
+		setUsername(e.target.value);
+	}
+
+	function handleSubmit(e) {
+		e.preventDefault();
+		roteamento.push("/chat");
+	}
+
+	useEffect(() => {
+		fetch(`https://api.github.com/users/${username}`)
+			.then((resp) => resp.json())
+			.then((respConvert) => setUsernameData(respConvert))
+            .catch((erro) => console.log(erro));
+	}, [username]);
 
 	return (
 		<>
-			<GlobalStyle />
 			<Box
 				styleSheet={{
 					display: "flex",
@@ -129,6 +91,7 @@ export default function PaginaInicial() {
 							textAlign: "center",
 							marginBottom: "32px",
 						}}
+						onSubmit={handleSubmit}
 					>
 						<Title tag="h2">Boas vindas de volta!</Title>
 						<Text
@@ -155,6 +118,8 @@ export default function PaginaInicial() {
 										appConfig.theme.colors.neutrals[800],
 								},
 							}}
+							onChange={handleChange}
+							required
 						/>
 						<Button
 							type="submit"
@@ -195,7 +160,11 @@ export default function PaginaInicial() {
 								borderRadius: "50%",
 								marginBottom: "16px",
 							}}
-							src={`https://github.com/${username}.png`}
+							src={
+								username.length > 2
+									? `https://github.com/${username}.png`
+									: defaultImage.src
+							}
 						/>
 						<Text
 							variant="body4"
@@ -207,7 +176,7 @@ export default function PaginaInicial() {
 								borderRadius: "1000px",
 							}}
 						>
-							{username}
+							{usernameData.name}
 						</Text>
 					</Box>
 					{/* Photo Area */}
