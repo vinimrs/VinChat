@@ -26,8 +26,8 @@ Title.defaultProps = {
 };
 
 export default function PaginaInicial() {
-	const [username, setUsername] = useState('Vinir07');
-    const [usernameData, setUsernameData] = useState({});
+	const [username, setUsername] = useState("Vinir07");
+	const [usernameData, setUsernameData] = useState({});
 	const roteamento = useRouter();
 
 	function handleChange(e) {
@@ -43,7 +43,7 @@ export default function PaginaInicial() {
 		fetch(`https://api.github.com/users/${username}`)
 			.then((resp) => resp.json())
 			.then((respConvert) => setUsernameData(respConvert))
-            .catch((erro) => console.log(erro));
+			.catch((erro) => console.log(erro));
 	}, [username]);
 
 	return (
@@ -176,7 +176,7 @@ export default function PaginaInicial() {
 								borderRadius: "1000px",
 							}}
 						>
-							{usernameData.name}
+							{username.length > 2 && usernameData.name}
 						</Text>
 					</Box>
 					{/* Photo Area */}
