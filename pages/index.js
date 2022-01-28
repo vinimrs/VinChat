@@ -2,7 +2,7 @@ import { Box, Button, TextField, Image, Text } from "@skynexui/components";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import appConfig from "../config.json";
-import defaultImage from "./assets/default.jpg";
+import defaultImage from "../public/default.jpg";
 
 function Title({ children, tag }) {
 	const Tag = tag;

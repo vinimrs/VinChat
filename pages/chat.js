@@ -6,36 +6,38 @@ import {
 	Button,
 	Icon,
 } from "@skynexui/components";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import appConfig from "../config.json";
+import api from "../api";
 
 export default function ChatPage() {
 	// Sua lógica vai aqui
 	const [mensagem, setMensagem] = useState("");
 	const [listaMensagens, setListaMensagens] = useState([]);
 
+	useEffect(() => {
+		api.getMensagens().then((dados) => setListaMensagens(dados));
+	}, []);
+
 	function handleChange(e) {
 		setMensagem(e.target.value);
 	}
 
 	function handleNovaMensagem(novaMensagem) {
-		const mensagemCompleta = {
-			de: "Vinicius",
-			id: listaMensagens.length + 1,
-			texto: novaMensagem,
-		};
-		setListaMensagens([mensagemCompleta, ...listaMensagens]);
-		setMensagem("");
+		api.setMensagem(novaMensagem, "Vinir07").then((mensagem) => {
+			setListaMensagens([mensagem, ...listaMensagens]);
+			setMensagem("");
+		});
 	}
 
-    function filtraMensagens(id) {
-        const mensagens = listaMensagens;
-        // mensagens.filter(mens => mens.id !== id);
-        mensagens.splice(id-1, 1);
-        setListaMensagens(mensagens);
-    }
+	function handleDeletaMensagem(mensagemId) {
+		api.deletaMensagem(mensagemId).then(() => {
+            api.getMensagens().then((mensagens) => {
+                setListaMensagens(mensagens);
+            })
+		});
+	}
 
-	// ./Sua lógica vai aqui
 	return (
 		<Box
 			styleSheet={{
@@ -77,7 +79,10 @@ export default function ChatPage() {
 						padding: "16px",
 					}}
 				>
-					<MessageList mensagens={listaMensagens} filtraMensagens={filtraMensagens} />
+					<MessageList
+						mensagens={listaMensagens}
+						filtraMensagens={handleDeletaMensagem}
+					/>
 					{/* {listaMensagens.map(mensagem => {
                         return(
                             <li key={mensagem.id}>
@@ -169,9 +174,6 @@ function Header() {
 }
 
 function MessageList({ mensagens, filtraMensagens }) {
-
-
-
 	return (
 		<Box
 			tag="ul"
@@ -204,8 +206,8 @@ function MessageList({ mensagens, filtraMensagens }) {
 								marginBottom: "8px",
 								display: "flex",
 								alignItems: "center",
-                                justifyContent: 'space-between',
-                                paddingRight: '20px',
+								justifyContent: "space-between",
+								paddingRight: "20px",
 							}}
 						>
 							<Box
@@ -222,7 +224,7 @@ function MessageList({ mensagens, filtraMensagens }) {
 										display: "inline-block",
 										marginRight: "8px",
 									}}
-									src={`https://github.com/vinir07.png`}
+									src={`https://github.com/${mensagem.de}.png`}
 								/>
 								<Text tag="strong">{mensagem.de}</Text>
 								<Text
@@ -237,12 +239,17 @@ function MessageList({ mensagens, filtraMensagens }) {
 									{new Date().toLocaleDateString()}
 								</Text>
 							</Box>
-							<Icon name="FaTrash" size="1.6ch" styleSheet={{
-                                opacity: '.8',
-                                cursor: 'pointer',
-                            }} 
-                            onClick={(e) => {filtraMensagens(mensagem.id)}}
-                            />
+							<Icon
+								name="FaTrash"
+								size="1.6ch"
+								styleSheet={{
+									opacity: ".8",
+									cursor: "pointer",
+								}}
+								onClick={() => {
+									filtraMensagens(mensagem.id);
+								}}
+							/>
 						</Box>
 						{mensagem.texto}
 					</Text>
