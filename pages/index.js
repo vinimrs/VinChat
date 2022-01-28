@@ -45,8 +45,7 @@ export default function PaginaInicial() {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		localStorage.setItem("username", JSON.stringify(username));
-		roteamento.push("/chat");
+		roteamento.push(`/chat?username=${username}`);
 	}
 
 	function validaUsername() {
@@ -66,6 +65,7 @@ export default function PaginaInicial() {
 			.catch((erro) => console.log(erro));
 	}, [username]);
 
+    console.log(userValido);
 	return (
 		<>
 			<Box
@@ -144,7 +144,7 @@ export default function PaginaInicial() {
 						<Button
 							type="submit"
 							label="Login"
-							disabled={userValido}
+							// disabled={userValido}
 							fullWidth
 							buttonColors={{
 								contrastColor:
@@ -197,11 +197,11 @@ export default function PaginaInicial() {
 								borderRadius: "1000px",
 							}}
 						>
-							{userValido
+							{username.length > 2
 								? usernameData.name
 								: "Usuário Desconhecido"}
 						</Text>
-						{userValido && (
+                        {username.length > 2 &&
 							<Box
 								styleSheet={{
 									display: "flex",
@@ -251,8 +251,7 @@ export default function PaginaInicial() {
 								>
 									Seguindo: {usernameData.following}
 								</Text>
-							</Box>
-						)}
+							</Box> }
 					</Box>
 					{/* Photo Area */}
 				</Box>

@@ -9,17 +9,19 @@ import {
 import React, { useEffect, useState } from "react";
 import appConfig from "../config.json";
 import api from "../api";
+import { useRouter } from "next/router";
+import { ButtonSendSticker } from "../src/components/ButtonSendSticker";
 
 export default function ChatPage() {
 	// Sua lógica vai aqui
+    const roteamento = useRouter();
+    const username = roteamento.query.username;
 	const [mensagem, setMensagem] = useState("");
 	const [listaMensagens, setListaMensagens] = useState([]);
-    const [username, setUsername] = useState('')
 
 	useEffect(() => {
 		api.getMensagens().then((dados) => setListaMensagens(dados));
-        const user = JSON.parse(localStorage.getItem('username'));
-        setUsername(user);
+        
 	}, []);
 
 	function handleChange(e) {
@@ -140,6 +142,7 @@ export default function ChatPage() {
 								handleNovaMensagem(mensagem);
 							}}
 						/>
+                        <ButtonSendSticker />
 					</Box>
 				</Box>
 			</Box>
