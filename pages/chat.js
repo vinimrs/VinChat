@@ -14,9 +14,12 @@ export default function ChatPage() {
 	// Sua lógica vai aqui
 	const [mensagem, setMensagem] = useState("");
 	const [listaMensagens, setListaMensagens] = useState([]);
+    const [username, setUsername] = useState('')
 
 	useEffect(() => {
 		api.getMensagens().then((dados) => setListaMensagens(dados));
+        const user = JSON.parse(localStorage.getItem('username'));
+        setUsername(user);
 	}, []);
 
 	function handleChange(e) {
@@ -24,7 +27,7 @@ export default function ChatPage() {
 	}
 
 	function handleNovaMensagem(novaMensagem) {
-		api.setMensagem(novaMensagem, "Vinir07").then((mensagem) => {
+		api.setMensagem(novaMensagem, username).then((mensagem) => {
 			setListaMensagens([mensagem, ...listaMensagens]);
 			setMensagem("");
 		});
@@ -77,19 +80,14 @@ export default function ChatPage() {
 						flexDirection: "column",
 						borderRadius: "5px",
 						padding: "16px",
+                        overflow: 'hidden'
 					}}
 				>
 					<MessageList
 						mensagens={listaMensagens}
 						filtraMensagens={handleDeletaMensagem}
+                        username={username}
 					/>
-					{/* {listaMensagens.map(mensagem => {
-                        return(
-                            <li key={mensagem.id}>
-                                {mensagem.de}: {mensagem.texto}
-                            </li>
-                        );
-                    })} */}
 
 					<Box
 						as="form"
@@ -173,17 +171,19 @@ function Header() {
 	);
 }
 
-function MessageList({ mensagens, filtraMensagens }) {
+function MessageList({ mensagens, filtraMensagens, username }) {
 	return (
 		<Box
 			tag="ul"
 			styleSheet={{
 				overflow: "auto",
 				display: "flex",
+                scrollbarWidth: 'none',
 				flexDirection: "column-reverse",
 				flex: 1,
 				color: appConfig.theme.colors.neutrals["000"],
 				marginBottom: "16px",
+                marginRight: '-35px'
 			}}
 		>
 			{mensagens.map((mensagem) => {
@@ -195,6 +195,7 @@ function MessageList({ mensagens, filtraMensagens }) {
 							borderRadius: "5px",
 							padding: "6px",
 							marginBottom: "12px",
+                            marginRight: '35px',
 							hover: {
 								backgroundColor:
 									appConfig.theme.colors.neutrals[700],
@@ -239,7 +240,7 @@ function MessageList({ mensagens, filtraMensagens }) {
 									{new Date().toLocaleDateString()}
 								</Text>
 							</Box>
-							<Icon
+							{username === mensagem.de && <Icon
 								name="FaTrash"
 								size="1.6ch"
 								styleSheet={{
@@ -249,7 +250,7 @@ function MessageList({ mensagens, filtraMensagens }) {
 								onClick={() => {
 									filtraMensagens(mensagem.id);
 								}}
-							/>
+							/> }
 						</Box>
 						{mensagem.texto}
 					</Text>

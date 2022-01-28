@@ -1,5 +1,12 @@
-import { Box, Button, TextField, Image, Text } from "@skynexui/components";
-import { useEffect, useState } from "react";
+import {
+	Box,
+	Button,
+	TextField,
+	Image,
+	Text,
+	Icon,
+} from "@skynexui/components";
+import { useEffect, useReducer, useState } from "react";
 import { useRouter } from "next/router";
 import appConfig from "../config.json";
 import defaultImage from "../public/default.jpg";
@@ -26,17 +33,30 @@ Title.defaultProps = {
 };
 
 export default function PaginaInicial() {
-	const [username, setUsername] = useState("Vinir07");
+	const [username, setUsername] = useState("");
 	const [usernameData, setUsernameData] = useState({});
+	const [userValido, setUserValido] = useState(false);
 	const roteamento = useRouter();
 
 	function handleChange(e) {
 		setUsername(e.target.value);
+        validaUsername();
 	}
 
 	function handleSubmit(e) {
 		e.preventDefault();
+		localStorage.setItem("username", JSON.stringify(username));
 		roteamento.push("/chat");
+	}
+
+	function validaUsername() {
+		fetch(`https://api.github.com/users/${username}`)
+			.then((resp) => resp.json())
+			.then((respConvert) => {
+                if (respConvert.message === "Not Found") setUserValido(false);
+				else setUserValido(true);
+			})
+			.catch((erro) => console.log(erro));
 	}
 
 	useEffect(() => {
@@ -123,7 +143,8 @@ export default function PaginaInicial() {
 						/>
 						<Button
 							type="submit"
-							label="Entrar"
+							label="Login"
+							disabled={userValido}
 							fullWidth
 							buttonColors={{
 								contrastColor:
@@ -176,8 +197,62 @@ export default function PaginaInicial() {
 								borderRadius: "1000px",
 							}}
 						>
-							{username.length > 2 && usernameData.name}
+							{userValido
+								? usernameData.name
+								: "Usuário Desconhecido"}
 						</Text>
+						{userValido && (
+							<Box
+								styleSheet={{
+									display: "flex",
+									justifyContent: "space-between",
+									alignItems: "center",
+								}}
+							>
+								<Icon
+									name="FaUserCheck"
+									styleSheet={{
+										color: appConfig.theme.colors
+											.neutrals[200],
+									}}
+								/>
+								<Text
+									variant="body4"
+									styleSheet={{
+										color: appConfig.theme.colors
+											.neutrals[200],
+										backgroundColor:
+											appConfig.theme.colors
+												.neutrals[900],
+										padding: "3px 10px",
+										borderRadius: "1000px",
+									}}
+								>
+									Seguidores: {usernameData.followers}
+								</Text>
+								<Icon
+									name="FaUserFriends"
+									styleSheet={{
+										color: appConfig.theme.colors
+											.neutrals[200],
+									}}
+								/>
+								<Text
+									variant="body4"
+									styleSheet={{
+										color: appConfig.theme.colors
+											.neutrals[200],
+										backgroundColor:
+											appConfig.theme.colors
+												.neutrals[900],
+										padding: "3px 10px",
+										borderRadius: "1000px",
+									}}
+								>
+									Seguindo: {usernameData.following}
+								</Text>
+							</Box>
+						)}
 					</Box>
 					{/* Photo Area */}
 				</Box>
