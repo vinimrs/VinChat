@@ -14,14 +14,26 @@ import { ButtonSendSticker } from "../src/components/ButtonSendSticker";
 
 export default function ChatPage() {
 	// Sua lógica vai aqui
-    const roteamento = useRouter();
-    const username = roteamento.query.username;
+	const roteamento = useRouter();
+	const username = roteamento.query.username;
 	const [mensagem, setMensagem] = useState("");
 	const [listaMensagens, setListaMensagens] = useState([]);
 
 	useEffect(() => {
 		api.getMensagens().then((dados) => setListaMensagens(dados));
-        
+        api.escutaEmTempoReal((novaMensagem) => {
+            //Para reusar um valor de referência array/objeto passar função para o setState
+            // Para pegar o valor atual do estado
+            setListaMensagens((valoratual) => {
+                console.log('valor atual:', valoratual);
+                return [novaMensagem, ...valoratual]
+            });
+			setMensagem("");
+        });
+
+        return () => {
+            subscription.unsubscribe();
+        }
 	}, []);
 
 	function handleChange(e) {
@@ -29,17 +41,14 @@ export default function ChatPage() {
 	}
 
 	function handleNovaMensagem(novaMensagem) {
-		api.setMensagem(novaMensagem, username).then((mensagem) => {
-			setListaMensagens([mensagem, ...listaMensagens]);
-			setMensagem("");
-		});
+		api.setMensagem(novaMensagem, username).then();
 	}
 
 	function handleDeletaMensagem(mensagemId) {
 		api.deletaMensagem(mensagemId).then(() => {
-            api.getMensagens().then((mensagens) => {
-                setListaMensagens(mensagens);
-            })
+			api.getMensagens().then((mensagens) => {
+				setListaMensagens(mensagens);
+			});
 		});
 	}
 
@@ -82,13 +91,13 @@ export default function ChatPage() {
 						flexDirection: "column",
 						borderRadius: "5px",
 						padding: "16px",
-                        overflow: 'hidden'
+						overflow: "hidden",
 					}}
 				>
 					<MessageList
 						mensagens={listaMensagens}
 						filtraMensagens={handleDeletaMensagem}
-                        username={username}
+						username={username}
 					/>
 
 					<Box
@@ -142,7 +151,11 @@ export default function ChatPage() {
 								handleNovaMensagem(mensagem);
 							}}
 						/>
-                        <ButtonSendSticker />
+						<ButtonSendSticker
+							onStickerClick={(sticker) => {
+								handleNovaMensagem(`:sticker:${sticker}`);
+							}}
+						/>
 					</Box>
 				</Box>
 			</Box>
@@ -181,12 +194,12 @@ function MessageList({ mensagens, filtraMensagens, username }) {
 			styleSheet={{
 				overflow: "auto",
 				display: "flex",
-                scrollbarWidth: 'none',
+				scrollbarWidth: "none",
 				flexDirection: "column-reverse",
 				flex: 1,
 				color: appConfig.theme.colors.neutrals["000"],
 				marginBottom: "16px",
-                marginRight: '-35px'
+				marginRight: "-35px",
 			}}
 		>
 			{mensagens.map((mensagem) => {
@@ -198,7 +211,7 @@ function MessageList({ mensagens, filtraMensagens, username }) {
 							borderRadius: "5px",
 							padding: "6px",
 							marginBottom: "12px",
-                            marginRight: '35px',
+							marginRight: "35px",
 							hover: {
 								backgroundColor:
 									appConfig.theme.colors.neutrals[700],
@@ -243,19 +256,30 @@ function MessageList({ mensagens, filtraMensagens, username }) {
 									{new Date().toLocaleDateString()}
 								</Text>
 							</Box>
-							{username === mensagem.de && <Icon
-								name="FaTrash"
-								size="1.6ch"
-								styleSheet={{
-									opacity: ".8",
-									cursor: "pointer",
-								}}
-								onClick={() => {
-									filtraMensagens(mensagem.id);
-								}}
-							/> }
+							{username === mensagem.de && (
+								<Icon
+									name="FaTrash"
+									size="1.6ch"
+									styleSheet={{
+										opacity: ".8",
+										cursor: "pointer",
+									}}
+									onClick={() => {
+										filtraMensagens(mensagem.id);
+									}}
+								/>
+							)}
 						</Box>
-						{mensagem.texto}
+						{mensagem.texto.startsWith(":sticker:") ? (
+							<Image
+								styleSheet={{
+									maxWidth: "130px",
+								}}
+								src={mensagem.texto.replace(":sticker:", "")}
+							/>
+						) : (
+							mensagem.texto
+						)}
 					</Text>
 				);
 			})}

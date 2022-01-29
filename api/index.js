@@ -28,10 +28,21 @@ const deletaMensagem = (mensagemId) => {
             .then((dados) => dados);
 };
 
+// Simulando um websocked
+const escutaEmTempoReal = (adicionaMensagem) => {
+    return supabaseClient
+            .from('mensagens')
+            .on('INSERT', (dados) => {
+                adicionaMensagem(dados.new);
+            })
+            .subscribe();
+};
+
 const api = {
 	getMensagens,
 	setMensagem,
     deletaMensagem,
+    escutaEmTempoReal,
 };
 
 export default api;
