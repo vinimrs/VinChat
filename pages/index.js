@@ -178,6 +178,25 @@ export default function PaginaInicial() {
                             }}
                             disabled={userValido}
 						/>
+						<Button
+							label="Sign Out Github"
+							fullWidth
+							buttonColors={{
+								contrastColor:
+									appConfig.theme.colors.neutrals["050"],
+								mainColor: appConfig.theme.colors.neutrals["900"],
+								mainColorLight:
+									appConfig.theme.colors.neutrals["000"],
+								mainColorStrong:
+									appConfig.theme.colors.neutrals["500"],
+							}}
+                            onClick={() => {
+                                api.handleGithubLogout();
+                                setLogando(false);
+                                setUsername('');
+                            }}
+                            disabled={!userValido}
+						/>
 					</Box>
 					{/* Formulário */}
 
