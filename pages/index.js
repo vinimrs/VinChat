@@ -37,11 +37,15 @@ export default function PaginaInicial() {
 	const [username, setUsername] = useState("");
 	const [usernameData, setUsernameData] = useState({});
 	const [userValido, setUserValido] = useState(false);
-    const [logando, setLogando] = useState(false);
+    const [logando, setLogando] = useState(true);
+    const [loaded, setLoaded] = useState(false);
 	const roteamento = useRouter();
 
 	function handleChange(e) {
 		setUsername(e.target.value);
+        validaUsername(e.target.value);
+        setLogando(false);
+        setLoaded(false);
 	}
 
 	function handleSubmit(e) {
@@ -49,24 +53,47 @@ export default function PaginaInicial() {
 		roteamento.push(`/chat?username=${username}`);
 	}
 
-	function validaUsername() {
-		fetch(`https://api.github.com/users/${username}`)
-			.then((resp) => resp.json())
+	function validaUsername(user) {
+		fetch(`https://api.github.com/users/${user}`)
+			.then((resp) => {
+                if(resp.status === 403) {
+                    setUserValido(false);
+                    return null;
+                }
+                resp.json();
+            })
 			.then((respConvert) => {
-                if (respConvert.message === "Not Found") setUserValido(false);
+                if (!respConvert || respConvert.message === "Not Found") setUserValido(false);
 				else setUserValido(true);
 			})
 			.catch((erro) => console.log(erro));
 	}
 
-	useEffect(() => {
-		fetch(`https://api.github.com/users/${username}`)
-			.then((resp) => resp.json())
-			.then((respConvert) => setUsernameData(respConvert))
-			.catch((erro) => console.log(erro));
-	}, [username]);
+    function carregaUser() {
+        api.checkUser().then((user) => {
+            if(user) {
+                setUsername(user.user_metadata.user_name);
+                setLoaded(true);
+                fetch(`https://api.github.com/users/${user.user_metadata.user_name}`)
+                    .then((resp) => resp.json())
+                    .then((respConvert) => {
+                        setUsernameData(respConvert);
+                        setUserValido(true);
+                    })
+                    .catch((erro) => console.log(erro));
+            }
+        }).catch(error => {throw new Error(error)});
+    }
 
-    console.log(userValido);
+	useEffect(() => {
+            carregaUser();
+            window.addEventListener('hashchange', () => {
+                carregaUser();
+            })
+            setLogando(false);
+	}, []);
+
+    console.log(userValido, username, logando, loaded);
 	return (
 		<>
 			<Box
@@ -139,14 +166,15 @@ export default function PaginaInicial() {
 										appConfig.theme.colors.neutrals[800],
 								},
 							}}
-							onChange={handleChange}
-                            onBlur={validaUsername}
+							onChange={(e) => setTimeout(handleChange(e), 5000)}
+                            onBlur={(e) => validaUsername(e.target.value)}
 							required
                             autoComplete="off"  
+                            value={username || ''}
 						/>
 						<Button
 							type="submit"
-							label={logando ? "Entrando..." : "Login"}
+							label="Login"
 							disabled={!userValido || logando}
 							fullWidth
 							buttonColors={{
@@ -172,11 +200,12 @@ export default function PaginaInicial() {
 									appConfig.theme.colors.neutrals["500"],
 							}}
                             onClick={() => {
-                                const user = api.handleGithubLogin();
-                                setLogando(true);
-                                setUsername(user.username);
+                                api.githubLogin().then(() => {
+                                    setLogando(true);
+
+                                });
                             }}
-                            disabled={userValido}
+                            disabled={loaded}
 						/>
 						<Button
 							label="Sign Out Github"
@@ -191,11 +220,11 @@ export default function PaginaInicial() {
 									appConfig.theme.colors.neutrals["500"],
 							}}
                             onClick={() => {
-                                api.handleGithubLogout();
-                                setLogando(false);
+                                api.githubLogout();
                                 setUsername('');
+                                setLoaded(false);
                             }}
-                            disabled={!userValido}
+                            disabled={!loaded}
 						/>
 					</Box>
 					{/* Formulário */}
@@ -223,7 +252,7 @@ export default function PaginaInicial() {
 								marginBottom: "16px",
 							}}
 							src={
-								username.length > 2
+								userValido && username.length > 2
 									? `https://github.com/${username}.png`
 									: defaultImage.src
 							}

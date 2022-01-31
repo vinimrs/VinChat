@@ -38,17 +38,23 @@ const escutaEmTempoReal = (adicionaMensagem) => {
             .subscribe();
 };
 
-const handleGithubLogin = async () => {
-    const { user, session, error } = await supabaseClient.auth.signIn({
+const githubLogin = async () => {
+    const user = await supabaseClient.auth.signIn({
         provider: 'github',
     });
-    console.log(user, session, error);
+    console.log(user);
     return user;
 }
 
-const handleGithubLogout = async () => {
+const githubLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
     console.log(error);
+}
+
+async function checkUser() {
+    const user = supabaseClient.auth.user();
+    console.log(user);
+    return user;        
 }
 
 const api = {
@@ -56,8 +62,9 @@ const api = {
 	setMensagem,
     deletaMensagem,
     escutaEmTempoReal,
-    handleGithubLogin,
-    handleGithubLogout,
+    githubLogin,
+    githubLogout,
+    checkUser
 };
 
 export default api;

@@ -181,7 +181,7 @@ function Header() {
 					label="Logout"
 					href="/"
                     onClick={() => {
-                        api.handleGithubLogout();
+                        api.githubLogout();
                     }}
 				/>
 			</Box>
