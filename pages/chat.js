@@ -181,6 +181,7 @@ function Header() {
 					label="Logout"
 					href="/"
                     onClick={() => {
+                        if(api.checkUser)
                         api.githubLogout();
                     }}
 				/>

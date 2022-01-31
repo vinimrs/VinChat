@@ -37,15 +37,15 @@ export default function PaginaInicial() {
 	const [username, setUsername] = useState("");
 	const [usernameData, setUsernameData] = useState({});
 	const [userValido, setUserValido] = useState(false);
-    const [logando, setLogando] = useState(true);
-    const [loaded, setLoaded] = useState(false);
+	const [logando, setLogando] = useState(true);
+	const [loaded, setLoaded] = useState(false);
 	const roteamento = useRouter();
 
 	function handleChange(e) {
 		setUsername(e.target.value);
-        validaUsername(e.target.value);
-        setLogando(false);
-        setLoaded(false);
+		validaUsername(e.target.value);
+		setLogando(false);
+		setLoaded(false);
 	}
 
 	function handleSubmit(e) {
@@ -55,45 +55,50 @@ export default function PaginaInicial() {
 
 	function validaUsername(user) {
 		fetch(`https://api.github.com/users/${user}`)
-			.then((resp) => {
-                if(resp.status === 403) {
-                    setUserValido(false);
-                    return null;
-                }
-                resp.json();
-            })
+			.then((resp) => resp.json())
 			.then((respConvert) => {
-                if (!respConvert || respConvert.message === "Not Found") setUserValido(false);
+				if (respConvert.message === "Not Found") setUserValido(false);
 				else setUserValido(true);
+				console.log("validou");
 			})
 			.catch((erro) => console.log(erro));
 	}
 
-    function carregaUser() {
-        api.checkUser().then((user) => {
-            if(user) {
-                setUsername(user.user_metadata.user_name);
-                setLoaded(true);
-                fetch(`https://api.github.com/users/${user.user_metadata.user_name}`)
-                    .then((resp) => resp.json())
-                    .then((respConvert) => {
-                        setUsernameData(respConvert);
-                        setUserValido(true);
-                    })
-                    .catch((erro) => console.log(erro));
-            }
-        }).catch(error => {throw new Error(error)});
+    function carregaDadosUser(user) {
+        fetch(
+            `https://api.github.com/users/${user}`
+        )
+            .then((resp) => resp.json())
+            .then((respConvert) => {
+                setUsernameData(respConvert);
+                setUserValido(true);
+            })
+            .catch((erro) => console.log(erro));
     }
 
+	function carregaUser() {
+		api.checkUser()
+			.then((user) => {
+				if (user) {
+					setUsername(user.user_metadata.user_name);
+					setLoaded(true);
+					carregaDadosUser(user.user_metadata.user_name);
+				}
+			})
+			.catch((error) => {
+				throw new Error(error);
+			});
+	}
+
 	useEffect(() => {
-            carregaUser();
-            window.addEventListener('hashchange', () => {
-                carregaUser();
-            })
-            setLogando(false);
+		carregaUser();
+		window.addEventListener("hashchange", () => {
+			carregaUser();
+		});
+		setLogando(false);
 	}, []);
 
-    console.log(userValido, username, logando, loaded);
+	console.log(userValido, username, logando, loaded, usernameData);
 	return (
 		<>
 			<Box
@@ -151,6 +156,7 @@ export default function PaginaInicial() {
 						>
 							{appConfig.name}
 						</Text>
+                        
 
 						<TextField
 							fullWidth
@@ -166,12 +172,16 @@ export default function PaginaInicial() {
 										appConfig.theme.colors.neutrals[800],
 								},
 							}}
-							onChange={(e) => setTimeout(handleChange(e), 5000)}
-                            onBlur={(e) => validaUsername(e.target.value)}
+							onChange={(e) => {
+                                handleChange(e);
+                                if(userValido) carregaDadosUser(username);
+                            }
+                            }
+							// onBlur={(e) => validaUsername(e.target.value)}
 							required
-                            autoComplete="off"  
-                            value={username || ''}
-                            disabled={loaded}
+							autoComplete="off"
+							value={username || ""}
+							disabled={loaded}
 						/>
 						<Button
 							type="submit"
@@ -188,46 +198,48 @@ export default function PaginaInicial() {
 									appConfig.theme.colors.primary[600],
 							}}
 						/>
-						<Button
-							label="Login with Github"
-							fullWidth
-							buttonColors={{
-								contrastColor:
-									appConfig.theme.colors.neutrals["050"],
-								mainColor: appConfig.theme.colors.neutrals["900"],
-								mainColorLight:
-									appConfig.theme.colors.neutrals["000"],
-								mainColorStrong:
-									appConfig.theme.colors.neutrals["500"],
-							}}
-                            onClick={() => {
-                                api.githubLogin().then(() => {
-                                    setLogando(true);
-
-                                });
-                            }}
-                            disabled={loaded}
-						/>
-						<Button
-							label="Sign Out Github"
-							fullWidth
-							buttonColors={{
-								contrastColor:
-									appConfig.theme.colors.neutrals["050"],
-								mainColor: appConfig.theme.colors.neutrals["900"],
-								mainColorLight:
-									appConfig.theme.colors.neutrals["000"],
-								mainColorStrong:
-									appConfig.theme.colors.neutrals["500"],
-							}}
-                            onClick={() => {
-                                api.githubLogout();
-                                setUsername('');
-                                setLoaded(false);
-                                setUserValido(false);
-                            }}
-                            disabled={!loaded}
-						/>
+                        {!loaded ? (
+                            <Button
+                                label="Login with Github"
+                                fullWidth
+                                buttonColors={{
+                                    contrastColor:
+                                        appConfig.theme.colors.neutrals["050"],
+                                    mainColor:
+                                        appConfig.theme.colors.neutrals["900"],
+                                    mainColorLight:
+                                        appConfig.theme.colors.neutrals["000"],
+                                    mainColorStrong:
+                                        appConfig.theme.colors.neutrals["500"],
+                                }}
+                                onClick={() => {
+                                    api.githubLogin().then(() => {
+                                        setLogando(true);
+                                    });
+                                }}
+                            />
+                        ) : (
+                            <Button
+                                label="Sign Out Github"
+                                fullWidth
+                                buttonColors={{
+                                    contrastColor:
+                                        appConfig.theme.colors.neutrals["050"],
+                                    mainColor:
+                                        appConfig.theme.colors.neutrals["900"],
+                                    mainColorLight:
+                                        appConfig.theme.colors.neutrals["000"],
+                                    mainColorStrong:
+                                        appConfig.theme.colors.neutrals["500"],
+                                }}
+                                onClick={() => {
+                                    api.githubLogout();
+                                    setUsername("");
+                                    setLoaded(false);
+                                    setUserValido(false);
+                                }}
+                            />
+                        )}
 					</Box>
 					{/* Formulário */}
 
@@ -273,7 +285,7 @@ export default function PaginaInicial() {
 								? usernameData.name
 								: "Usuário Desconhecido"}
 						</Text>
-                        {username.length > 2 &&
+						{username.length > 2 && (
 							<Box
 								styleSheet={{
 									display: "flex",
@@ -323,7 +335,8 @@ export default function PaginaInicial() {
 								>
 									Seguindo: {usernameData.following}
 								</Text>
-							</Box> }
+							</Box>
+						)}
 					</Box>
 					{/* Photo Area */}
 				</Box>
