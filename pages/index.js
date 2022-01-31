@@ -6,10 +6,11 @@ import {
 	Text,
 	Icon,
 } from "@skynexui/components";
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import appConfig from "../config.json";
 import defaultImage from "../public/default.jpg";
+import api from "../api";
 
 function Title({ children, tag }) {
 	const Tag = tag;
@@ -36,11 +37,11 @@ export default function PaginaInicial() {
 	const [username, setUsername] = useState("");
 	const [usernameData, setUsernameData] = useState({});
 	const [userValido, setUserValido] = useState(false);
+    const [logando, setLogando] = useState(false);
 	const roteamento = useRouter();
 
 	function handleChange(e) {
 		setUsername(e.target.value);
-        validaUsername();
 	}
 
 	function handleSubmit(e) {
@@ -139,12 +140,14 @@ export default function PaginaInicial() {
 								},
 							}}
 							onChange={handleChange}
+                            onBlur={validaUsername}
 							required
+                            autoComplete="off"  
 						/>
 						<Button
 							type="submit"
-							label="Login"
-							// disabled={userValido}
+							label={logando ? "Entrando..." : "Login"}
+							disabled={!userValido || logando}
 							fullWidth
 							buttonColors={{
 								contrastColor:
@@ -155,6 +158,25 @@ export default function PaginaInicial() {
 								mainColorStrong:
 									appConfig.theme.colors.primary[600],
 							}}
+						/>
+						<Button
+							label="Login with Github"
+							fullWidth
+							buttonColors={{
+								contrastColor:
+									appConfig.theme.colors.neutrals["050"],
+								mainColor: appConfig.theme.colors.neutrals["900"],
+								mainColorLight:
+									appConfig.theme.colors.neutrals["000"],
+								mainColorStrong:
+									appConfig.theme.colors.neutrals["500"],
+							}}
+                            onClick={() => {
+                                const user = api.handleGithubLogin();
+                                setLogando(true);
+                                setUsername(user.username);
+                            }}
+                            disabled={userValido}
 						/>
 					</Box>
 					{/* Formulário */}

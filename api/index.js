@@ -38,11 +38,26 @@ const escutaEmTempoReal = (adicionaMensagem) => {
             .subscribe();
 };
 
+const handleGithubLogin = async () => {
+    const { user, session, error } = await supabaseClient.auth.signIn({
+        provider: 'github',
+    });
+    console.log(user, session, error);
+    return user;
+}
+
+const handleGithubLogout = async () => {
+    const { error } = await supabaseClient.auth.signOut();
+    console.log(error);
+}
+
 const api = {
 	getMensagens,
 	setMensagem,
     deletaMensagem,
     escutaEmTempoReal,
+    handleGithubLogin,
+    handleGithubLogout,
 };
 
 export default api;

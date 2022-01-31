@@ -13,7 +13,6 @@ import { useRouter } from "next/router";
 import { ButtonSendSticker } from "../src/components/ButtonSendSticker";
 
 export default function ChatPage() {
-	// Sua lógica vai aqui
 	const roteamento = useRouter();
 	const username = roteamento.query.username;
 	const [mensagem, setMensagem] = useState("");
@@ -21,7 +20,7 @@ export default function ChatPage() {
 
 	useEffect(() => {
 		api.getMensagens().then((dados) => setListaMensagens(dados));
-        api.escutaEmTempoReal((novaMensagem) => {
+        const subscription = api.escutaEmTempoReal((novaMensagem) => {
             //Para reusar um valor de referência array/objeto passar função para o setState
             // Para pegar o valor atual do estado
             setListaMensagens((valoratual) => {
@@ -181,6 +180,9 @@ function Header() {
 					colorVariant="neutral"
 					label="Logout"
 					href="/"
+                    onClick={() => {
+                        api.handleGithubLogout();
+                    }}
 				/>
 			</Box>
 		</>
