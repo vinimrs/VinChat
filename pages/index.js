@@ -171,6 +171,7 @@ export default function PaginaInicial() {
 							required
                             autoComplete="off"  
                             value={username || ''}
+                            disabled={loaded}
 						/>
 						<Button
 							type="submit"
@@ -223,6 +224,7 @@ export default function PaginaInicial() {
                                 api.githubLogout();
                                 setUsername('');
                                 setLoaded(false);
+                                setUserValido(false);
                             }}
                             disabled={!loaded}
 						/>

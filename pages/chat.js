@@ -255,7 +255,7 @@ function MessageList({ mensagens, filtraMensagens, username }) {
 									}}
 									tag="span"
 								>
-									{new Date().toLocaleDateString()}
+									{mensagem.created_at}
 								</Text>
 							</Box>
 							{username === mensagem.de && (
