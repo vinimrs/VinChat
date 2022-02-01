@@ -5,7 +5,7 @@ Projeto criado junto com @omariosouto e @peas, na imersão react da @alura.
 ## Confira
 <img src="https://github.com/ViniR07/VinChat/blob/main/Screenshots/scree_vinChat.png" width="450"/>
 <img src="https://github.com/ViniR07/VinChat/blob/main/Screenshots/screen_vinchat2.png" width="450"/>
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/92659173/152045984-f7741d95-1223-4a0a-8226-bb52134e5a60.gif)
+![video_gif](https://user-images.githubusercontent.com/92659173/152045984-f7741d95-1223-4a0a-8226-bb52134e5a60.gif)
 
 ## Tecnologias
 
@@ -25,31 +25,24 @@ Projeto criado junto com @omariosouto e @peas, na imersão react da @alura.
 
 No terminal, clone o projeto:
 
-```
+```bash
 git clone https://github.com/ViniR07/meals-mobile-app.git
 ```
 
 Depois disso você pode ir no repositório e rodar o comando `npm install` para instalar as dependências:
 
-```
+```bash
 npm install
 ```
 Finally, we can run the App with the `npm run dev` command:
 
-```
+```bash
 npm run dev
 ```
 
-## Improvements 🛠
+## Melhorias 🛠
 
-Improvement ideas to be considered in the project:
-
-- Create pages for integration with Navbar
-- Integrate the React Router for this improvement
-- Improve the responsive
-- Adjust the Meal Modal for best view
-- Improve the Mobile UX for categories selection
-- Add sign up form and interface for log in
+Ideias de melhorias para o projeto:
 
 ## Co-Participação
 <p align="center">
