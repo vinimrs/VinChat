@@ -11,6 +11,7 @@ import appConfig from "../config.json";
 import api from "../api";
 import { useRouter } from "next/router";
 import { ButtonSendSticker } from "../src/components/ButtonSendSticker";
+import bgImg from "../public/bg2.jpg";
 
 export default function ChatPage() {
 	const roteamento = useRouter();
@@ -20,19 +21,19 @@ export default function ChatPage() {
 
 	useEffect(() => {
 		api.getMensagens().then((dados) => setListaMensagens(dados));
-        const subscription = api.escutaEmTempoReal((novaMensagem) => {
-            //Para reusar um valor de referência array/objeto passar função para o setState
-            // Para pegar o valor atual do estado
-            setListaMensagens((valoratual) => {
-                console.log('valor atual:', valoratual);
-                return [novaMensagem, ...valoratual]
-            });
+		const subscription = api.escutaEmTempoReal((novaMensagem) => {
+			//Para reusar um valor de referência array/objeto passar função para o setState
+			// Para pegar o valor atual do estado
+			setListaMensagens((valoratual) => {
+				console.log("valor atual:", valoratual);
+				return [novaMensagem, ...valoratual];
+			});
 			setMensagem("");
-        });
+		});
 
-        return () => {
-            subscription.unsubscribe();
-        }
+		return () => {
+			subscription.unsubscribe();
+		};
 	}, []);
 
 	function handleChange(e) {
@@ -57,12 +58,12 @@ export default function ChatPage() {
 				display: "flex",
 				alignItems: "center",
 				justifyContent: "center",
-				backgroundColor: appConfig.theme.colors.primary[500],
-				backgroundImage: `url(https://virtualbackgrounds.site/wp-content/uploads/2020/08/the-matrix-digital-rain.jpg)`,
+				backgroundPosition: "center",
+				backgroundImage: `url(${bgImg.src})`,
 				backgroundRepeat: "no-repeat",
 				backgroundSize: "cover",
 				backgroundBlendMode: "multiply",
-				color: appConfig.theme.colors.neutrals["000"],
+				transition: ".5s all",
 			}}
 		>
 			<Box
@@ -70,12 +71,10 @@ export default function ChatPage() {
 					display: "flex",
 					flexDirection: "column",
 					flex: 1,
-					boxShadow: "0 2px 10px 0 rgb(0 0 0 / 20%)",
 					borderRadius: "5px",
-					backgroundColor: appConfig.theme.colors.neutrals[700],
-					height: "100%",
-					maxWidth: "95%",
-					maxHeight: "95vh",
+					backgroundColor: `${appConfig.theme.colors.secondary[900]}ca`,
+					maxWidth: "500px",
+					maxHeight: "55vh",
 					padding: "32px",
 				}}
 			>
@@ -86,7 +85,7 @@ export default function ChatPage() {
 						display: "flex",
 						flex: 1,
 						height: "80%",
-						backgroundColor: appConfig.theme.colors.neutrals[600],
+						backgroundColor: appConfig.theme.colors.secondary[800],
 						flexDirection: "column",
 						borderRadius: "5px",
 						padding: "16px",
@@ -104,6 +103,7 @@ export default function ChatPage() {
 						styleSheet={{
 							display: "flex",
 							alignItems: "center",
+							position: "relative",
 						}}
 					>
 						<TextField
@@ -122,34 +122,37 @@ export default function ChatPage() {
 								border: "0",
 								resize: "none",
 								borderRadius: "5px",
-								padding: "6px 8px",
+								padding: "15px 15px 5px 15px",
 								backgroundColor:
 									appConfig.theme.colors.neutrals[800],
 								marginRight: "12px",
 								color: appConfig.theme.colors.neutrals[200],
 							}}
 						/>
-						<Button
+
+						<Icon
 							type="submit"
-							label="Enviar"
-							fullWidth
-							buttonColors={{
-								contrastColor:
-									appConfig.theme.colors.neutrals["000"],
-								mainColor: appConfig.theme.colors.primary[500],
-								mainColorLight:
-									appConfig.theme.colors.primary[400],
-								mainColorStrong:
-									appConfig.theme.colors.primary[600],
-							}}
-							styleSheet={{
-								maxWidth: "100px",
-							}}
 							onClick={(e) => {
 								e.preventDefault();
 								handleNovaMensagem(mensagem);
 							}}
+							name="FaPlaneArrival"
+							size="3.2ch"
+							styleSheet={{
+								position: "absolute",
+								right: "75px",
+								bottom: "20px",
+								color: appConfig.theme.colors.neutrals["300"],
+								cursor: "pointer",
+								transition: ".5s",
+								hover: {
+									color: appConfig.theme.colors.neutrals[
+										"200"
+									],
+								},
+							}}
 						/>
+
 						<ButtonSendSticker
 							onStickerClick={(sticker) => {
 								handleNovaMensagem(`:sticker:${sticker}`);
@@ -174,16 +177,31 @@ function Header() {
 					justifyContent: "space-between",
 				}}
 			>
-				<Text variant="heading5">Chat</Text>
+				<Text
+					variant="heading5"
+					styleSheet={{
+						color: appConfig.theme.colors.neutrals["050"],
+					}}
+				>
+					VinChat
+				</Text>
 				<Button
+					styleSheet={{
+						color: appConfig.theme.colors.neutrals["050"],
+						transition: ".5s",
+						hover: {
+							backgroundColor:
+								appConfig.theme.colors.neutrals["050"],
+							color: appConfig.theme.colors.secondary[800],
+						},
+					}}
 					variant="tertiary"
 					colorVariant="neutral"
 					label="Logout"
 					href="/"
-                    onClick={() => {
-                        if(api.checkUser)
-                        api.githubLogout();
-                    }}
+					onClick={() => {
+						if (api.checkUser) api.githubLogout();
+					}}
 				/>
 			</Box>
 		</>
@@ -191,6 +209,21 @@ function Header() {
 }
 
 function MessageList({ mensagens, filtraMensagens, username }) {
+	function formataData(string) {
+		var time = new Date(string).toLocaleTimeString().substring(0, 5);
+		var data;
+		if (new Date().getDay() - new Date(string).getDay() === 0) {
+			data = "Hoje";
+		} else {
+			time =
+				new Date(string).toLocaleDateString() +
+				", às: " +
+				new Date(string).toLocaleTimeString().substring(0, 5);
+			data = "";
+		}
+		return `${time} ${data}`;
+	}
+
 	return (
 		<Box
 			tag="ul"
@@ -200,7 +233,7 @@ function MessageList({ mensagens, filtraMensagens, username }) {
 				scrollbarWidth: "none",
 				flexDirection: "column-reverse",
 				flex: 1,
-				color: appConfig.theme.colors.neutrals["000"],
+				color: appConfig.theme.colors.neutrals["050"],
 				marginBottom: "16px",
 				marginRight: "-35px",
 			}}
@@ -217,7 +250,7 @@ function MessageList({ mensagens, filtraMensagens, username }) {
 							marginRight: "35px",
 							hover: {
 								backgroundColor:
-									appConfig.theme.colors.neutrals[700],
+									appConfig.theme.colors.secondary[900],
 							},
 						}}
 					>
@@ -256,7 +289,7 @@ function MessageList({ mensagens, filtraMensagens, username }) {
 									}}
 									tag="span"
 								>
-									{mensagem.created_at}
+									{formataData(mensagem.created_at)}
 								</Text>
 							</Box>
 							{username === mensagem.de && (
@@ -281,7 +314,9 @@ function MessageList({ mensagens, filtraMensagens, username }) {
 								src={mensagem.texto.replace(":sticker:", "")}
 							/>
 						) : (
-							mensagem.texto
+							<Text styleSheet={{ padding: "3px" }}>
+								{mensagem.texto}
+							</Text>
 						)}
 					</Text>
 				);

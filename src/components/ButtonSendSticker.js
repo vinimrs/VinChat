@@ -23,10 +23,10 @@ export function ButtonSendSticker({ onStickerClick }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: appConfig.theme.colors.neutrals[300],
-          filter: isOpen ? 'grayscale(0)' : 'grayscale(1)',
+          backgroundColor: isOpen ? appConfig.theme.colors.primary[700] : appConfig.theme.colors.neutrals[400],
+        //   filter: isOpen ? 'grayscale(0)' : 'grayscale(1)',
           hover: {
-            filter: 'grayscale(0)',
+            color: appConfig.theme.colors.primary[700],
           }
         }}
         label="😋"
