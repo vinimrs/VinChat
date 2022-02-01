@@ -3,9 +3,10 @@
 Projeto criado junto com @omariosouto e @peas, na imersão react da @alura.
 
 ## Confira
-<img src="https://github.com/ViniR07/VinChat/blob/main/Screenshots/scree_vinChat.png" width="450"/>
-<img src="https://github.com/ViniR07/VinChat/blob/main/Screenshots/screen_vinchat2.png" width="450"/>
-![video_gif](https://user-images.githubusercontent.com/92659173/152045984-f7741d95-1223-4a0a-8226-bb52134e5a60.gif)
+<img src="https://github.com/ViniR07/VinChat/blob/main/Screenshots/scree_vinChat.png" width="900"/>
+<img src="https://github.com/ViniR07/VinChat/blob/main/Screenshots/screen_vinchat2.png" width="900"/>
+<img src="https://user-images.githubusercontent.com/92659173/152045984-f7741d95-1223-4a0a-8226-bb52134e5a60.gif" width="900" />
+
 
 ## Tecnologias
 
