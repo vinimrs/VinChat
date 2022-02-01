@@ -8,7 +8,7 @@ export function ButtonSendSticker({ onStickerClick }) {
   return (
     <Box
       styleSheet={{
-        position: 'relative',
+        // position: 'relative',
       }}
     >
       <Button
@@ -24,7 +24,6 @@ export function ButtonSendSticker({ onStickerClick }) {
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: isOpen ? appConfig.theme.colors.primary[700] : appConfig.theme.colors.neutrals[400],
-        //   filter: isOpen ? 'grayscale(0)' : 'grayscale(1)',
           hover: {
             color: appConfig.theme.colors.primary[700],
           }
@@ -41,12 +40,13 @@ export function ButtonSendSticker({ onStickerClick }) {
             position: 'absolute',
             backgroundColor: appConfig.theme.colors.neutrals[800],
             width: {
-              xs: '200px',
+              xs: '400px',
               sm: '290px',
             },
             height: '300px',
             right: '30px',
             overflow: 'hidden',
+            zIndex: '1000',
             bottom: '30px',
             padding: '16px',
             boxShadow: 'rgba(4, 4, 5, 0.15) 0px 0px 0px 1px, rgba(0, 0, 0, 0.24) 0px 8px 16px 0px',
@@ -77,7 +77,6 @@ export function ButtonSendSticker({ onStickerClick }) {
             {appConfig.stickers.map((sticker) => (
               <Text
                 onClick={() => {
-                  // console.log('[DENTRO DO COMPONENTE] Clicou no sticker:', sticker);
                   if (Boolean(onStickerClick)) {
                     onStickerClick(sticker);
                   }
