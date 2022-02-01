@@ -120,8 +120,8 @@ export default function PaginaInicial() {
 						justifyContent: "center",
 						flexWrap: "wrap",
 						// width: "100%",
-						background: " rgba( 255, 255, 255, 0.35 )",
-						boxShadow: "0 0 32px 0 #E03D2340",
+                        backgroundColor: `${appConfig.theme.colors.secondary[800]}ca`,
+						boxShadow: "0 0 32px 0 appConfig.theme.colors.secondary[800]",
 						backdropFilter: "blur( 4px )",
 						maxWidth: "400px",
 						borderRadius: "10px",
@@ -138,9 +138,10 @@ export default function PaginaInicial() {
 							justifyContent: "center",
 							width: "100%",
 							padding: "16px",
-							background: "rgba( 255, 255, 255, 0.25 )",
-							// background: 'rgba( 254, 72, 36, 0.4 )',
-							// boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+							// background: "rgba( 255, 255, 255, 0.25 )",
+                            // backgroundColor: `${appConfig.theme.colors.secondary[800]}ca`,
+                            backgroundColor: `${appConfig.theme.colors.neutrals['050']}de`,
+
 							backdropFilter: "blur( 4px )",
 							borderRadius: "10px",
 							flex: 1,
@@ -273,8 +274,8 @@ export default function PaginaInicial() {
 								: "Bem-Vindo(a) ao "}
 							<Text
 								styleSheet={{
-									color: appConfig.theme.colors.secondary[
-										"800"
+									color: appConfig.theme.colors.primary[
+										"600"
 									],
 									fontSize: "25px",
 									fontWeight: "bold",
@@ -312,17 +313,17 @@ export default function PaginaInicial() {
 							}}
 							styleSheet={{
                                 transition: '.4s',
-
-								border: `2px solid ${appConfig.theme.colors.secondary[800]}`,
-								boxShadow: `inset 0px 0px 7px ${appConfig.theme.colors.secondary[800]}`,
-								padding: "10px 15px",
+                                padding:'10px 15px',
+                                backgroundColor: `${appConfig.theme.colors.neutrals["000"]}ee`,
+                                boxShadow: `inset 0px 0px 7px ${appConfig.theme.colors.neutrals["000"]}5a`,
+                                border: `2px solid ${appConfig.theme.colors.neutrals[100]}aa`,
 								hover: {
-									backgroundColor: `${appConfig.theme.colors.neutrals["000"]}5a`,
+									backgroundColor: `${appConfig.theme.colors.neutrals["000"]}d5`,
 									boxShadow: `inset 0px 0px 7px ${appConfig.theme.colors.neutrals["000"]}5a`,
 									border: `2px solid ${appConfig.theme.colors.neutrals[100]}5a`,
 								},
 								focus: {
-									backgroundColor: `${appConfig.theme.colors.neutrals["000"]}5a`,
+                                    backgroundColor: `${appConfig.theme.colors.neutrals["000"]}d5`,
 									boxShadow: `inset 0px 0px 7px ${appConfig.theme.colors.neutrals["000"]}5a`,
 									border: `2px solid ${appConfig.theme.colors.neutrals[100]}5a`,
 								},
@@ -332,7 +333,7 @@ export default function PaginaInicial() {
 							}}
 							onChange={(e) => {
 								handleChange(e);
-								if (userValido) carregaDadosUser(username);
+								userValido && carregaDadosUser(username);
 							}}
 							// onBlur={(e) => validaUsername(e.target.value)}
 							required

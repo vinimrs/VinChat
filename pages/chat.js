@@ -63,6 +63,7 @@ export default function ChatPage() {
 				backgroundRepeat: "no-repeat",
 				backgroundSize: "cover",
 				backgroundBlendMode: "multiply",
+				backdropFilter: "blur( 4px )",
 				transition: ".5s all",
 			}}
 		>
@@ -74,7 +75,7 @@ export default function ChatPage() {
 					borderRadius: "5px",
 					backgroundColor: `${appConfig.theme.colors.secondary[900]}ca`,
 					maxWidth: "500px",
-					maxHeight: "55vh",
+					maxHeight: "75vh",
 					padding: "32px",
 				}}
 			>
@@ -166,6 +167,8 @@ export default function ChatPage() {
 }
 
 function Header() {
+	const roteamento = useRouter();
+	const username = roteamento.query.username;
 	return (
 		<>
 			<Box
@@ -185,24 +188,41 @@ function Header() {
 				>
 					VinChat
 				</Text>
-				<Button
+				<Box
 					styleSheet={{
+                        padding: '5px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        transition: '.2s',
+                        borderRadius: '2px',
+                        cursor: 'pointer',
 						color: appConfig.theme.colors.neutrals["050"],
-						transition: ".5s",
 						hover: {
 							backgroundColor:
 								appConfig.theme.colors.neutrals["050"],
 							color: appConfig.theme.colors.secondary[800],
 						},
 					}}
-					variant="tertiary"
-					colorVariant="neutral"
-					label="Logout"
-					href="/"
 					onClick={() => {
 						if (api.checkUser) api.githubLogout();
+						roteamento.push("/");
 					}}
-				/>
+				>
+					<Image
+						styleSheet={{
+							borderRadius: "50%",
+							maxWidth: "30px",
+						}}
+						src={`https://github.com/${username}.png`}
+					/>
+					<Text
+                    variant="heading5"
+					styleSheet={{
+                        paddingLeft: '10px',
+                        fontSize: '15px'
+						// color: appConfig.theme.colors.neutrals["050"],
+					}}>Logout</Text>
+				</Box>
 			</Box>
 		</>
 	);
