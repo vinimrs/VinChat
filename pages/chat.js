@@ -18,6 +18,27 @@ export default function ChatPage() {
 	const username = roteamento.query.username;
 	const [mensagem, setMensagem] = useState("");
 	const [listaMensagens, setListaMensagens] = useState([]);
+	// possibilitando redimensionar o container
+	const [drag, setDrag] = useState({
+		active: false,
+		x: "",
+		y: "",
+	});
+	const [dims, setDims] = useState({
+		w: 500,
+		h: 600,
+	});
+	const startResize = (e) => {
+		setDrag({
+			active: true,
+			x: e.clientX,
+			y: e.clientY,
+		});
+	};
+	const boxStyle = {
+		maxWidth: `${dims.w}px`,
+		height: `${dims.h}px`,
+	};
 
 	useEffect(() => {
 		api.getMensagens().then((dados) => setListaMensagens(dados));
@@ -52,6 +73,23 @@ export default function ChatPage() {
 		});
 	}
 
+	function resizeFrame(e) {
+		const { active, x, y } = drag;
+		if (active) {
+			const xDiff = Math.abs(x - e.clientX);
+			const yDiff = Math.abs(y - e.clientY);
+			const newW = x > e.clientX ? dims.w - xDiff : dims.w + xDiff;
+			const newH = y > e.clientY ? dims.h + yDiff : dims.h - yDiff;
+
+			setDrag({ ...drag, x: e.clientX, y: e.clientY });
+			setDims({ w: newW, h: newH });
+		}
+	}
+
+	function stopResize(e) {
+		setDrag({ ...drag, active: false });
+	}
+
 	return (
 		<Box
 			styleSheet={{
@@ -66,6 +104,8 @@ export default function ChatPage() {
 				backdropFilter: "blur( 4px )",
 				transition: ".5s all",
 			}}
+            onMouseMove={resizeFrame}
+            onMouseUp={stopResize}
 		>
 			<Box
 				styleSheet={{
@@ -74,11 +114,28 @@ export default function ChatPage() {
 					flex: 1,
 					borderRadius: "5px",
 					backgroundColor: `${appConfig.theme.colors.secondary[900]}ca`,
-					maxWidth: "500px",
-					maxHeight: "75vh",
+                    maxWidth: boxStyle.maxWidth,
+                    height: boxStyle.height,
+                    minWidth: '350px',
+                    minHeight: '400px',
 					padding: "32px",
+					position: "relative",
 				}}
 			>
+				<Icon
+					name="FaCropAlt"
+					size="2ch"
+                    onMouseDown={startResize}
+					styleSheet={{
+						position: "absolute",
+						top: "0",
+						right: "0",
+						filter: "invert(100%)",
+						cursor: drag.active ? "grabbing" : "grab",
+						opacity: ".3",
+                        display: {md: 'inherit', sm: 'none'},
+					}}
+				/>
 				<Header />
 				<Box
 					styleSheet={{
@@ -178,6 +235,7 @@ function Header() {
 					display: "flex",
 					alignItems: "center",
 					justifyContent: "space-between",
+                    userSelect: 'none'
 				}}
 			>
 				<Text
@@ -190,12 +248,12 @@ function Header() {
 				</Text>
 				<Box
 					styleSheet={{
-                        padding: '5px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        transition: '.2s',
-                        borderRadius: '2px',
-                        cursor: 'pointer',
+						padding: "5px",
+						display: "flex",
+						alignItems: "center",
+						transition: ".2s",
+						borderRadius: "2px",
+						cursor: "pointer",
 						color: appConfig.theme.colors.neutrals["050"],
 						hover: {
 							backgroundColor:
@@ -216,12 +274,15 @@ function Header() {
 						src={`https://github.com/${username}.png`}
 					/>
 					<Text
-                    variant="heading5"
-					styleSheet={{
-                        paddingLeft: '10px',
-                        fontSize: '15px'
-						// color: appConfig.theme.colors.neutrals["050"],
-					}}>Logout</Text>
+						variant="heading5"
+						styleSheet={{
+							paddingLeft: "10px",
+							fontSize: "15px",
+							// color: appConfig.theme.colors.neutrals["050"],
+						}}
+					>
+						Logout
+					</Text>
 				</Box>
 			</Box>
 		</>
@@ -229,7 +290,8 @@ function Header() {
 }
 
 function MessageList({ mensagens, filtraMensagens, username }) {
-	function formataData(string) {
+	
+    function formataData(string) {
 		var time = new Date(string).toLocaleTimeString().substring(0, 5);
 		var data;
 		if (new Date().getDay() - new Date(string).getDay() === 0) {
@@ -268,6 +330,8 @@ function MessageList({ mensagens, filtraMensagens, username }) {
 							padding: "6px",
 							marginBottom: "12px",
 							marginRight: "35px",
+                            userSelect: 'none',
+
 							hover: {
 								backgroundColor:
 									appConfig.theme.colors.secondary[900],

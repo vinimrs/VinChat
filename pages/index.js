@@ -39,14 +39,14 @@ Title.defaultProps = {
 export default function PaginaInicial() {
 	const [username, setUsername] = useState("");
 	const [usernameData, setUsernameData] = useState({});
-	const [userValido, setUserValido] = useState(false);
+	const [userValido, setUserValido] = useState({valido: false, mensagem: ''});
 	const [logando, setLogando] = useState(true);
 	const [loaded, setLoaded] = useState(false);
 	const roteamento = useRouter();
 
 	function handleChange(e) {
 		setUsername(e.target.value);
-		validaUsername(e.target.value);
+		carregaDadosUser(e.target.value);
 		setLogando(false);
 		setLoaded(false);
 	}
@@ -56,24 +56,25 @@ export default function PaginaInicial() {
 		roteamento.push(`/chat?username=${username}`);
 	}
 
-	function validaUsername(user) {
-		fetch(`https://api.github.com/users/${user}`)
-			.then((resp) => resp.json())
-			.then((respConvert) => {
-				if (respConvert.message === "Not Found") setUserValido(false);
-				else setUserValido(true);
-				console.log("validou");
-			})
-			.catch((erro) => console.log(erro));
-	}
-
 	function carregaDadosUser(user) {
 		fetch(`https://api.github.com/users/${user}`)
-			.then((resp) => resp.json())
-			.then((respConvert) => {
-				setUsernameData(respConvert);
-				setUserValido(true);
-			})
+			.then((resp) => {
+                if(resp.status === 200){
+                    resp.json()
+                    .then((respConvert) => {
+                        setUsernameData(respConvert);
+                        setUserValido({valido: true, mensagem: ''});
+                    });
+                } else if( resp.status === 404) {
+                    setUserValido({valido: false, mensagem: 'O usuário inserido não existe.'});
+                } else if(resp.status === 403) {
+                    setUserValido({valido: false, mensagem: 'Limite excedido para uso da API.'});
+                } else if(username.length < 2 && !username.trim()){
+                    setUserValido({valido: false, mensagem: ''});
+                } else {
+                    setUserValido({valido: false, mensagem: 'Algo deu errado!'});
+                }
+            })
 			.catch((erro) => console.log(erro));
 	}
 
@@ -110,6 +111,7 @@ export default function PaginaInicial() {
 					backgroundImage: `url(${backgroundImg.src})`,
 					backgroundRepeat: "no-repeat",
 					backgroundSize: "cover",
+                    backgroundPosition: 'center',
 					backgroundBlendMode: "multiply",
 				}}
 			>
@@ -119,7 +121,6 @@ export default function PaginaInicial() {
 						alignItems: "center",
 						justifyContent: "center",
 						flexWrap: "wrap",
-						// width: "100%",
                         backgroundColor: `${appConfig.theme.colors.secondary[800]}ca`,
 						boxShadow: "0 0 32px 0 appConfig.theme.colors.secondary[800]",
 						backdropFilter: "blur( 4px )",
@@ -138,11 +139,7 @@ export default function PaginaInicial() {
 							justifyContent: "center",
 							width: "100%",
 							padding: "16px",
-							// background: "rgba( 255, 255, 255, 0.25 )",
-                            // backgroundColor: `${appConfig.theme.colors.secondary[800]}ca`,
-                            backgroundColor: `${appConfig.theme.colors.neutrals['050']}de`,
-
-							backdropFilter: "blur( 4px )",
+                            backgroundColor: `${appConfig.theme.colors.neutrals['050']}ea`,
 							borderRadius: "10px",
 							flex: 1,
 							minHeight: "240px",
@@ -155,7 +152,7 @@ export default function PaginaInicial() {
 								maxWidth: "200px",
 							}}
 							src={
-								userValido && username.length > 2
+								userValido.valido && username.length > 2
 									? `https://github.com/${username}.png`
 									: githubImg.src
 							}
@@ -164,14 +161,14 @@ export default function PaginaInicial() {
 							variant="body4"
 							styleSheet={{
 								color: appConfig.theme.colors.neutrals[800],
-								padding: "3px 10px",
+								paddingBottom: "3px",
 								borderRadius: "2px",
 								transition: ".4s all",
                                 fontSize: '20px',
                                 fontWeight:'700'
 							}}
 						>
-							{username.length > 2
+							{userValido && username.length > 2
 								? usernameData.name
 								: "Usuário Desconhecido"}
 						</Text>
@@ -192,10 +189,6 @@ export default function PaginaInicial() {
                                     <Icon
                                         name="FaUserCheck"
                                         size='2.5ch'
-                                        // styleSheet={{
-                                        // 	color: appConfig.theme.colors
-                                        // 		.neutrals[200],
-                                        // }}
                                     />
                                     <Text
                                         variant="body2"
@@ -313,45 +306,48 @@ export default function PaginaInicial() {
 							}}
 							styleSheet={{
                                 transition: '.4s',
-                                padding:'10px 15px',
-                                backgroundColor: `${appConfig.theme.colors.neutrals["000"]}ee`,
-                                boxShadow: `inset 0px 0px 7px ${appConfig.theme.colors.neutrals["000"]}5a`,
-                                border: `2px solid ${appConfig.theme.colors.neutrals[100]}aa`,
+                                padding:'12px 15px',
+                                backgroundColor: `${appConfig.theme.colors.neutrals['000']}de`,
+                                boxShadow: `inset 0px 0px 7px ${appConfig.theme.colors.secondary[600]}5a`,
+                                border: `2px solid ${appConfig.theme.colors.secondary[300]}`,
 								hover: {
-									backgroundColor: `${appConfig.theme.colors.neutrals["000"]}d5`,
+									backgroundColor: `transparent`,
 									boxShadow: `inset 0px 0px 7px ${appConfig.theme.colors.neutrals["000"]}5a`,
 									border: `2px solid ${appConfig.theme.colors.neutrals[100]}5a`,
+                                    color: `${appConfig.theme.colors.neutrals[100]}ea`
 								},
 								focus: {
-                                    backgroundColor: `${appConfig.theme.colors.neutrals["000"]}d5`,
+                                    backgroundColor: `${appConfig.theme.colors.neutrals["050"]}ea`,
 									boxShadow: `inset 0px 0px 7px ${appConfig.theme.colors.neutrals["000"]}5a`,
 									border: `2px solid ${appConfig.theme.colors.neutrals[100]}5a`,
-								},
+                                    color: `${appConfig.theme.colors.neutrals[900]}ea`
+                                },
 								disabled: {
 									backgroundColor: `${appConfig.theme.colors.secondary[900]}5a`,
 								},
 							}}
 							onChange={(e) => {
 								handleChange(e);
-								userValido && carregaDadosUser(username);
 							}}
-							// onBlur={(e) => validaUsername(e.target.value)}
-							required
 							autoComplete="off"
 							value={username || ""}
 							disabled={loaded}
 							placeholder="Insira seu username aqui..."
+							required
 						/>
 						<Button
 							type="submit"
 							label="Login"
-							disabled={!userValido || logando}
+							disabled={!userValido.valido || logando}
 							fullWidth
                             styleSheet={{
-                                margin: '5px 0 3px 0',
+                                margin: '10px 0 3px 0',
                                 padding: '10px 15px',
                                 background: appConfig.theme.colors.primary[600],
-                                transition: '.5s'
+                                hover: {
+                                    backgroundColor: appConfig.theme.colors.neutrals["100"],
+                                    color: appConfig.theme.colors.primary[700]
+                                }
                             }}
 							buttonColors={{
 								contrastColor:
@@ -362,25 +358,31 @@ export default function PaginaInicial() {
 								mainColorStrong:
 									appConfig.theme.colors.primary[700],
 							}}
+                            
 						/>
 						{!loaded ? (
 							<Button
                             label="Login with Github"
 								fullWidth
-                                styleSheet={{
-                                padding: '10px 15px',
-
-                                }}
 								buttonColors={{
 									contrastColor:
-										appConfig.theme.colors.neutrals["050"],
-									mainColor:
 										appConfig.theme.colors.neutrals["900"],
+									mainColor:
+                                        appConfig.theme.colors.neutrals["100"],
 									mainColorLight:
-										appConfig.theme.colors.neutrals["000"],
-									mainColorStrong:
                                         appConfig.theme.colors.secondary[600],
+									mainColorStrong:
+                                        appConfig.theme.colors.neutrals["900"],
+                                    
 								}}
+                                styleSheet={{
+                                    padding: '10px 15px',
+                                    margin: '3px 0 5px 0',
+                                    color: appConfig.theme.colors.neutrals["900"],
+                                    hover: {
+                                        color: appConfig.theme.colors.neutrals["100"],
+                                    }
+                                }}
 								onClick={() => {
 									api.githubLogin().then(() => {
 										setLogando(true);
@@ -393,8 +395,12 @@ export default function PaginaInicial() {
 								fullWidth
                                 styleSheet={{
                                     padding: '10px 15px',
-    
-                                    }}
+                                    margin: '3px 0 5px 0',
+                                    color: appConfig.theme.colors.neutrals["100"],
+                                    hover: {
+                                        color: appConfig.theme.colors.neutrals["900"],
+                                    }
+                                }}
 								buttonColors={{
 									contrastColor:
 										appConfig.theme.colors.neutrals["050"],
@@ -409,7 +415,7 @@ export default function PaginaInicial() {
 									api.githubLogout();
 									setUsername("");
 									setLoaded(false);
-									setUserValido(false);
+									setUserValido({...userValido, valido: false});
 								}}
 							/> 
 						)}
