@@ -56,7 +56,7 @@ export default function PaginaInicial() {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		roteamento.push(`/chat?username=${username}`);
+		roteamento.push(`/chat?username=${username.toLowerCase()}`);
 	}
 
 	function carregaDadosUser(user) {

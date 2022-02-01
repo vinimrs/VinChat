@@ -57,7 +57,6 @@ export default function ChatPage() {
 
 	function handleNovaMensagem(novaMensagem) {
 		if (novaMensagem) api.setMensagem(novaMensagem, username).then();
-        setMensagem('');
 	}
 
 	function handleDeletaMensagem(mensagemId) {
@@ -157,6 +156,7 @@ export default function ChatPage() {
 							display: "flex",
 							alignItems: "center",
 							position: "relative",
+                            overflow: 'hidden',
 						}}
 					>
 						<TextField
