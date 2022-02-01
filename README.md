@@ -1,6 +1,6 @@
 # VinChat - Plataforma de Chat Online
 
-Projeto criado junto com @omariosouto e @peas, na imersão react da @alura.
+Projeto de um chat online com interação ao vivo, criado durante a imersão react da @alura com @omariosouto e @peas.
 
 ## Confira
 <img src="https://github.com/ViniR07/VinChat/blob/main/Screenshots/scree_vinChat.png" width="900"/>
