@@ -9,7 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import appConfig from "../config.json";
-import defaultImage from "../public/default.jpg";
+import flaticon from "../public/flaticon.png";
 import githubImg from "../public/github.png";
 import backgroundImg from "../public/bg2.jpg";
 import api from "../api";
@@ -39,7 +39,10 @@ Title.defaultProps = {
 export default function PaginaInicial() {
 	const [username, setUsername] = useState("");
 	const [usernameData, setUsernameData] = useState({});
-	const [userValido, setUserValido] = useState({valido: false, mensagem: ''});
+	const [userValido, setUserValido] = useState({
+		valido: false,
+		mensagem: "",
+	});
 	const [logando, setLogando] = useState(true);
 	const [loaded, setLoaded] = useState(false);
 	const roteamento = useRouter();
@@ -59,22 +62,30 @@ export default function PaginaInicial() {
 	function carregaDadosUser(user) {
 		fetch(`https://api.github.com/users/${user}`)
 			.then((resp) => {
-                if(resp.status === 200){
-                    resp.json()
-                    .then((respConvert) => {
-                        setUsernameData(respConvert);
-                        setUserValido({valido: true, mensagem: ''});
-                    });
-                } else if( resp.status === 404) {
-                    setUserValido({valido: false, mensagem: 'O usuário inserido não existe.'});
-                } else if(resp.status === 403) {
-                    setUserValido({valido: false, mensagem: 'Limite excedido para uso da API.'});
-                } else if(username.length < 2 && !username.trim()){
-                    setUserValido({valido: false, mensagem: ''});
-                } else {
-                    setUserValido({valido: false, mensagem: 'Algo deu errado!'});
-                }
-            })
+				if (resp.status === 200) {
+					resp.json().then((respConvert) => {
+						setUsernameData(respConvert);
+						setUserValido({ valido: true, mensagem: "" });
+					});
+				} else if (resp.status === 404) {
+					setUserValido({
+						valido: false,
+						mensagem: "O usuário inserido não existe.",
+					});
+				} else if (resp.status === 403) {
+					setUserValido({
+						valido: false,
+						mensagem: "Limite excedido para uso da API.",
+					});
+				} else if (username.length < 2 && !username.trim()) {
+					setUserValido({ valido: false, mensagem: "" });
+				} else {
+					setUserValido({
+						valido: false,
+						mensagem: "Algo deu errado!",
+					});
+				}
+			})
 			.catch((erro) => console.log(erro));
 	}
 
@@ -111,7 +122,7 @@ export default function PaginaInicial() {
 					backgroundImage: `url(${backgroundImg.src})`,
 					backgroundRepeat: "no-repeat",
 					backgroundSize: "cover",
-                    backgroundPosition: 'center',
+					backgroundPosition: "center",
 					backgroundBlendMode: "multiply",
 				}}
 			>
@@ -121,8 +132,9 @@ export default function PaginaInicial() {
 						alignItems: "center",
 						justifyContent: "center",
 						flexWrap: "wrap",
-                        backgroundColor: `${appConfig.theme.colors.secondary[800]}ca`,
-						boxShadow: "0 0 32px 0 appConfig.theme.colors.secondary[800]",
+						backgroundColor: `${appConfig.theme.colors.secondary[800]}ca`,
+						boxShadow:
+							"0 0 32px 0 appConfig.theme.colors.secondary[800]",
 						backdropFilter: "blur( 4px )",
 						maxWidth: "400px",
 						borderRadius: "10px",
@@ -130,6 +142,45 @@ export default function PaginaInicial() {
 						margin: "16px",
 					}}
 				>
+					{/* boas-vindas*/}
+					<Box
+						styleSheet={{
+							display: "flex",
+							flexDirection: "column",
+							alignItems: "center",
+                            justifyContent: 'center'
+						}}
+					>
+                        <Image styleSheet={{
+                            marginTop: '-15px'
+                        }} src={flaticon.src} alt="Logo da plataforma" />
+						<Text
+							variant="h2"
+							styleSheet={{
+								color: appConfig.theme.colors.neutrals["100"],
+								fontSize: "25px",
+								fontWeight: "bold",
+                                margin: '0px 0 20px 0'
+							}}
+						>
+							{userValido && username.length > 2
+								? `Bem-Vindo(a) ${username}, ao `
+								: "Bem-Vindo(a) ao "}
+							<Text
+								styleSheet={{
+									color: appConfig.theme.colors.primary[
+										"600"
+									],
+									fontSize: "25px",
+									fontWeight: "bold",
+									transition: ".4s",
+								}}
+							>
+								{appConfig.name}!
+							</Text>
+						</Text>
+					</Box>
+					{/* boas-vindas*/}
 					{/* Photo Area */}
 					<Box
 						styleSheet={{
@@ -137,11 +188,9 @@ export default function PaginaInicial() {
 							flexDirection: "column",
 							alignItems: "center",
 							justifyContent: "center",
-							width: "100%",
-							padding: "16px",
-                            backgroundColor: `${appConfig.theme.colors.neutrals['050']}ea`,
+							padding: "16px 30px 16px 30px",
+							backgroundColor: `${appConfig.theme.colors.neutrals["050"]}ea`,
 							borderRadius: "10px",
-							flex: 1,
 							minHeight: "240px",
 						}}
 					>
@@ -164,8 +213,8 @@ export default function PaginaInicial() {
 								paddingBottom: "3px",
 								borderRadius: "2px",
 								transition: ".4s all",
-                                fontSize: '20px',
-                                fontWeight:'700'
+								fontSize: "20px",
+								fontWeight: "700",
 							}}
 						>
 							{userValido && username.length > 2
@@ -180,62 +229,59 @@ export default function PaginaInicial() {
 									alignItems: "center",
 								}}
 							>
-                                <Box styleSheet={{
-                                    display: "flex",
-									justifyContent: "center",
-									alignItems: "center",
-                                    margin: '10px 10px 0 0'
-                                }}>
-                                    <Icon
-                                        name="FaUserCheck"
-                                        size='2.5ch'
-                                    />
-                                    <Text
-                                        variant="body2"
-                                        styleSheet={{
-                                            display: "flex",
-                                            justifyContent: "center",
-                                            alignItems: "center",
-                                            color: appConfig.theme.colors
-                                                .neutrals[800],
-                                            borderRadius: "2px",
-                                            fontSize: '20px',
-                                            fontWeight: 'bold',
-                                            marginLeft: '8px'
-                                        }}
-                                    >
-                                        {usernameData.followers}
-                                    </Text>
-                                
-                                </Box>
-								
-                                <Box styleSheet={{
-                                    display: "flex",
-									justifyContent: "center",
-									alignItems: "center",
-                                    margin: '10px 0 0 10px'
-                                }}>
-								<Icon
-									name="FaUserFriends"
-                                    size='2.5ch'
-								/>
-                                    <Text
-                                        variant="body4"
-                                        styleSheet={{
-                                            display: "flex",
-                                            justifyContent: "center",
-                                            alignItems: "center",
-                                            color: appConfig.theme.colors
-                                                .neutrals[800],
-                                            borderRadius: "2px",
-                                            fontSize: '20px',
-                                            fontWeight: 'bold',
-                                            marginLeft: '8px'
-                                        }}
-                                    >
-                                        {usernameData.following}
-                                    </Text>
-                                </Box>
+								<Box
+									styleSheet={{
+										display: "flex",
+										justifyContent: "center",
+										alignItems: "center",
+										margin: "10px 10px 0 0",
+									}}
+								>
+									<Icon name="FaUserCheck" size="2.5ch" />
+									<Text
+										variant="body2"
+										styleSheet={{
+											display: "flex",
+											justifyContent: "center",
+											alignItems: "center",
+											color: appConfig.theme.colors
+												.neutrals[800],
+											borderRadius: "2px",
+											fontSize: "20px",
+											fontWeight: "bold",
+											marginLeft: "8px",
+										}}
+									>
+										{usernameData.followers}
+									</Text>
+								</Box>
+
+								<Box
+									styleSheet={{
+										display: "flex",
+										justifyContent: "center",
+										alignItems: "center",
+										margin: "10px 0 0 10px",
+									}}
+								>
+									<Icon name="FaUserFriends" size="2.5ch" />
+									<Text
+										variant="body4"
+										styleSheet={{
+											display: "flex",
+											justifyContent: "center",
+											alignItems: "center",
+											color: appConfig.theme.colors
+												.neutrals[800],
+											borderRadius: "2px",
+											fontSize: "20px",
+											fontWeight: "bold",
+											marginLeft: "8px",
+										}}
+									>
+										{usernameData.following}
+									</Text>
+								</Box>
 							</Box>
 						)}
 					</Box>
@@ -250,42 +296,17 @@ export default function PaginaInicial() {
 							justifyContent: "center",
 							width: { xs: "100%", sm: "100%" },
 							textAlign: "center",
-							marginTop: "32px",
+							marginTop: "22px",
 						}}
 						onSubmit={handleSubmit}
 					>
-						<Text
-							variant="h2"
-							styleSheet={{
-								color: appConfig.theme.colors.neutrals["100"],
-								fontSize: "25px",
-								fontWeight: "bold",
-							}}
-						>
-							{userValido
-								? `Bem-Vindo(a) ${username}, ao `
-								: "Bem-Vindo(a) ao "}
-							<Text
-								styleSheet={{
-									color: appConfig.theme.colors.primary[
-										"600"
-									],
-									fontSize: "25px",
-									fontWeight: "bold",
-									transition: ".4s",
-								}}
-							>
-								{appConfig.name}!
-							</Text>
-						</Text>
-
 						<Text
 							variant="h3"
 							styleSheet={{
 								color: appConfig.theme.colors.neutrals["100"],
 								fontSize: "20px",
 								fontWeight: "bold",
-								margin: "25px 0",
+								margin: "0 0 25px 0",
 								textDecoration: `underline ${appConfig.theme.colors.primary[600]}`,
 							}}
 						>
@@ -305,23 +326,23 @@ export default function PaginaInicial() {
 								},
 							}}
 							styleSheet={{
-                                transition: '.4s',
-                                padding:'12px 15px',
-                                backgroundColor: `${appConfig.theme.colors.neutrals['000']}de`,
-                                boxShadow: `inset 0px 0px 7px ${appConfig.theme.colors.secondary[600]}5a`,
-                                border: `2px solid ${appConfig.theme.colors.secondary[300]}`,
+								transition: ".4s",
+								padding: "12px 15px",
+								backgroundColor: `${appConfig.theme.colors.neutrals["000"]}de`,
+								boxShadow: `inset 0px 0px 7px ${appConfig.theme.colors.secondary[600]}5a`,
+								border: `2px solid ${appConfig.theme.colors.secondary[300]}`,
 								hover: {
 									backgroundColor: `transparent`,
 									boxShadow: `inset 0px 0px 7px ${appConfig.theme.colors.neutrals["000"]}5a`,
 									border: `2px solid ${appConfig.theme.colors.neutrals[100]}5a`,
-                                    color: `${appConfig.theme.colors.neutrals[100]}ea`
+									color: `${appConfig.theme.colors.neutrals[100]}ea`,
 								},
 								focus: {
-                                    backgroundColor: `${appConfig.theme.colors.neutrals["050"]}ea`,
+									backgroundColor: `${appConfig.theme.colors.neutrals["050"]}ea`,
 									boxShadow: `inset 0px 0px 7px ${appConfig.theme.colors.neutrals["000"]}5a`,
 									border: `2px solid ${appConfig.theme.colors.neutrals[100]}5a`,
-                                    color: `${appConfig.theme.colors.neutrals[900]}ea`
-                                },
+									color: `${appConfig.theme.colors.neutrals[900]}ea`,
+								},
 								disabled: {
 									backgroundColor: `${appConfig.theme.colors.secondary[900]}5a`,
 								},
@@ -340,15 +361,16 @@ export default function PaginaInicial() {
 							label="Login"
 							disabled={!userValido.valido || logando}
 							fullWidth
-                            styleSheet={{
-                                margin: '10px 0 3px 0',
-                                padding: '10px 15px',
-                                background: appConfig.theme.colors.primary[600],
-                                hover: {
-                                    backgroundColor: appConfig.theme.colors.neutrals["100"],
-                                    color: appConfig.theme.colors.primary[700]
-                                }
-                            }}
+							styleSheet={{
+								margin: "10px 0 3px 0",
+								padding: "10px 15px",
+								background: appConfig.theme.colors.primary[600],
+								hover: {
+									backgroundColor:
+										appConfig.theme.colors.neutrals["100"],
+									color: appConfig.theme.colors.primary[700],
+								},
+							}}
 							buttonColors={{
 								contrastColor:
 									appConfig.theme.colors.neutrals["000"],
@@ -358,49 +380,55 @@ export default function PaginaInicial() {
 								mainColorStrong:
 									appConfig.theme.colors.primary[700],
 							}}
-                            
 						/>
 						{!loaded ? (
 							<Button
-                            label="Login with Github"
+								label="Login with Github"
 								fullWidth
 								buttonColors={{
 									contrastColor:
 										appConfig.theme.colors.neutrals["900"],
 									mainColor:
-                                        appConfig.theme.colors.neutrals["100"],
+										appConfig.theme.colors.neutrals["100"],
 									mainColorLight:
-                                        appConfig.theme.colors.secondary[600],
+										appConfig.theme.colors.secondary[600],
 									mainColorStrong:
-                                        appConfig.theme.colors.neutrals["900"],
-                                    
+										appConfig.theme.colors.neutrals["900"],
 								}}
-                                styleSheet={{
-                                    padding: '10px 15px',
-                                    margin: '3px 0 5px 0',
-                                    color: appConfig.theme.colors.neutrals["900"],
-                                    hover: {
-                                        color: appConfig.theme.colors.neutrals["100"],
-                                    }
-                                }}
+								styleSheet={{
+									padding: "10px 15px",
+									margin: "3px 0 5px 0",
+									color: appConfig.theme.colors.neutrals[
+										"900"
+									],
+									hover: {
+										color: appConfig.theme.colors.neutrals[
+											"100"
+										],
+									},
+								}}
 								onClick={() => {
 									api.githubLogin().then(() => {
 										setLogando(true);
 									});
 								}}
-							/> 
+							/>
 						) : (
 							<Button
 								label="Sign Out Github"
 								fullWidth
-                                styleSheet={{
-                                    padding: '10px 15px',
-                                    margin: '3px 0 5px 0',
-                                    color: appConfig.theme.colors.neutrals["100"],
-                                    hover: {
-                                        color: appConfig.theme.colors.neutrals["900"],
-                                    }
-                                }}
+								styleSheet={{
+									padding: "10px 15px",
+									margin: "3px 0 5px 0",
+									color: appConfig.theme.colors.neutrals[
+										"100"
+									],
+									hover: {
+										color: appConfig.theme.colors.neutrals[
+											"900"
+										],
+									},
+								}}
 								buttonColors={{
 									contrastColor:
 										appConfig.theme.colors.neutrals["050"],
@@ -415,9 +443,12 @@ export default function PaginaInicial() {
 									api.githubLogout();
 									setUsername("");
 									setLoaded(false);
-									setUserValido({...userValido, valido: false});
+									setUserValido({
+										...userValido,
+										valido: false,
+									});
 								}}
-							/> 
+							/>
 						)}
 					</Box>
 					{/* Formulário */}

@@ -1,3 +1,6 @@
+import Head from "next/head";
+import flaticon from "../public/flaticon.png"
+
 function GlobalStyle() {
 	return (
 		<style global jstyleSheet>{`
@@ -32,6 +35,11 @@ function GlobalStyle() {
 export default function MyApp({ Component, pageProps }) {
     return (
         <>
+            <Head>
+                <title>VinChat - Plataforma de Conversas</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <link rel="icon" href={flaticon.src} />
+            </Head>
             <GlobalStyle />
             <Component {...pageProps} />
         </>

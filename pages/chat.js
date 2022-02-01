@@ -1,17 +1,11 @@
-import {
-	Box,
-	Text,
-	TextField,
-	Image,
-	Button,
-	Icon,
-} from "@skynexui/components";
+import { Box, Text, TextField, Image, Icon } from "@skynexui/components";
 import React, { useEffect, useState } from "react";
 import appConfig from "../config.json";
 import api from "../api";
 import { useRouter } from "next/router";
 import { ButtonSendSticker } from "../src/components/ButtonSendSticker";
 import bgImg from "../public/bg2.jpg";
+import flaticon from "../public/flaticon.png";
 
 export default function ChatPage() {
 	const roteamento = useRouter();
@@ -62,7 +56,8 @@ export default function ChatPage() {
 	}
 
 	function handleNovaMensagem(novaMensagem) {
-		api.setMensagem(novaMensagem, username).then();
+		if (novaMensagem) api.setMensagem(novaMensagem, username).then();
+        setMensagem('');
 	}
 
 	function handleDeletaMensagem(mensagemId) {
@@ -104,8 +99,8 @@ export default function ChatPage() {
 				backdropFilter: "blur( 4px )",
 				transition: ".5s all",
 			}}
-            onMouseMove={resizeFrame}
-            onMouseUp={stopResize}
+			onMouseMove={resizeFrame}
+			onMouseUp={stopResize}
 		>
 			<Box
 				styleSheet={{
@@ -114,10 +109,10 @@ export default function ChatPage() {
 					flex: 1,
 					borderRadius: "5px",
 					backgroundColor: `${appConfig.theme.colors.secondary[900]}ca`,
-                    maxWidth: boxStyle.maxWidth,
-                    height: boxStyle.height,
-                    minWidth: '350px',
-                    minHeight: '400px',
+					maxWidth: boxStyle.maxWidth,
+					height: boxStyle.height,
+					minWidth: "350px",
+					minHeight: "400px",
 					padding: "32px",
 					position: "relative",
 				}}
@@ -125,7 +120,7 @@ export default function ChatPage() {
 				<Icon
 					name="FaCropAlt"
 					size="2ch"
-                    onMouseDown={startResize}
+					onMouseDown={startResize}
 					styleSheet={{
 						position: "absolute",
 						top: "0",
@@ -133,7 +128,7 @@ export default function ChatPage() {
 						filter: "invert(100%)",
 						cursor: drag.active ? "grabbing" : "grab",
 						opacity: ".3",
-                        display: {md: 'inherit', sm: 'none'},
+						display: { md: "inherit", sm: "none" },
 					}}
 				/>
 				<Header />
@@ -170,7 +165,7 @@ export default function ChatPage() {
 							type="textarea"
 							onChange={handleChange}
 							onKeyPress={(e) => {
-								if (e.key === "Enter") {
+								if (e.key === "Enter" && e.shiftKey === false) {
 									e.preventDefault();
 									handleNovaMensagem(mensagem);
 								}
@@ -180,7 +175,7 @@ export default function ChatPage() {
 								border: "0",
 								resize: "none",
 								borderRadius: "5px",
-								padding: "15px 15px 5px 15px",
+								padding: "15px 55px 5px 15px",
 								backgroundColor:
 									appConfig.theme.colors.neutrals[800],
 								marginRight: "12px",
@@ -235,17 +230,32 @@ function Header() {
 					display: "flex",
 					alignItems: "center",
 					justifyContent: "space-between",
-                    userSelect: 'none'
+					userSelect: "none",
 				}}
 			>
-				<Text
-					variant="heading5"
+				<Box
 					styleSheet={{
-						color: appConfig.theme.colors.neutrals["050"],
+						display: "flex",
+						alignItems: "center",
 					}}
 				>
-					VinChat
-				</Text>
+					<Image
+						styleSheet={{
+							width: "40px",
+							marginRight: "5px",
+						}}
+						src={flaticon.src}
+						alt="Logo da plataforma"
+					/>
+					<Text
+						variant="heading5"
+						styleSheet={{
+							color: appConfig.theme.colors.neutrals["050"],
+						}}
+					>
+						VinChat
+					</Text>
+				</Box>
 				<Box
 					styleSheet={{
 						padding: "5px",
@@ -290,8 +300,7 @@ function Header() {
 }
 
 function MessageList({ mensagens, filtraMensagens, username }) {
-	
-    function formataData(string) {
+	function formataData(string) {
 		var time = new Date(string).toLocaleTimeString().substring(0, 5);
 		var data;
 		if (new Date().getDay() - new Date(string).getDay() === 0) {
@@ -328,23 +337,76 @@ function MessageList({ mensagens, filtraMensagens, username }) {
 						styleSheet={{
 							borderRadius: "5px",
 							padding: "6px",
-							marginBottom: "12px",
-							marginRight: "35px",
-                            userSelect: 'none',
-
+							userSelect: "none",
+                            position: 'relative',
+							backgroundColor:
+								mensagem.de === username
+									? `${appConfig.theme.colors.primary[700]}71`
+									: appConfig.theme.colors.secondary[600],
+							width: "50%",
+							transition: ".4s",
+							cursor:
+								mensagem.de === username
+									? "pointer"
+									: "inherit",
+							margin:
+								mensagem.de === username
+									? "0 10% 12px 40%"
+									: "0 40% 12px 10%",
 							hover: {
 								backgroundColor:
-									appConfig.theme.colors.secondary[900],
+									mensagem.de === username
+										? `${appConfig.theme.colors.primary[700]}51`
+										: `${appConfig.theme.colors.secondary[600]}81`,
 							},
 						}}
+						onDoubleClick={() => {
+							if (mensagem.de === username)
+								filtraMensagens(mensagem.id);
+						}}
 					>
+                            <Box styleSheet={{width: '90%', wordBreak: 'break-all',padding: '5px'}}>
+                                {mensagem.texto.startsWith(":sticker:") ? (
+                                    <Image
+                                        styleSheet={{
+                                            maxWidth: "130px",
+                                        }}
+                                        src={mensagem.texto.replace(":sticker:", "")}
+                                    />
+                                ) : (
+                                    <Text
+                                        styleSheet={{
+                                            whiteSpace: "pre-line",
+                                            width: '10%'
+                                        }}
+                                    >
+                                        {mensagem.texto}
+                                    </Text>
+                                )}
+                            </Box>
+                            {username === mensagem.de && (
+                                    <Icon
+                                        name="FaTrash"
+                                        size="1.6ch"
+                                        styleSheet={{
+                                            opacity: ".8",
+                                            cursor: "pointer",
+                                            position: 'absolute',
+                                            top: '5px',
+                                            right: '5px'
+                                        }}
+                                        onClick={() => {
+                                            filtraMensagens(mensagem.id);
+                                        }}
+                                    />
+                                )}
 						<Box
 							styleSheet={{
-								marginBottom: "8px",
+								marginTop: "8px",
 								display: "flex",
 								alignItems: "center",
 								justifyContent: "space-between",
-								paddingRight: "20px",
+								paddingLeft: "5px",
 							}}
 						>
 							<Box
@@ -363,7 +425,15 @@ function MessageList({ mensagens, filtraMensagens, username }) {
 									}}
 									src={`https://github.com/${mensagem.de}.png`}
 								/>
-								<Text tag="strong">{mensagem.de}</Text>
+								<Text
+									tag="strong"
+									styleSheet={{ fontSize: "15px" }}
+								>
+									{mensagem.de === username
+										? "Você"
+										: mensagem.de}
+								</Text>
+							</Box>
 								<Text
 									styleSheet={{
 										fontSize: "10px",
@@ -375,33 +445,8 @@ function MessageList({ mensagens, filtraMensagens, username }) {
 								>
 									{formataData(mensagem.created_at)}
 								</Text>
-							</Box>
-							{username === mensagem.de && (
-								<Icon
-									name="FaTrash"
-									size="1.6ch"
-									styleSheet={{
-										opacity: ".8",
-										cursor: "pointer",
-									}}
-									onClick={() => {
-										filtraMensagens(mensagem.id);
-									}}
-								/>
-							)}
+							
 						</Box>
-						{mensagem.texto.startsWith(":sticker:") ? (
-							<Image
-								styleSheet={{
-									maxWidth: "130px",
-								}}
-								src={mensagem.texto.replace(":sticker:", "")}
-							/>
-						) : (
-							<Text styleSheet={{ padding: "3px" }}>
-								{mensagem.texto}
-							</Text>
-						)}
 					</Text>
 				);
 			})}
