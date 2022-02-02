@@ -1,19 +1,11 @@
-import { Box, TextField, Icon } from "@skynexui/components";
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { Box, Icon } from "@skynexui/components";
+import React, { useState } from "react";
 import appConfig from "../../config.json";
-import api from "../api";
-import { ButtonSendSticker } from "../components/ButtonSendSticker";
 import ChatHeader from "../components/ChatHeader";
-import ListaMensagens from "../components/ListaMensagens";
 import bgImg from "../../public/bg2.jpg";
+import ChatMain from "../components/ChatMain";
 
 export default function ChatPage() {
-	const roteamento = useRouter();
-	const username = roteamento.query.username;
-	const [mensagem, setMensagem] = useState("");
-	const [listaMensagens, setListaMensagens] = useState([]);
-
 	// possibilitando redimensionar o container
 	const [drag, setDrag] = useState({
 		active: false,
@@ -35,38 +27,6 @@ export default function ChatPage() {
 		maxWidth: `${dims.w}px`,
 		height: `${dims.h}px`,
 	};
-
-	useEffect(() => {
-		api.getMensagens().then((dados) => setListaMensagens(dados));
-		const subscription = api.escutaEmTempoReal((novaMensagem) => {
-			//Para reusar um valor de referência array/objeto passar função para o setState
-			// Para pegar o valor atual do estado
-			setListaMensagens((valoratual) => {
-				return [novaMensagem, ...valoratual];
-			});
-			setMensagem("");
-		});
-
-		return () => {
-			subscription.unsubscribe();
-		};
-	}, []);
-
-	function handleChange(e) {
-		setMensagem(e.target.value);
-	}
-
-	function handleNovaMensagem(novaMensagem) {
-		if (novaMensagem) api.setMensagem(novaMensagem, username).then();
-	}
-
-	function handleDeletaMensagem(mensagemId) {
-		api.deletaMensagem(mensagemId).then(() => {
-			api.getMensagens().then((mensagens) => {
-				setListaMensagens(mensagens);
-			});
-		});
-	}
 
 	function resizeFrame(e) {
 		const { active, x, y } = drag;
@@ -132,88 +92,7 @@ export default function ChatPage() {
 					}}
 				/>
 				<ChatHeader />
-				<Box
-					styleSheet={{
-						position: "relative",
-						display: "flex",
-						flex: 1,
-						height: "80%",
-						backgroundColor: appConfig.theme.colors.secondary[800],
-						flexDirection: "column",
-						borderRadius: "5px",
-						padding: "16px",
-						overflow: "hidden",
-					}}
-				>
-					<ListaMensagens
-						mensagens={listaMensagens}
-						filtraMensagens={handleDeletaMensagem}
-						username={username}
-					/>
-
-					<Box
-						as="form"
-						styleSheet={{
-							display: "flex",
-							alignItems: "center",
-							position: "relative",
-							// overflow: "hidden",
-						}}
-					>
-						<TextField
-							value={mensagem}
-							placeholder="Insira sua mensagem aqui..."
-							type="textarea"
-							onChange={handleChange}
-							onKeyPress={(e) => {
-								if (e.key === "Enter" && e.shiftKey === false) {
-									e.preventDefault();
-									handleNovaMensagem(mensagem);
-								}
-							}}
-							styleSheet={{
-								width: "100%",
-								border: "0",
-								resize: "none",
-								borderRadius: "5px",
-								padding: "15px 55px 5px 15px",
-								backgroundColor:
-									appConfig.theme.colors.neutrals[800],
-								marginRight: "12px",
-								color: appConfig.theme.colors.neutrals[200],
-							}}
-						/>
-
-						<Icon
-							type="submit"
-							onClick={(e) => {
-								e.preventDefault();
-								handleNovaMensagem(mensagem);
-							}}
-							name="FaPlaneArrival"
-							size="3.2ch"
-							styleSheet={{
-								position: "absolute",
-								right: "75px",
-								bottom: "20px",
-								color: appConfig.theme.colors.neutrals["300"],
-								cursor: "pointer",
-								transition: ".5s",
-								hover: {
-									color: appConfig.theme.colors.neutrals[
-										"200"
-									],
-								},
-							}}
-						/>
-
-						<ButtonSendSticker
-							onStickerClick={(sticker) => {
-								handleNovaMensagem(`:sticker:${sticker}`);
-							}}
-						/>
-					</Box>
-				</Box>
+				<ChatMain />
 			</Box>
 		</Box>
 	);

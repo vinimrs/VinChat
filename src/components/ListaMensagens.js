@@ -3,8 +3,8 @@ import appConfig from "../../config.json";
 
 function ListaMensagens({ mensagens, filtraMensagens, username }) {
 	function formataData(string) {
-		var time = new Date(string).toLocaleTimeString().substring(0, 5);
-		var data;
+		let time = new Date(string).toLocaleTimeString().substring(0, 5);
+		let data;
 		if (new Date().getDay() - new Date(string).getDay() === 0) {
 			data = "Hoje";
 		} else {

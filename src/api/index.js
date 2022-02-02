@@ -39,8 +39,7 @@ const escutaEmTempoReal = (adicionaMensagem) => {
 };
 
 async function checkUser() {
-	const user = supabaseClient.auth.user();
-	return user;
+	return await supabaseClient.auth.user();
 }
 
 const githubLogin = async () => {
@@ -51,8 +50,7 @@ const githubLogin = async () => {
 };
 
 const githubLogout = async () => {
-	const { error } = await supabaseClient.auth.signOut();
-	console.log(error);
+	await supabaseClient.auth.signOut();
 };
 
 const api = {

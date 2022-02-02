@@ -6,7 +6,7 @@ import api from "../api";
 
 function ChatHeader() {
 	const roteamento = useRouter();
-	const username = roteamento.query.username;
+	const { username } = roteamento.query;
 	return (
 		<Box
 			styleSheet={{
