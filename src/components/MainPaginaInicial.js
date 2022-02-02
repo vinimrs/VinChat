@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import appConfig from "../../config.json";
 import api from "../api";
 import BoasVindas from "../components/BoasVindas";
-import InfosUserGithub from "../components/InfosUserGithub";
+import InfosPaginaInicial from "./InfosPaginaInicial";
 
 function MainPaginaInicial() {
 	const [username, setUsername] = useState("");
@@ -102,7 +102,7 @@ function MainPaginaInicial() {
 	return (
 		<>
 			<BoasVindas username={username} userValido={userValido} />
-			<InfosUserGithub
+			<InfosPaginaInicial
 				username={username}
 				userValido={userValido}
 				usernameData={usernameData}

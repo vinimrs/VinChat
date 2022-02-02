@@ -1,5 +1,5 @@
-import React from "react";
 import { Box, Image, Text } from '@skynexui/components';
+import React from "react";
 import appConfig from '../../config.json';
 import flaticon from '../../public/flaticon.png'
 
