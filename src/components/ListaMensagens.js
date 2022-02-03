@@ -7,7 +7,10 @@ function ListaMensagens({ mensagens, filtraMensagens, username }) {
 		let data;
 		if (new Date().getDay() - new Date(string).getDay() === 0) {
 			data = "Hoje";
-		} else {
+		} else if(new Date().getDay() - new Date(string).getDay() === 1){
+            time = "Ontem, às: " +  new Date(string).toLocaleTimeString().substring(0, 5);
+            data = '';
+        } else {
 			time =
 				new Date(string).toLocaleDateString() +
 				", às: " +
