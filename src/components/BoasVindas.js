@@ -1,7 +1,7 @@
-import { Box, Image, Text } from '@skynexui/components';
+import { Box, Image, Text } from "@skynexui/components";
 import React from "react";
-import appConfig from '../../config.json';
-import flaticon from '../../public/flaticon.png'
+import appConfig from "../../config.json";
+import flaticon from "../../public/flaticon.png";
 
 export default function BoasVindas({ username, userValido }) {
 	return (

@@ -1,20 +1,19 @@
-import { useCallback, useState } from 'react';
-import {Box, TextField, Icon} from '@skynexui/components';
-import { BotaoAbreStickers } from './BotaoAbreStickers';
-import appConfig from '../../config.json';
-import api from '../api';
+import { useCallback, useState } from "react";
+import { Box, TextField, Icon } from "@skynexui/components";
+import { BotaoAbreStickers } from "./BotaoAbreStickers";
+import appConfig from "../../config.json";
+import api from "../api";
 
 function FormularioChat({ username }) {
 	const [mensagem, setMensagem] = useState("");
-    
-    function handleNovaMensagem(novaMensagem) {
-		if (novaMensagem) {
-            api.setMensagem(novaMensagem, username).then(() => setMensagem(''))
-        };
-        
-    }
 
-    return (
+	function handleNovaMensagem(novaMensagem) {
+		if (novaMensagem) {
+			api.setMensagem(novaMensagem, username).then(() => setMensagem(""));
+		}
+	}
+
+	return (
 		<Box
 			as="form"
 			styleSheet={{
@@ -70,7 +69,7 @@ function FormularioChat({ username }) {
 			<BotaoAbreStickers
 				onStickerClick={useCallback((sticker) => {
 					handleNovaMensagem(`:sticker:${sticker}`);
-				},[])}
+				}, [])}
 			/>
 		</Box>
 	);

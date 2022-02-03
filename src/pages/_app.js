@@ -42,27 +42,9 @@ export default function MyApp({ Component, pageProps }) {
     const route = useRouter();
     
     useEffect(() => {
-        const handleRouteChangeStart = (url, {shallow}) => {
-            console.log(
-                `App is changing to ${url} ${
-                  shallow ? 'with' : 'without'
-                } shallow routing`
-            )
-            setLoading(true);
-        }
-
-        const handleRouteChangeComplete = (url, {shallow}) => {
-            console.log(
-                `App is changing to ${url} ${
-                  shallow ? 'with' : 'without'
-                } shallow routing`
-            )
-            setLoading(false);
-        }
-
-        route.events.on('routeChangeStart', handleRouteChangeStart);
+        route.events.on('routeChangeStart', () => setLoading(true));
         // route.events.off('routeChangeStart', handleRouteChangeComplete);
-        route.events.on('routeChangeComplete', handleRouteChangeComplete);
+        route.events.on('routeChangeComplete', () => setLoading(false));
     }, [])
 
     return (
@@ -78,7 +60,6 @@ export default function MyApp({ Component, pageProps }) {
                 height={5}
             />
             {!loading ? (<Component {...pageProps} />) : (<LoadingPage />)}
-            
         </>
     );
 }

@@ -33,7 +33,7 @@ function ChatMain() {
 				setListaMensagens(mensagens);
 			});
 		});
-	}, [])
+	}, []);
 
 	return (
 		<Box
