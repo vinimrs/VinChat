@@ -37,7 +37,7 @@ Depois disso você pode ir no repositório e rodar o comando `npm install` para 
 ```bash
 npm install
 ```
-Finally, we can run the App with the `npm run dev` command:
+Finalmente, rode o comando  `npm run dev` para iniciar a aplicação:
 
 ```bash
 npm run dev
