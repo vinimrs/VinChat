@@ -1,9 +1,9 @@
 import { Box, Icon } from "@skynexui/components";
 import React, { useState } from "react";
+import ChatHeader from "../containers/ChatHeader";
+import ChatMain from "../containers/ChatMain";
 import appConfig from "../../config.json";
-import ChatHeader from "../components/ChatHeader";
 import bgImg from "../../public/bg2.jpg";
-import ChatMain from "../components/ChatMain";
 
 export default function ChatPage() {
 	// possibilitando redimensionar o container
