@@ -22,6 +22,7 @@ Projeto de um chat online com interação ao vivo, criado durante a imersão rea
 - `Stickers`: reaja do jeito que quiser!
 - `Resizer`: determine do seu jeito o tamanho da janela do chat!
 - `Responsivo`: acesse de qualquer aparelho!
+- `Página e barra de carregamento de página`: Melhor experiência para o usuário!
 
 ## Como rodar a aplicação :arrow_forward:
 
