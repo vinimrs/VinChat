@@ -1,1 +1,0 @@
-## Imagens e assets do projeto vão aqui

@@ -1,7 +1,7 @@
 import { Box } from "@skynexui/components";
 import appConfig from "../../config.json";
 import backgroundImg from "../../public/bg2.jpg";
-import MainPaginaInicial from "../components/MainPaginaInicial";
+import MainPaginaInicial from "../containers/MainPaginaInicial";
 
 export default function PaginaInicial() {
 	return (
