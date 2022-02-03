@@ -67,7 +67,6 @@ function FormularioChat({ username }) {
 					},
 				}}
 			/>
-
 			<BotaoAbreStickers
 				onStickerClick={useCallback((sticker) => {
 					handleNovaMensagem(`:sticker:${sticker}`);
