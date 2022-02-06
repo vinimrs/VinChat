@@ -52,7 +52,7 @@ Ideias de melhorias para o projeto:
 - Adicionar componente de carregamento dos dados ✅
 - Upload de background com integração com pexels
 - Adicionar OAuth do Google
-- Adicionar testes a/b na aplicação
+- Adicionar testes na aplicação
 
 ## Participação 👇
 <p align="center">
