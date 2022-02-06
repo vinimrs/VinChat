@@ -1,8 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 
-const SUPABASE_API_KEY =
-	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MzMzMDU5NCwiZXhwIjoxOTU4OTA2NTk0fQ.YM105BCPMAwKQHJTsZarKFFvw0JyL4fl_DMjYkTN4ds";
-const SUPABASE_URL = "https://hvwecieyitwycexeynyd.supabase.co";
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_API_KEY = process.env.NEXT_PUBLIC_SUPABASE_API_KEY;
 const supabaseClient = createClient(SUPABASE_URL, SUPABASE_API_KEY);
 
 const getMensagens = () => {
