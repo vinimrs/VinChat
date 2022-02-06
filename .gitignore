@@ -1,1 +1,10 @@
 node_modules
+
+#next
+/.next/
+
+#vercel
+.vercel
+
+#local env files
+.env.local
