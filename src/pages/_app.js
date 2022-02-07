@@ -1,14 +1,13 @@
 import NextNProgress from "nextjs-progressbar";
 import Head from "next/head";
 import appConfig from '../../config.json';
-import flaticon from "../../public/flaticon.png"
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import LoadingPage from "../UI/LoadingPage";
 
 function GlobalStyle() {
 	return (
-		<style global jstyleSheet>{`
+		<style global jsx>{`
 			* {
 				margin: 0;
 				padding: 0;
@@ -52,7 +51,7 @@ export default function MyApp({ Component, pageProps }) {
             <Head>
                 <title>VinChat - Plataforma de Conversas</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                <link rel="icon" href={flaticon.src} />
+                <link rel="icon" href='/flaticon.png'/>
             </Head>
             <GlobalStyle />
             <NextNProgress 

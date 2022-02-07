@@ -50,18 +50,13 @@ function IndexMain() {
 			});
 	}
 
-	function githubLogin() {
-		api.githubLogin().then(() => {
-			setLogando(true);
-		});
-	}
+	// function githubLogin() {
+		
+	// }
 
-	function googleLogin() {
-		api.googleLogin().then((resp) => {
-			console.log(resp);
-			setLogando(true);
-		});
-	}
+	// function googleLogin() {
+	// 	api.googleLogin().then();
+	// }
 
 	useEffect(() => {
 		const checaEstaLogado = async () => {
@@ -204,7 +199,7 @@ function IndexMain() {
 							color: appConfig.theme.colors.neutrals["100"],
 						},
 					}}
-					onClick={githubLogin}
+					onClick={api.githubLogin}
 				/>
 				<Button
 					label="Login with Google"
@@ -223,7 +218,7 @@ function IndexMain() {
 							color: appConfig.theme.colors.neutrals["100"],
 						},
 					}}
-					onClick={googleLogin}
+					onClick={api.googleLogin}
 				/>
 			</Box>
 		</>
