@@ -182,6 +182,18 @@ function IndexMain() {
 						mainColorStrong: appConfig.theme.colors.primary[700],
 					}}
 				/>
+                <Text
+					variant="h3"
+					styleSheet={{
+						color: appConfig.theme.colors.neutrals["100"],
+						fontSize: "20px",
+						fontWeight: "bold",
+						margin: "10px 0 10px 0",
+						// textDecoration: `underline ${appConfig.theme.colors.primary[600]}`,
+					}}
+				>
+					Ou
+				</Text>
 				<Button
 					label="Login with Github"
 					fullWidth

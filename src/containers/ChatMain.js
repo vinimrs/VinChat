@@ -32,33 +32,21 @@ const ListaStickers = dynamic(() => import("../components/ListaStickers"), {
 	),
 });
 
+// const ListaMensagens = dynamic(() => import("../components/ListaMensagens"), {
+//     loading: () => (
+//         <Box styleSheet={{
+//             position: 'absolute',
+//             bottom: "10px"
+//         }}>
+//             <LoadingComponent />
+
+//         </Box>
+//     )
+// })
+
 function ChatMain({ username, userImage }) {
-	const [listaMensagens, setListaMensagens] = useState([]);
 	const [isOpen, setOpenState] = useState("");
 	const [randomEmoji, setRandomEmoji] = useState(0);
-
-	useEffect(() => {
-		api.getMensagens().then((dados) => setListaMensagens(dados));
-		const subscription = api.escutaEmTempoReal((novaMensagem) => {
-			//Para reusar um valor de referência array/objeto passar função para o setState
-			// Para pegar o valor atual do estado
-			setListaMensagens((valoratual) => {
-				return [novaMensagem, ...valoratual];
-			});
-		});
-
-		return () => {
-			subscription.unsubscribe();
-		};
-	}, []);
-
-	const handleDeletaMensagem = useCallback((mensagemId) => {
-		api.deletaMensagem(mensagemId).then(() => {
-			api.getMensagens().then((mensagens) => {
-				setListaMensagens(mensagens);
-			});
-		});
-	}, []);
 
 	const handleNovaMensagem = useCallback(
 		(novaMensagem) => {
@@ -86,9 +74,6 @@ function ChatMain({ username, userImage }) {
 			}}
 		>
 			<ListaMensagens
-				mensagens={listaMensagens}
-				filtraMensagens={handleDeletaMensagem}
-				username={username}
 				userImage={userImage}
 			/>
 

@@ -46,7 +46,7 @@ npm run dev
 ## Melhorias 🛠
 
 Ideias de melhorias para o projeto:
-- Barra de sticker dinâmica
+- Barra de sticker dinâmica ✅
 - Visualização do perfil atraves do icone no chat
 - Adicionar opção de deletar, copiar a mensagem
 - Adicionar componente de carregamento dos dados ✅

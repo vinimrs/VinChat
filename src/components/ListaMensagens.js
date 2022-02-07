@@ -1,9 +1,35 @@
 import { Box, Text, Image, Icon } from "@skynexui/components";
+import { useState, useEffect, useCallback } from "react";
 import appConfig from "../../config.json";
 import api from "../api";
 
-function ListaMensagens({ mensagens, filtraMensagens, username, userImage }) {
-	function formataData(string) {
+function ListaMensagens({ filtraMensagens, userImage }) {
+	const [listaMensagens, setListaMensagens] = useState([]);
+	
+	useEffect(() => {
+		api.getMensagens().then((dados) => setListaMensagens(dados));
+		const subscription = api.escutaEmTempoReal((novaMensagem) => {
+			//Para reusar um valor de referência array/objeto passar função para o setState
+			// Para pegar o valor atual do estado
+			setListaMensagens((valoratual) => {
+				return [novaMensagem, ...valoratual];
+			});
+		});
+
+		return () => {
+			subscription.unsubscribe();
+		};
+	}, []);
+
+	const handleDeletaMensagem = useCallback((mensagemId) => {
+		api.deletaMensagem(mensagemId).then(() => {
+			api.getMensagens().then((mensagens) => {
+				setListaMensagens(mensagens);
+			});
+		});
+	}, []);
+    
+    function formataData(string) {
 		let time = new Date(string).toLocaleTimeString().substring(0, 5);
 		let data;
 		if (new Date().getDay() - new Date(string).getDay() === 0) {
@@ -35,7 +61,7 @@ function ListaMensagens({ mensagens, filtraMensagens, username, userImage }) {
 				marginRight: "-35px",
 			}}
 		>
-			{mensagens.map((mensagem) => {
+			{listaMensagens.map((mensagem) => {
 				return (
 					<Text
 						key={mensagem.id}
@@ -111,7 +137,7 @@ function ListaMensagens({ mensagens, filtraMensagens, username, userImage }) {
 									right: "5px",
 								}}
 								onClick={() => {
-									filtraMensagens(mensagem.id);
+									handleDeletaMensagem(mensagem.id);
 								}}
 							/>
 						)}
