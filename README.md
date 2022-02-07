@@ -51,7 +51,7 @@ Ideias de melhorias para o projeto:
 - Adicionar opção de deletar, copiar a mensagem
 - Adicionar componente de carregamento dos dados ✅
 - Upload de background com integração com pexels
-- Adicionar OAuth do Google
+- Adicionar OAuth do Google ✅
 - Adicionar testes na aplicação
 
 ## Participação 👇

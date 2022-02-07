@@ -6,41 +6,22 @@ import api from "../api";
 import BoasVindas from "../components/BoasVindas";
 import InfosPaginaInicial from "../components/InfosPaginaInicial";
 
-function MainPaginaInicial() {
+function IndexMain() {
 	const [username, setUsername] = useState("");
 	const [usernameData, setUsernameData] = useState({});
-	const [userValido, setUserValido] = useState({
-		valido: false,
-		mensagem: "",
-	});
-	const [logando, setLogando] = useState(true);
-	const [loaded, setLoaded] = useState(false);
+	const [userValido, setUserValido] = useState(false);
 	const roteamento = useRouter();
 
 	function handleChange(e) {
 		setUsername(e.target.value);
 		carregaDadosUser(e.target.value);
-		setLogando(false);
-		setLoaded(false);
 	}
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		roteamento.push(`/chat?username=${username.toLowerCase()}`);
-	}
-
-	function carregaUser() {
-		api.checkUser()
-			.then((user) => {
-				if (user) {
-					setUsername(user.user_metadata.user_name);
-					setLoaded(true);
-					carregaDadosUser(user.user_metadata.user_name);
-				}
-			})
-			.catch((error) => {
-				throw new Error(error);
-			});
+		roteamento.push(
+			`/chat?username=${username}&provider=none`
+		);
 	}
 
 	function carregaDadosUser(user) {
@@ -49,40 +30,24 @@ function MainPaginaInicial() {
 				if (resp.status === 200) {
 					resp.json().then((respConvert) => {
 						setUsernameData(respConvert);
-						setUserValido({ valido: true, mensagem: "" });
+						setUserValido(true);
 					});
 				} else if (resp.status === 404) {
-					setUserValido({
-						valido: false,
-						mensagem: "O usuário inserido não existe.",
-					});
+					setUserValido(false);
+					console.log("O usuário inserido não existe.");
 				} else if (resp.status === 403) {
-					setUserValido({
-						valido: false,
-						mensagem: "Limite excedido para uso da API.",
-					});
+					setUserValido(false);
+					console.log("Limite excedido para uso da API.");
 				} else if (username.length < 2 && !username.trim()) {
-					setUserValido({ valido: false, mensagem: "" });
+					setUserValido(false);
 				} else {
-					setUserValido({
-						valido: false,
-						mensagem: "Algo deu errado!",
-					});
+					setUserValido(false);
+					console.log("Algo deu errado!");
 				}
 			})
 			.catch((erro) => {
 				throw new Error(erro);
 			});
-	}
-
-	function githubLogout() {
-		api.githubLogout();
-		setUsername("");
-		setLoaded(false);
-		setUserValido({
-			...userValido,
-			valido: false,
-		});
 	}
 
 	function githubLogin() {
@@ -91,14 +56,40 @@ function MainPaginaInicial() {
 		});
 	}
 
-	useEffect(() => {
-		carregaUser();
-		window.addEventListener("hashchange", () => {
-			carregaUser();
+	function googleLogin() {
+		api.googleLogin().then((resp) => {
+			console.log(resp);
+			setLogando(true);
 		});
-		setLogando(false);
+	}
+
+	useEffect(() => {
+		const checaEstaLogado = async () => {
+			const resp = api.checkUser();
+			if (!resp) return;
+			console.log(resp);
+			if (resp.app_metadata.provider === "google") {
+				roteamento.push(
+					`/chat?username=${resp.user_metadata.name.replace(
+						" ",
+						"_"
+					)}&provider=google`
+				);
+			} else if (resp.app_metadata.provider === "github")
+				roteamento.push(
+					`/chat?username=${resp.user_metadata.user_name.replace(
+						" ",
+						"_"
+					)}&provider=github`
+				);
+		};
+		checaEstaLogado();
+		window.addEventListener("hashchange", () => {
+			checaEstaLogado();
+		});
 	}, []);
 
+	console.log(usernameData);
 	return (
 		<>
 			<BoasVindas username={username} userValido={userValido} />
@@ -171,14 +162,13 @@ function MainPaginaInicial() {
 					}}
 					autoComplete="off"
 					value={username || ""}
-					disabled={loaded}
-					placeholder="Insira seu username aqui..."
+					placeholder="Insira seu username do Github..."
 					required
 				/>
 				<Button
 					type="submit"
 					label="Login"
-					disabled={!userValido.valido || logando}
+					disabled={!userValido}
 					fullWidth
 					styleSheet={{
 						margin: "10px 0 3px 0",
@@ -197,56 +187,47 @@ function MainPaginaInicial() {
 						mainColorStrong: appConfig.theme.colors.primary[700],
 					}}
 				/>
-				{!loaded ? (
-					<Button
-						label="Login with Github"
-						fullWidth
-						buttonColors={{
-							contrastColor:
-								appConfig.theme.colors.neutrals["900"],
-							mainColor: appConfig.theme.colors.neutrals["100"],
-							mainColorLight:
-								appConfig.theme.colors.secondary[600],
-							mainColorStrong:
-								appConfig.theme.colors.neutrals["900"],
-						}}
-						styleSheet={{
-							padding: "10px 15px",
-							margin: "3px 0 5px 0",
-							color: appConfig.theme.colors.neutrals["900"],
-							hover: {
-								color: appConfig.theme.colors.neutrals["100"],
-							},
-						}}
-						onClick={githubLogin}
-					/>
-				) : (
-					<Button
-						label="Sign Out Github"
-						fullWidth
-						styleSheet={{
-							padding: "10px 15px",
-							margin: "3px 0 5px 0",
+				<Button
+					label="Login with Github"
+					fullWidth
+					buttonColors={{
+						contrastColor: appConfig.theme.colors.neutrals["900"],
+						mainColor: appConfig.theme.colors.neutrals["100"],
+						mainColorLight: appConfig.theme.colors.secondary[600],
+						mainColorStrong: appConfig.theme.colors.neutrals["900"],
+					}}
+					styleSheet={{
+						padding: "10px 15px",
+						margin: "3px 0 5px 0",
+						color: appConfig.theme.colors.neutrals["900"],
+						hover: {
 							color: appConfig.theme.colors.neutrals["100"],
-							hover: {
-								color: appConfig.theme.colors.neutrals["900"],
-							},
-						}}
-						buttonColors={{
-							contrastColor:
-								appConfig.theme.colors.neutrals["050"],
-							mainColor: appConfig.theme.colors.neutrals["900"],
-							mainColorLight:
-								appConfig.theme.colors.neutrals["000"],
-							mainColorStrong:
-								appConfig.theme.colors.neutrals["500"],
-						}}
-						onClick={githubLogout}
-					/>
-				)}
+						},
+					}}
+					onClick={githubLogin}
+				/>
+				<Button
+					label="Login with Google"
+					fullWidth
+					buttonColors={{
+						contrastColor: appConfig.theme.colors.neutrals["900"],
+						mainColor: appConfig.theme.colors.neutrals["100"],
+						mainColorLight: appConfig.theme.colors.secondary[600],
+						mainColorStrong: appConfig.theme.colors.neutrals["900"],
+					}}
+					styleSheet={{
+						padding: "10px 15px",
+						margin: "3px 0 5px 0",
+						color: appConfig.theme.colors.neutrals["900"],
+						hover: {
+							color: appConfig.theme.colors.neutrals["100"],
+						},
+					}}
+					onClick={googleLogin}
+				/>
 			</Box>
 		</>
 	);
 }
 
-export default MainPaginaInicial;
+export default IndexMain;

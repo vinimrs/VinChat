@@ -12,10 +12,13 @@ const getMensagens = () => {
 		.then(({ data }) => data);
 };
 
-const setMensagem = (textoMensagem, usuario) => {
+const setMensagem = (textoMensagem, usuario, userImage) => {
+    
+    const user = supabaseClient.auth.user();
+    const provider = user ? user.app_metadata.provider : 'none';
 	return supabaseClient
 		.from("mensagens")
-		.insert({ de: usuario, texto: textoMensagem })
+		.insert({ de: usuario, texto: textoMensagem, provider: provider, userImage: userImage })
 		.then(({ data }) => data[0]);
 };
 
@@ -37,8 +40,10 @@ const escutaEmTempoReal = (adicionaMensagem) => {
 		.subscribe();
 };
 
-async function checkUser() {
-	return await supabaseClient.auth.user();
+function checkUser() {
+    const user = supabaseClient.auth.user();
+    console.log(user);
+	return user;
 }
 
 const githubLogin = async () => {
@@ -48,8 +53,15 @@ const githubLogin = async () => {
 	return user;
 };
 
-const githubLogout = async () => {
+const userLogout = async () => {
 	await supabaseClient.auth.signOut();
+};
+
+const googleLogin = async () => {
+    const user = await supabaseClient.auth.signIn({
+        provider: "google"
+    });
+    return user;
 };
 
 const api = {
@@ -58,8 +70,9 @@ const api = {
 	deletaMensagem,
 	escutaEmTempoReal,
 	githubLogin,
-	githubLogout,
+	userLogout,
 	checkUser,
+    googleLogin,
 };
 
 export default api;

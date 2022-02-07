@@ -4,12 +4,12 @@ import { BotaoAbreStickers } from "./BotaoAbreStickers";
 import appConfig from "../../config.json";
 import api from "../api";
 
-function FormularioChat({ username }) {
+function FormularioChat({ username, userImage }) {
 	const [mensagem, setMensagem] = useState("");
 
 	function handleNovaMensagem(novaMensagem) {
 		if (novaMensagem) {
-			api.setMensagem(novaMensagem, username).then(() => setMensagem(""));
+			api.setMensagem(novaMensagem, username, userImage).then(() => setMensagem(""));
 		}
 	}
 

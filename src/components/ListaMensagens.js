@@ -1,7 +1,8 @@
 import { Box, Text, Image, Icon } from "@skynexui/components";
 import appConfig from "../../config.json";
+import api from "../api";
 
-function ListaMensagens({ mensagens, filtraMensagens, username }) {
+function ListaMensagens({ mensagens, filtraMensagens, username, userImage }) {
 	function formataData(string) {
 		let time = new Date(string).toLocaleTimeString().substring(0, 5);
 		let data;
@@ -45,28 +46,28 @@ function ListaMensagens({ mensagens, filtraMensagens, username }) {
 							userSelect: "none",
 							position: "relative",
 							backgroundColor:
-								mensagem.de === username
+								mensagem.userImage === userImage
 									? `${appConfig.theme.colors.primary[700]}71`
 									: appConfig.theme.colors.secondary[600],
 							width: "50%",
 							transition: ".4s",
 							cursor:
-								mensagem.de === username
+								mensagem.userImage === userImage
 									? "pointer"
 									: "inherit",
 							margin:
-								mensagem.de === username
+								mensagem.userImage === userImage
 									? "0 10% 12px 40%"
 									: "0 40% 12px 10%",
 							hover: {
 								backgroundColor:
-									mensagem.de === username
+									mensagem.userImage === userImage
 										? `${appConfig.theme.colors.primary[700]}51`
 										: `${appConfig.theme.colors.secondary[600]}81`,
 							},
 						}}
 						onDoubleClick={() => {
-							if (mensagem.de === username)
+							if (mensagem.userImage === userImage)
 								filtraMensagens(mensagem.id);
 						}}
 					>
@@ -98,7 +99,7 @@ function ListaMensagens({ mensagens, filtraMensagens, username }) {
 								</Text>
 							)}
 						</Box>
-						{username === mensagem.de && (
+						{userImage === mensagem.userImage && (
 							<Icon
 								name="FaTrash"
 								size="1.6ch"
@@ -137,15 +138,15 @@ function ListaMensagens({ mensagens, filtraMensagens, username }) {
 										display: "inline-block",
 										marginRight: "8px",
 									}}
-									src={`https://github.com/${mensagem.de}.png`}
+									src={ mensagem.userImage }
 								/>
 								<Text
 									tag="strong"
 									styleSheet={{ fontSize: "15px" }}
 								>
-									{mensagem.de === username
+									{mensagem.userImage === userImage
 										? "Você"
-										: mensagem.de}
+										: mensagem.de.length < 10 ? mensagem.de : `${mensagem.de.replace('_', ' ').substring(0, 10)}...`}
 								</Text>
 							</Box>
 							<Text

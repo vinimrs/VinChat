@@ -1,1 +1,8 @@
-{}
+{
+  "..\\components\\BotaoAbreStickers.js -> ../components/ListaStickers": {
+    "id": "..\\components\\BotaoAbreStickers.js -> ../components/ListaStickers",
+    "files": [
+      "static/chunks/src_components_ListaStickers_js.js"
+    ]
+  }
+}

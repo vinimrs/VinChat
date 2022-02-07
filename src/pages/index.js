@@ -1,7 +1,7 @@
 import { Box } from "@skynexui/components";
 import appConfig from "../../config.json";
 import backgroundImg from "../../public/bg2.jpg";
-import MainPaginaInicial from "../containers/MainPaginaInicial";
+import IndexMain from "../containers/IndexMain";
 
 export default function PaginaInicial() {
 	return (
@@ -33,7 +33,7 @@ export default function PaginaInicial() {
 					margin: "16px",
 				}}
 			>
-				<MainPaginaInicial />
+				<IndexMain />
 			</Box>
 		</Box>
 	);

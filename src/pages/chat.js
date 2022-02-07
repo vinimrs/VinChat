@@ -1,12 +1,23 @@
 import { Box, Icon } from "@skynexui/components";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ChatHeader from "../containers/ChatHeader";
 import ChatMain from "../containers/ChatMain";
 import appConfig from "../../config.json";
 import bgImg from "../../public/bg2.jpg";
+import { useRouter } from "next/router";
+import api from "../api";
 
 export default function ChatPage() {
-	// possibilitando redimensionar o container
+    const roteamento = useRouter();
+	const { username, provider } = roteamento.query;
+    const [ userImage, setUserImage] = useState('');
+
+    function pegaImageGoogle () {
+        const user = api.checkUser();
+        return user.user_metadata.avatar_url;
+    }
+    
+    // possibilitando redimensionar o container
 	const [drag, setDrag] = useState({
 		active: false,
 		x: "",
@@ -44,6 +55,14 @@ export default function ChatPage() {
 	function stopResize() {
 		setDrag({ ...drag, active: false });
 	}
+
+    useEffect(() => {
+        if(provider == 'google'){
+            setUserImage(pegaImageGoogle());
+        } else {
+            setUserImage(`https://github.com/${username}.png`);
+        }
+    }, [])
 
 	return (
 		<Box
@@ -91,8 +110,8 @@ export default function ChatPage() {
 						display: { md: "inherit", sm: "none" },
 					}}
 				/>
-				<ChatHeader />
-				<ChatMain />
+				<ChatHeader userImage={userImage} />
+				<ChatMain userImage={userImage} username={username} />
 			</Box>
 		</Box>
 	);

@@ -6,10 +6,7 @@ import { useRouter } from "next/router";
 import api from "../api";
 import { useCallback, useEffect, useState } from "react";
 
-function ChatMain() {
-	const roteamento = useRouter();
-	const { username } = roteamento.query;
-
+function ChatMain({ username, userImage}) {
 	const [listaMensagens, setListaMensagens] = useState([]);
 
 	useEffect(() => {
@@ -53,9 +50,10 @@ function ChatMain() {
 				mensagens={listaMensagens}
 				filtraMensagens={handleDeletaMensagem}
 				username={username}
+                userImage={userImage}
 			/>
 
-			<FormularioChat username={username} />
+			<FormularioChat username={username} userImage={userImage} />
 		</Box>
 	);
 }

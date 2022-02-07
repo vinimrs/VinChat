@@ -1,12 +1,11 @@
 import { Box, Text, Image } from "@skynexui/components";
-import { useRouter } from "next/router";
 import flaticon from "../../public/flaticon.png";
 import appConfig from "../../config.json";
 import api from "../api";
+import { useRouter } from "next/router";
 
-function ChatHeader() {
-	const roteamento = useRouter();
-	const { username } = roteamento.query;
+function ChatHeader({ userImage }) {
+    const roteamento = useRouter();
 	return (
 		<Box
 			styleSheet={{
@@ -56,7 +55,7 @@ function ChatHeader() {
 					},
 				}}
 				onClick={() => {
-					if (api.checkUser) api.githubLogout();
+					if (api.checkUser) api.userLogout();
 					roteamento.push("/");
 				}}
 			>
@@ -65,7 +64,7 @@ function ChatHeader() {
 						borderRadius: "50%",
 						maxWidth: "30px",
 					}}
-					src={`https://github.com/${username}.png`}
+					src={userImage}
 				/>
 				<Text
 					variant="heading5"
