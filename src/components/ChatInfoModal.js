@@ -25,7 +25,10 @@ function ChatInfoModal({ user }) {
 				zIndex: "100",
 				top: "-250px",
 				left: "-10px",
-				width: "400px",
+				width: {
+                    sm: "350px",
+                    md: '450px'
+            },
 				height: "250px",
 				backgroundColor: `${appConfig.theme.colors.neutrals["900"]}ea`,
 				// textAlign: 'center',
@@ -35,6 +38,10 @@ function ChatInfoModal({ user }) {
 			<Box
 				styleSheet={{
 					display: "flex",
+                    flexDirection: {
+                        sm: 'column',
+                        md: 'row',
+                    },
 					alignItems: "center",
 					justifyContent: "center",
 					padding: "10px 0 0 0",
@@ -66,6 +73,7 @@ function ChatInfoModal({ user }) {
 					height: "80%",
 					width: "100%",
 					display: "flex",
+                    flexDirection: 'row',
 					padding: "10px",
 					borderRadius: "10px",
 				}}
@@ -83,7 +91,10 @@ function ChatInfoModal({ user }) {
 					<Image
 						src={`https://github.com/${userData.login}.png`}
 						styleSheet={{
-							width: "250px",
+							width: {
+                                sm: "150px",
+                                md: '250px'
+                        },
 							// height: '120px',
 							borderRadius: "50%",
 						}}
@@ -105,6 +116,10 @@ function ChatInfoModal({ user }) {
 						display: "flex",
 						padding: "0px 10px 10px 10px",
 						flexDirection: "column",
+                        alignItems: {
+                            sm: 'flex-start',
+                            md: 'flex-start'
+                    },
 						borderLeft: `1px solid ${appConfig.theme.colors.neutrals["500"]}ea`,
 					}}
 				>
@@ -132,6 +147,7 @@ function ChatInfoModal({ user }) {
 							</Text>
 						</Box>
 					)}
+                    {userData.blog && (
 					<Box
 						as="li"
 						styleSheet={{
@@ -160,7 +176,7 @@ function ChatInfoModal({ user }) {
 								{userData.blog}
 							</a>
 						</Text>
-					</Box>
+					</Box> )}
 					{userData.created_at && (
 						<Box
 							as="li"
