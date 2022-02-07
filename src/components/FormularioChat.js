@@ -1,17 +1,11 @@
 import { useCallback, useState } from "react";
 import { Box, TextField, Icon } from "@skynexui/components";
-import { BotaoAbreStickers } from "./BotaoAbreStickers";
 import appConfig from "../../config.json";
 import api from "../api";
 
-function FormularioChat({ username, userImage }) {
+function FormularioChat({ username, userImage, handleNovaMensagem }) {
 	const [mensagem, setMensagem] = useState("");
 
-	function handleNovaMensagem(novaMensagem) {
-		if (novaMensagem) {
-			api.setMensagem(novaMensagem, username, userImage).then(() => setMensagem(""));
-		}
-	}
 
 	return (
 		<Box
@@ -20,6 +14,7 @@ function FormularioChat({ username, userImage }) {
 				display: "flex",
 				alignItems: "center",
 				position: "relative",
+                flex: '1',
 				// overflow: "hidden",
 			}}
 		>
@@ -32,6 +27,7 @@ function FormularioChat({ username, userImage }) {
 					if (e.key === "Enter" && e.shiftKey === false) {
 						e.preventDefault();
 						handleNovaMensagem(mensagem);
+                        setMensagem('');
 					}
 				}}
 				styleSheet={{
@@ -51,12 +47,13 @@ function FormularioChat({ username, userImage }) {
 				onClick={(e) => {
 					e.preventDefault();
 					handleNovaMensagem(mensagem);
+                    setMensagem('');
 				}}
 				name="FaPlaneArrival"
 				size="3.2ch"
 				styleSheet={{
 					position: "absolute",
-					right: "75px",
+					right: "25px",
 					bottom: "20px",
 					color: appConfig.theme.colors.neutrals["300"],
 					cursor: "pointer",
@@ -66,11 +63,11 @@ function FormularioChat({ username, userImage }) {
 					},
 				}}
 			/>
-			<BotaoAbreStickers
+			{/* <BotaoAbreStickers
 				onStickerClick={useCallback((sticker) => {
 					handleNovaMensagem(`:sticker:${sticker}`);
 				}, [])}
-			/>
+			/> */}
 		</Box>
 	);
 }

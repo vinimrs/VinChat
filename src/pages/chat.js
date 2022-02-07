@@ -64,6 +64,7 @@ export default function ChatPage() {
         }
     }, [])
 
+    console.log(userImage);
 	return (
 		<Box
 			styleSheet={{

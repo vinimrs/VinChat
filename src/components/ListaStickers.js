@@ -8,12 +8,8 @@ function ListaStickers({ onStickerClick, setOpenState }) {
 				display: "flex",
 				flexDirection: "column",
 				borderRadius: "5px",
-				position: "absolute",
 				backgroundColor: appConfig.theme.colors.neutrals[800],
-				width: {
-					xs: "400px",
-					sm: "290px",
-				},
+				width: "100%",
 				height: "300px",
 				right: "30px",
 				overflow: "hidden",
@@ -56,9 +52,10 @@ function ListaStickers({ onStickerClick, setOpenState }) {
 						tag="li"
 						key={sticker}
 						styleSheet={{
-							width: "50%",
+							width: "30%",
 							borderRadius: "5px",
 							padding: "10px",
+                            cursor: 'pointer',
 							focus: {
 								backgroundColor:
 									appConfig.theme.colors.neutrals[600],

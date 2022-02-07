@@ -1,13 +1,42 @@
-import { Box } from "@skynexui/components";
+import { Box, Button } from "@skynexui/components";
 import appConfig from "../../config.json";
 import FormularioChat from "../components/FormularioChat";
 import ListaMensagens from "../components/ListaMensagens";
-import { useRouter } from "next/router";
 import api from "../api";
 import { useCallback, useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import LoadingComponent from "../UI/LoadingComponent";
 
-function ChatMain({ username, userImage}) {
+const ListaStickers = dynamic(() => import("../components/ListaStickers"), {
+	loading: () => (
+		<Box
+        styleSheet={{
+            display: "flex",
+            flexDirection: "column",
+            borderRadius: "5px",
+            backgroundColor: appConfig.theme.colors.neutrals[800],
+            width: "100%",
+            height: "300px",
+            right: "30px",
+            overflow: "hidden",
+            zIndex: "1000",
+            bottom: "30px",
+            padding: "16px",
+            boxShadow:
+                "rgba(4, 4, 5, 0.15) 0px 0px 0px 1px, rgba(0, 0, 0, 0.24) 0px 8px 16px 0px",
+        }}
+		>
+			<LoadingComponent />
+		</Box>
+	),
+});
+
+
+function ChatMain({ username, userImage }) {
 	const [listaMensagens, setListaMensagens] = useState([]);
+	const [isOpen, setOpenState] = useState("");
+    const [randomEmoji, setRandomEmoji] = useState(0);
+
 
 	useEffect(() => {
 		api.getMensagens().then((dados) => setListaMensagens(dados));
@@ -32,6 +61,15 @@ function ChatMain({ username, userImage}) {
 		});
 	}, []);
 
+
+	const handleNovaMensagem = useCallback((novaMensagem) => {
+		if (novaMensagem) {
+			api.setMensagem(novaMensagem, username, userImage);
+            console.log(userImage);
+		}
+	}, [userImage, username]);
+    
+    console.log(userImage);
 	return (
 		<Box
 			styleSheet={{
@@ -53,7 +91,40 @@ function ChatMain({ username, userImage}) {
                 userImage={userImage}
 			/>
 
-			<FormularioChat username={username} userImage={userImage} />
+            <Box styleSheet={{
+                display: "flex"
+            }}>
+                <FormularioChat handleNovaMensagem={handleNovaMensagem} username={username} userImage={userImage} />
+                <Button 
+                styleSheet={{
+					borderRadius: "50%",
+					padding: "0 3px 0 0",
+					minWidth: "50px",
+					minHeight: "50px",
+					fontSize: "20px",
+					marginBottom: "8px",
+					lineHeight: "0",
+					display: "flex",
+					alignItems: "center",
+					justifyContent: "center",
+					backgroundColor: appConfig.theme.colors.neutrals[400],
+				}}
+				label={appConfig.emojis.at(randomEmoji)}
+                onClick={() => {
+                    setRandomEmoji(Math.floor(Math.random()*10));
+                    setOpenState(!isOpen);
+                }} />
+               
+
+            </Box>
+            {isOpen && (
+				<ListaStickers
+					onStickerClick={(sticker) => {
+                        handleNovaMensagem(`:sticker:${sticker}`);
+                    }}
+					setOpenState={setOpenState}
+				/>
+			)}
 		</Box>
 	);
 }
