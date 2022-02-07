@@ -1,4 +1,10 @@
 {
+  "..\\components\\Mensagem.js -> ./ChatInfoModal": {
+    "id": "..\\components\\Mensagem.js -> ./ChatInfoModal",
+    "files": [
+      "static/chunks/src_components_ChatInfoModal_js.js"
+    ]
+  },
   "..\\containers\\ChatMain.js -> ../components/ListaStickers": {
     "id": "..\\containers\\ChatMain.js -> ../components/ListaStickers",
     "files": [

@@ -32,18 +32,6 @@ const ListaStickers = dynamic(() => import("../components/ListaStickers"), {
 	),
 });
 
-// const ListaMensagens = dynamic(() => import("../components/ListaMensagens"), {
-//     loading: () => (
-//         <Box styleSheet={{
-//             position: 'absolute',
-//             bottom: "10px"
-//         }}>
-//             <LoadingComponent />
-
-//         </Box>
-//     )
-// })
-
 function ChatMain({ username, userImage }) {
 	const [isOpen, setOpenState] = useState("");
 	const [randomEmoji, setRandomEmoji] = useState(0);
