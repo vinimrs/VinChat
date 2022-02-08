@@ -1,6 +1,6 @@
 import NextNProgress from "nextjs-progressbar";
 import Head from "next/head";
-import appConfig from '../../config.json';
+import appConfig from "../../config.json";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import LoadingPage from "../UI/LoadingPage";
@@ -37,28 +37,26 @@ function GlobalStyle() {
 }
 
 export default function MyApp({ Component, pageProps }) {
-    const [loading, setLoading] = useState();
-    const route = useRouter();
-    
-    useEffect(() => {
-        route.events.on('routeChangeStart', () => setLoading(true));
-        // route.events.off('routeChangeStart', handleRouteChangeComplete);
-        route.events.on('routeChangeComplete', () => setLoading(false));
-    }, [])
+	const [loading, setLoading] = useState();
+	const route = useRouter();
 
-    return (
-        <>
-            <Head>
-                <title>VinChat - Plataforma de Conversas</title>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                <link rel="icon" href='/flaticon.png'/>
-            </Head>
-            <GlobalStyle />
-            <NextNProgress 
-                color={`linear-gradient(90deg, ${appConfig.theme.colors.secondary[700]} 30%, ${appConfig.theme.colors.primary[600]} 100%)`}
-                height={5}
-            />
-            {!loading ? (<Component {...pageProps} />) : (<LoadingPage />)}
-        </>
-    );
+	useEffect(() => {
+		route.events.on("routeChangeStart", () => setLoading(true));
+		route.events.on("routeChangeComplete", () => setLoading(false));
+	}, [route.events]);
+
+	return (
+		<>
+			<Head>
+				<title>VinChat - Plataforma de Conversas</title>
+				<link rel="icon" href="/flaticon.png" />
+			</Head>
+			<GlobalStyle />
+			<NextNProgress
+				color={`linear-gradient(90deg, ${appConfig.theme.colors.secondary[700]} 30%, ${appConfig.theme.colors.primary[600]} 100%)`}
+				height={5}
+			/>
+			{!loading ? <Component {...pageProps} /> : <LoadingPage />}
+		</>
+	);
 }

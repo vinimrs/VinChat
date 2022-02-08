@@ -1,12 +1,10 @@
 import { Box, Text, Image } from "@skynexui/components";
-import flaticon from "../../public/flaticon.png";
 import appConfig from "../../config.json";
 import api from "../api";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 
 function ChatHeader({ userImage }) {
-    const roteamento = useRouter();
+	const roteamento = useRouter();
 
 	return (
 		<Box
@@ -30,7 +28,7 @@ function ChatHeader({ userImage }) {
 						width: "40px",
 						marginRight: "5px",
 					}}
-					src={flaticon.src}
+					src='/flaticon.png'
 					alt="Logo da plataforma"
 				/>
 				<Text
@@ -66,7 +64,8 @@ function ChatHeader({ userImage }) {
 						borderRadius: "50%",
 						maxWidth: "30px",
 					}}
-					src={userImage ? userImage : '/github.png'}
+					src={userImage ? userImage : "/github.png"}
+					alt="Imagem do usuário."
 				/>
 				<Text
 					variant="heading5"

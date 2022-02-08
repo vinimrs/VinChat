@@ -12,7 +12,7 @@ function FormularioChat({ handleNovaMensagem }) {
 				display: "flex",
 				alignItems: "center",
 				position: "relative",
-                flex: '1',
+				flex: "1",
 			}}
 		>
 			<TextField
@@ -37,7 +37,7 @@ function FormularioChat({ handleNovaMensagem }) {
 				onClick={(e) => {
 					e.preventDefault();
 					handleNovaMensagem(mensagem);
-                    setMensagem('');
+					setMensagem("");
 				}}
 				name="FaPlaneArrival"
 				size="3.2ch"

@@ -1,10 +1,7 @@
-import { Box, Icon } from "@skynexui/components";
 import React, { useEffect, useState } from "react";
-import ChatHeader from "../components/ChatHeader";
+import { Box, Icon } from "@skynexui/components";
 import ChatMain from "../containers/ChatMain";
 import appConfig from "../../config.json";
-import { useRouter } from "next/router";
-import api from "../api";
 
 export default function ChatPage() {
     const [windowDims, setWindowDims] = useState({});

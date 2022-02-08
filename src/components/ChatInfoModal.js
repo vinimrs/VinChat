@@ -15,7 +15,7 @@ function ChatInfoModal({ user, setModalIsOpen }) {
 		}
 
 		carregaDadosUser(user);
-	}, []);
+	}, [user]);
 	return (
 		<Box
 			as="article"
@@ -30,7 +30,6 @@ function ChatInfoModal({ user, setModalIsOpen }) {
 				},
 				height: "250px",
 				backgroundColor: `${appConfig.theme.colors.neutrals["900"]}ea`,
-				// textAlign: 'center',
 				borderRadius: "10px",
 			}}
 		>
@@ -111,9 +110,9 @@ function ChatInfoModal({ user, setModalIsOpen }) {
 								sm: "150px",
 								md: "190px",
 							},
-							// height: '120px',
 							borderRadius: "50%",
 						}}
+						alt="Imagem do avatar do usuário."
 					/>
 					<Text
 						styleSheet={{

@@ -70,7 +70,7 @@ function IndexMain() {
 		window.addEventListener("hashchange", () => {
 			checaEstaLogado();
 		});
-	}, []);
+	}, [roteamento]);
 
 	return (
 		<>
@@ -169,7 +169,7 @@ function IndexMain() {
 						mainColorStrong: appConfig.theme.colors.primary[700],
 					}}
 				/>
-                <Text
+				<Text
 					variant="h3"
 					styleSheet={{
 						color: appConfig.theme.colors.neutrals["100"],
@@ -198,8 +198,8 @@ function IndexMain() {
 						},
 					}}
 					onClick={() => {
-                        api.githubLogin();
-                    }}
+						api.githubLogin();
+					}}
 				/>
 				<Button
 					label="Login with Google"
@@ -219,8 +219,8 @@ function IndexMain() {
 						},
 					}}
 					onClick={() => {
-                        api.googleLogin();
-                    }}
+						api.googleLogin();
+					}}
 				/>
 			</Box>
 		</>
