@@ -3,9 +3,11 @@ import flaticon from "../../public/flaticon.png";
 import appConfig from "../../config.json";
 import api from "../api";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 function ChatHeader({ userImage }) {
     const roteamento = useRouter();
+
 	return (
 		<Box
 			styleSheet={{

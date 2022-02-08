@@ -7,6 +7,8 @@ import { useCallback, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import LoadingComponent from "../UI/LoadingComponent";
 import { CSSTransition } from "react-transition-group";
+import { useRouter } from "next/router";
+import ChatHeader from "./ChatHeader";
 
 const ListaStickers = dynamic(() => import("../components/ListaStickers"), {
 	loading: () => (
@@ -32,9 +34,17 @@ const ListaStickers = dynamic(() => import("../components/ListaStickers"), {
 	),
 });
 
-function ChatMain({ username = '', userImage }) {
-	const [isOpen, setOpenState] = useState(false);
-	const [randomEmoji, setRandomEmoji] = useState(0);
+function ChatMain() {
+    const roteamento = useRouter();
+	const { username, provider } = roteamento.query;
+    const [ userImage, setUserImage] = useState('');
+    const [isOpen, setOpenState] = useState(false);
+    const [randomEmoji, setRandomEmoji] = useState(0);
+
+    function pegaImageGoogle () {
+        const user = api.checkUser();
+        return user.user_metadata.avatar_url;
+    }
 
 	const handleNovaMensagem = useCallback(
 		(novaMensagem) => {
@@ -46,92 +56,103 @@ function ChatMain({ username = '', userImage }) {
 		[userImage, username]
 	);
 
+    useEffect(() => {
+        if(provider === 'google'){
+            setUserImage(pegaImageGoogle());
+        } else if (username) {
+            setUserImage(`https://github.com/${username}.png`);
+        }
+    }, [])
+
 	console.log(userImage);
 	return (
-		<Box
-			styleSheet={{
-				position: "relative",
-				display: "flex",
-				flex: 1,
-				height: "80%",
-				backgroundColor: appConfig.theme.colors.secondary[800],
-				flexDirection: "column",
-				borderRadius: "5px",
-				padding: "16px",
-				overflow: "hidden",
-			}}
-		>
-			<ListaMensagens
-				userImage={userImage ? userImage : '/github.png'}
-			/>
+        <>
+            <ChatHeader userImage={userImage} />
+            <Box
+                styleSheet={{
+                    position: "relative",
+                    display: "flex",
+                    flex: 1,
+                    height: "80%",
+                    backgroundColor: appConfig.theme.colors.secondary[800],
+                    flexDirection: "column",
+                    borderRadius: "5px",
+                    padding: "16px",
+                    overflow: "hidden",
+                }}
+            >
+                <ListaMensagens
+                    userImage={userImage ? userImage : '/github.png'}
+                />
 
-			<Box
-				styleSheet={{
-					display: "flex",
-				}}
-			>
-				<FormularioChat
-					handleNovaMensagem={handleNovaMensagem}
-					username={username}
-					userImage={userImage ? userImage : '/github.png'}
-				/>
-				<Button
-					styleSheet={{
-						borderRadius: "50%",
-						padding: "0 3px 0 0",
-						minWidth: "50px",
-						minHeight: "50px",
-						fontSize: "20px",
-						marginBottom: "8px",
-						lineHeight: "0",
-						display: "flex",
-						alignItems: "center",
-						justifyContent: "center",
-						backgroundColor: appConfig.theme.colors.neutrals[400],
-					}}
-					label={appConfig.emojis.at(randomEmoji)}
-					onClick={() => {
-						setRandomEmoji(Math.floor(Math.random() * 10));
-						setOpenState(!isOpen);
-					}}
-				/>
-			</Box>
-			
-			<CSSTransition
-				in={isOpen}
-				timeout={300}
-				classNames="alert"
-				unmountOnExit
-			>
-				<ListaStickers
-					onStickerClick={(sticker) => {
-						handleNovaMensagem(`:sticker:${sticker}`);
-					}}
-					setOpenState={setOpenState}
-				/>
-			</CSSTransition>
-            <style global jsx>
-				{`
-					.alert-enter {
-                        opacity: 0;
-                        transform: scale(0.9);
-                      }
-                      .alert-enter-active {
-                        opacity: 1;
-                        transform: translateX(0);
-                        transition: opacity 300ms, transform 300ms;
-                      }
-                      .alert-exit {
-                        opacity: 1;
-                      }
-                      .alert-exit-active {
-                        opacity: 0;
-                        transform: scale(0.9);
-                        transition: opacity 300ms, transform 300ms;
-                      }
-				`}
-			</style>
-		</Box>
+                <Box
+                    styleSheet={{
+                        display: "flex",
+                    }}
+                >
+                    <FormularioChat
+                        handleNovaMensagem={handleNovaMensagem}
+                        username={username}
+                        userImage={userImage ? userImage : '/github.png'}
+                    />
+                    <Button
+                        styleSheet={{
+                            borderRadius: "50%",
+                            padding: "0 3px 0 0",
+                            minWidth: "50px",
+                            minHeight: "50px",
+                            fontSize: "20px",
+                            marginBottom: "8px",
+                            lineHeight: "0",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            backgroundColor: appConfig.theme.colors.neutrals[400],
+                        }}
+                        label={appConfig.emojis.at(randomEmoji)}
+                        onClick={() => {
+                            setRandomEmoji(Math.floor(Math.random() * 10));
+                            setOpenState(!isOpen);
+                        }}
+                    />
+                </Box>
+                
+                <CSSTransition
+                    in={isOpen}
+                    timeout={300}
+                    classNames="alert"
+                    unmountOnExit
+                >
+                    <ListaStickers
+                        onStickerClick={(sticker) => {
+                            handleNovaMensagem(`:sticker:${sticker}`);
+                        }}
+                        setOpenState={setOpenState}
+                    />
+                </CSSTransition>
+                <style global jsx>
+                    {`
+                        .alert-enter {
+                            opacity: 0;
+                            transform: scale(0.9);
+                        }
+                        .alert-enter-active {
+                            opacity: 1;
+                            transform: translateX(0);
+                            transition: opacity 300ms, transform 300ms;
+                        }
+                        .alert-exit {
+                            opacity: 1;
+                        }
+                        .alert-exit-active {
+                            opacity: 0;
+                            transform: scale(0.9);
+                            transition: opacity 300ms, transform 300ms;
+                        }
+                    `}
+                </style>
+            </Box>
+        </>
 	);
 }
 

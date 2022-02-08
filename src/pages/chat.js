@@ -7,14 +7,7 @@ import { useRouter } from "next/router";
 import api from "../api";
 
 export default function ChatPage() {
-    const roteamento = useRouter();
-	const { username, provider } = roteamento.query;
-    const [ userImage, setUserImage] = useState('');
 
-    function pegaImageGoogle () {
-        const user = api.checkUser();
-        return user.user_metadata.avatar_url;
-    }
     
     // possibilitando redimensionar o container
 	const [drag, setDrag] = useState({
@@ -55,15 +48,6 @@ export default function ChatPage() {
 		setDrag({ ...drag, active: false });
 	}
 
-    useEffect(() => {
-        const { username } = roteamento.query;
-        // setDims({w:window.screen.width <= 992 ? 480 : 700, h:window.screen.height <= 992 ? 600 : 700});
-        if(provider && provider === 'google'){
-            setUserImage(pegaImageGoogle());
-        } else if (username) {
-            setUserImage(`https://github.com/${username}.png`);
-        }
-    }, [])
 
 	return (
 		<Box
@@ -114,8 +98,8 @@ export default function ChatPage() {
 						display: { md: "inherit", sm: "none" },
 					}}
 				/>
-				<ChatHeader userImage={userImage} />
-				<ChatMain userImage={userImage} username={username} />
+				
+				<ChatMain />
 			</Box>
 		</Box>
 	);
