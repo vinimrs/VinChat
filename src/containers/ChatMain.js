@@ -69,7 +69,7 @@ function ChatMain() {
 
 	return (
         <>
-            {/* <ChatHeader userImage={userImage} /> */}
+            <ChatHeader userImage={userImage} />
             <Box
                 styleSheet={{
                     position: "relative",
@@ -83,20 +83,20 @@ function ChatMain() {
                     overflow: "hidden",
                 }}
             >
-                {/* <ListaMensagens
+                <ListaMensagens
                     userImage={userImage}
-                /> */}
+                />
 
                 <Box
                     styleSheet={{
                         display: "flex",
                     }}
                 >
-                    {/* <FormularioChat
+                    <FormularioChat
                         handleNovaMensagem={handleNovaMensagem}
                         username={username}
                         userImage={userImage}
-                    /> */}
+                    />
                     <Button
                         styleSheet={{
                             borderRadius: "50%",
@@ -113,13 +113,13 @@ function ChatMain() {
                         }}
                         label={appConfig.emojis[randomEmoji]}
                         onClick={() => {
-                            const random = Math.floor(Math.random() * 10);
+                            const random = Math.floor(Math.random() * appConfig.emojis.length);
                             setRandomEmoji(random);
                             setOpenState(!isOpen);
                         }}
                     />
                 </Box>
-{/*                 
+                
                 <CSSTransition
                     in={isOpen}
                     timeout={300}
@@ -134,7 +134,7 @@ function ChatMain() {
                             () => setOpenState(!isOpen)
                         }
                     />
-                </CSSTransition> */}
+                </CSSTransition>
                 <style global jsx>
                     {`
                         .alert-enter {
