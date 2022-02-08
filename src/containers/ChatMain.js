@@ -36,26 +36,26 @@ import ListaStickers from "../components/ListaStickers";
 // });
 
 function ChatMain() {
-    const roteamento = useRouter();
-	const { username, provider } = roteamento.query;
-    const [ userImage, setUserImage] = useState('');
-    const [isOpen, setOpenState] = useState(false);
-    const [randomEmoji, setRandomEmoji] = useState(0);
+    // const roteamento = useRouter();
+	// const { username, provider } = roteamento.query;
+    // const [ userImage, setUserImage] = useState('');
+    // const [isOpen, setOpenState] = useState(false);
+    // const [randomEmoji, setRandomEmoji] = useState(0);
 
-    function pegaImageGoogle () {
-        const user = api.checkUser();
-        return user.user_metadata.avatar_url;
-    }
+    // function pegaImageGoogle () {
+    //     const user = api.checkUser();
+    //     return user.user_metadata.avatar_url;
+    // }
 
-	const handleNovaMensagem = useCallback(
-		(novaMensagem) => {
-			if (novaMensagem) {
-				api.setMensagem(novaMensagem, username, userImage);
-				console.log(userImage);
-			}
-		},
-		[userImage, username]
-	);
+	// const handleNovaMensagem = useCallback(
+	// 	(novaMensagem) => {
+	// 		if (novaMensagem) {
+	// 			api.setMensagem(novaMensagem, username, userImage);
+	// 			console.log(userImage);
+	// 		}
+	// 	},
+	// 	[userImage, username]
+	// );
 
     // useEffect(() => {
     //     if(provider === 'google'){
