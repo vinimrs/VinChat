@@ -42,11 +42,11 @@ const escutaEmTempoReal = (adicionaMensagem) => {
 
 function checkUser() {
     const user = supabaseClient.auth.user();
-    console.log(user);
 	return user;
 }
 
 const githubLogin = async () => {
+    console.log('chamou github');
 	const user = await supabaseClient.auth.signIn({
 		provider: "github",
 	});
@@ -58,6 +58,7 @@ const userLogout = async () => {
 };
 
 const googleLogin = async () => {
+    console.log("chamou google");
     const user = await supabaseClient.auth.signIn({
         provider: "google"
     });

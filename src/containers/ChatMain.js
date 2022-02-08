@@ -48,7 +48,6 @@ function ChatMain() {
 		(novaMensagem) => {
 			if (novaMensagem) {
 				api.setMensagem(novaMensagem, username, userImage);
-				console.log(userImage);
 			}
 		},
 		[userImage, username]
@@ -75,7 +74,10 @@ function ChatMain() {
                     position: "relative",
                     display: "flex",
                     flex: 1,
-                    height: "80%",
+                    height: {
+                        sm: '100%',
+                        md: "80%"
+                    },
                     backgroundColor: appConfig.theme.colors.secondary[800],
                     flexDirection: "column",
                     borderRadius: "5px",

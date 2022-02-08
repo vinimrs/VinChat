@@ -14,9 +14,9 @@ export default function PaginaInicial() {
 				backgroundSize: "cover",
 				backgroundPosition: "center",
 				backgroundBlendMode: "multiply",
-                height: {
-                    sm: '100vh'
-                },
+                // height: {
+                //     sm: '100vh'
+                // },
 			}}
 		>
 			<Box

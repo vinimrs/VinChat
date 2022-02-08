@@ -15,7 +15,7 @@ function IndexMain() {
 	function handleSubmit(e) {
 		e.preventDefault();
 		roteamento.push(
-			`/chat?username=${username}&provider=none`
+			`/chat?username=${username.toLowerCase()}&provider=none`
 		);
 	}
 
@@ -54,7 +54,6 @@ function IndexMain() {
 		const checaEstaLogado = async () => {
 			const resp = api.checkUser();
 			if (!resp) return;
-			console.log(resp);
 			if (resp.app_metadata.provider === "google") {
 				roteamento.push(
 					`/chat?username=${resp.user_metadata.name.replace(
@@ -64,10 +63,7 @@ function IndexMain() {
 				);
 			} else if (resp.app_metadata.provider === "github")
 				roteamento.push(
-					`/chat?username=${resp.user_metadata.user_name.replace(
-						" ",
-						"_"
-					)}&provider=github`
+					`/chat?username=${resp.user_metadata.user_name.toLowerCase()}&provider=github`
 				);
 		};
 		checaEstaLogado();
@@ -76,7 +72,6 @@ function IndexMain() {
 		});
 	}, []);
 
-	console.log(usernameData);
 	return (
 		<>
 			<BoasVindas username={username} userValido={userValido} />
@@ -202,7 +197,9 @@ function IndexMain() {
 							color: appConfig.theme.colors.neutrals["100"],
 						},
 					}}
-					onClick={() => api.githubLogin}
+					onClick={() => {
+                        api.githubLogin();
+                    }}
 				/>
 				<Button
 					label="Login with Google"
@@ -221,7 +218,9 @@ function IndexMain() {
 							color: appConfig.theme.colors.neutrals["100"],
 						},
 					}}
-					onClick={() => api.googleLogin}
+					onClick={() => {
+                        api.googleLogin();
+                    }}
 				/>
 			</Box>
 		</>

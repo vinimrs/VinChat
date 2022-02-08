@@ -16,7 +16,6 @@ function ChatInfoModal({ user, setModalIsOpen }) {
 
 		carregaDadosUser(user);
 	}, []);
-	console.log(userData);
 	return (
 		<Box
 			as="article"

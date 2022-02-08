@@ -17,7 +17,7 @@ export default function ChatPage() {
 	});
 	const [dims, setDims] = useState({
 		w: windowDims.w <= 992 ? 480 : 600,
-		h: windowDims.w <= 992 ? 600 : 700,
+		h: windowDims.w <= 992 ? 700 : 800,
 	});
 	const startResize = (e) => {
 		setDrag({
@@ -55,7 +55,6 @@ export default function ChatPage() {
         })
     }, [])
 
-    console.log(windowDims);
 	return (
 		<Box
 			styleSheet={{
