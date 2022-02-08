@@ -67,7 +67,7 @@ function ChatMain() {
 	console.log(userImage);
 	return (
         <>
-            <ChatHeader userImage={userImage} />
+            {/* <ChatHeader userImage={userImage} /> */}
             <Box
                 styleSheet={{
                     position: "relative",
