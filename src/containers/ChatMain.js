@@ -42,10 +42,7 @@ function ChatMain() {
     const [isOpen, setOpenState] = useState(false);
     const [randomEmoji, setRandomEmoji] = useState(0);
 
-    function pegaImageGoogle () {
-        const user = api.checkUser();
-        return user.user_metadata.avatar_url;
-    }
+
 
 	const handleNovaMensagem = useCallback(
 		(novaMensagem) => {
@@ -57,15 +54,19 @@ function ChatMain() {
 		[userImage, username]
 	);
 
-    // useEffect(() => {
-    //     if(provider === 'google'){
-    //         setUserImage(pegaImageGoogle());
-    //     } else if (username) {
-    //         setUserImage(`https://github.com/${username}.png`);
-    //     }
-    // }, [])
+    useEffect(() => {
+        function pegaImageGoogle () {
+            const user = api.checkUser();
+            return user.user_metadata.avatar_url;
+        }
+        
+        if(provider === 'google'){
+            setUserImage(pegaImageGoogle());
+        } else if (username) {
+            setUserImage(`https://github.com/${username}.png`);
+        }
+    }, [])
 
-	// console.log(userImage);
 	return (
         <>
             <ChatHeader userImage={userImage} />
@@ -82,9 +83,9 @@ function ChatMain() {
                     overflow: "hidden",
                 }}
             >
-                {/* <ListaMensagens
+                <ListaMensagens
                     userImage={userImage}
-                /> */}
+                />
 
                 <Box
                     styleSheet={{
@@ -118,13 +119,13 @@ function ChatMain() {
                     />
                 </Box>
                 
-                {/* <CSSTransition
+                <CSSTransition
                     in={isOpen}
                     timeout={300}
                     classNames="alert"
                     unmountOnExit
-                > */}
-                {/* {isOpen && (
+                >
+                {isOpen && (
                     <ListaStickers
                         onStickerClick={(sticker) => {
                             handleNovaMensagem(`:sticker:${sticker}`);
@@ -133,8 +134,8 @@ function ChatMain() {
                             () => setOpenState(!isOpen)
                         }
                     />
-                )} */}
-                {/* </CSSTransition> */}
+                )}
+                </CSSTransition>
                 <style global jsx>
                     {`
                         .alert-enter {
