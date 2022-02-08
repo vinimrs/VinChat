@@ -1,14 +1,14 @@
 {
   "..\\components\\Mensagem.js -> ./ChatInfoModal": {
-    "id": 6227,
+    "id": "..\\components\\Mensagem.js -> ./ChatInfoModal",
     "files": [
-      "static/chunks/227.910af6bafdb07b02.js"
+      "static/chunks/src_components_ChatInfoModal_js.js"
     ]
   },
   "..\\containers\\ChatMain.js -> ../components/ListaStickers": {
-    "id": 5491,
+    "id": "..\\containers\\ChatMain.js -> ../components/ListaStickers",
     "files": [
-      "static/chunks/491.9b67dd9713dfc064.js"
+      "static/chunks/src_components_ListaStickers_js.js"
     ]
   }
 }

@@ -1,150 +1,125 @@
 "use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
 (() => {
 var exports = {};
-exports.id = 888;
-exports.ids = [888];
+exports.id = "pages/_app";
+exports.ids = ["pages/_app"];
 exports.modules = {
 
-/***/ 640:
+/***/ "./src/UI/LoadingComponent.js":
+/*!************************************!*\
+  !*** ./src/UI/LoadingComponent.js ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// ESM COMPAT FLAG
-__webpack_require__.r(__webpack_exports__);
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  "default": () => (/* binding */ MyApp)
-});
-
-// EXTERNAL MODULE: external "react/jsx-runtime"
-var jsx_runtime_ = __webpack_require__(997);
-// EXTERNAL MODULE: external "styled-jsx/style"
-var style_ = __webpack_require__(816);
-var style_default = /*#__PURE__*/__webpack_require__.n(style_);
-;// CONCATENATED MODULE: external "nextjs-progressbar"
-const external_nextjs_progressbar_namespaceObject = require("nextjs-progressbar");
-var external_nextjs_progressbar_default = /*#__PURE__*/__webpack_require__.n(external_nextjs_progressbar_namespaceObject);
-;// CONCATENATED MODULE: external "next/head"
-const head_namespaceObject = require("next/head");
-var head_default = /*#__PURE__*/__webpack_require__.n(head_namespaceObject);
-// EXTERNAL MODULE: ./config.json
-var config = __webpack_require__(181);
-// EXTERNAL MODULE: external "next/router"
-var router_ = __webpack_require__(853);
-// EXTERNAL MODULE: external "react"
-var external_react_ = __webpack_require__(689);
-// EXTERNAL MODULE: external "@skynexui/components"
-var components_ = __webpack_require__(704);
-// EXTERNAL MODULE: ./src/UI/LoadingComponent.js
-var LoadingComponent = __webpack_require__(59);
-;// CONCATENATED MODULE: ./src/UI/LoadingPage.js
-
-
-
-function LoadingPage() {
-    return(/*#__PURE__*/ jsx_runtime_.jsx(components_.Box, {
-        styleSheet: {
-            width: "100vw",
-            height: "100vh",
-            backgroundColor: "#111111",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center"
-        },
-        children: /*#__PURE__*/ jsx_runtime_.jsx(LoadingComponent/* default */.Z, {})
-    }));
-}
-/* harmony default export */ const UI_LoadingPage = (LoadingPage);
-
-;// CONCATENATED MODULE: ./src/pages/_app.js
-
-
-
-
-
-
-
-
-function GlobalStyle() {
-    return jsx_runtime_.jsx((style_default()), {
-        id: "bb42e76dec0a303c",
-        children: "*{margin:0;\npadding:0;\nbox-sizing:border-box;\nlist-style:none}\nbody{font-family:\"Open Sans\", sans-serif}\nhtml, body, #__next{min-height:100vh;\ndisplay:-webkit-box;\ndisplay:-webkit-flex;\ndisplay:-ms-flexbox;\ndisplay:flex;\n-webkit-flex:1;\n-ms-flex:1;\nflex:1}\n#__next{-webkit-flex:1;\n-ms-flex:1;\nflex:1}\n#__next>*{-webkit-flex:1;\n-ms-flex:1;\nflex:1}"
-    });
-}
-function MyApp({ Component , pageProps  }) {
-    const { /*#__PURE__*/ 0: loading , 1: setLoading  } = (0,external_react_.useState)();
-    const route = (0,router_.useRouter)();
-    (0,external_react_.useEffect)(()=>{
-        route.events.on('routeChangeStart', ()=>setLoading(true)
-        );
-        // route.events.off('routeChangeStart', handleRouteChangeComplete);
-        route.events.on('routeChangeComplete', ()=>setLoading(false)
-        );
-    }, []);
-    return(/*#__PURE__*/ (0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
-        children: [
-            /*#__PURE__*/ (0,jsx_runtime_.jsxs)((head_default()), {
-                children: [
-                    /*#__PURE__*/ jsx_runtime_.jsx("title", {
-                        children: "VinChat - Plataforma de Conversas"
-                    }),
-                    /*#__PURE__*/ jsx_runtime_.jsx("meta", {
-                        name: "viewport",
-                        content: "initial-scale=1.0, width=device-width"
-                    }),
-                    /*#__PURE__*/ jsx_runtime_.jsx("link", {
-                        rel: "icon",
-                        href: "/flaticon.png"
-                    })
-                ]
-            }),
-            /*#__PURE__*/ jsx_runtime_.jsx(GlobalStyle, {}),
-            /*#__PURE__*/ jsx_runtime_.jsx((external_nextjs_progressbar_default()), {
-                color: `linear-gradient(90deg, ${config/* theme.colors.secondary.700 */.rS.O.BD.qy} 30%, ${config/* theme.colors.primary.600 */.rS.O.T$.RW} 100%)`,
-                height: 5
-            }),
-            !loading ? /*#__PURE__*/ jsx_runtime_.jsx(Component, {
-                ...pageProps
-            }) : /*#__PURE__*/ jsx_runtime_.jsx(UI_LoadingPage, {})
-        ]
-    }));
-};
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"react/jsx-dev-runtime\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-jsx/style */ \"styled-jsx/style\");\n/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_jsx_style__WEBPACK_IMPORTED_MODULE_1__);\n\n\nfunction LoadingComponent() {\n    return(/*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {\n        children: [\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                className: \"jsx-9918bfbf83955ef0\" + \" \" + \"spinner\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\vini-\\\\OneDrive\\\\Documentos\\\\Alura\\\\imersao-react-4\\\\src\\\\UI\\\\LoadingComponent.js\",\n                lineNumber: 4,\n                columnNumber: 4\n            }, this),\n            (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {\n                id: \"9918bfbf83955ef0\",\n                children: \".spinner.jsx-9918bfbf83955ef0{position:relative;\\nmargin:auto;\\nbox-sizing:border-box;\\n-webkit-background-clip:padding-box;\\nbackground-clip:padding-box;\\nwidth:200px;\\nheight:200px;\\nborder-radius:100px;\\nborder:4px solid rgba(255, 255, 255, 0.1);\\n-webkit-mask: linear-gradient(\\r\\n\\t\\t\\t\\t\\t\\trgba(0, 0, 0, 0.1),\\r\\n\\t\\t\\t\\t\\t\\t#000000 90%\\r\\n\\t\\t\\t\\t\\t);\\ntransform-origin:50% 60%;\\n-webkit-transform:perspective(200px) rotateX(66deg);\\n-moz-transform:perspective(200px) rotateX(66deg);\\n-ms-transform:perspective(200px) rotateX(66deg);\\ntransform:perspective(200px) rotateX(66deg);\\n-webkit-animation:spinner-wiggle 1.2s infinite;\\nanimation:spinner-wiggle 1.2s infinite}\\n.spinner.jsx-9918bfbf83955ef0:before, .spinner.jsx-9918bfbf83955ef0:after{content:\\\"\\\";\\nposition:absolute;\\nmargin:-4px;\\nbox-sizing:inherit;\\nwidth:inherit;\\nheight:inherit;\\nborder-radius:inherit;\\nopacity:0.05;\\nborder:inherit;\\nborder-color:transparent;\\n-webkit-animation:spinner-spin 1.2s cubic-bezier(0.6, 0.2, 0, 0.8) infinite, spinner-fade 1.2s linear infinite;\\nanimation:spinner-spin 1.2s cubic-bezier(0.6, 0.2, 0, 0.8) infinite, spinner-fade 1.2s linear infinite}\\n.spinner.jsx-9918bfbf83955ef0:before{border-top-color:#66e6ff}\\n.spinner.jsx-9918bfbf83955ef0:after{border-top-color:#f0db75;\\nanimation-delay:0.3s}\\n@keyframes spinner-spin {100% {transform:rotate(360deg)}}\\n@keyframes spinner-fade {20% {opacity:0.1}40% {opacity:1}60% {opacity:0.1}}\"\n            }, void 0, false, void 0, this)\n        ]\n    }, void 0, true));\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LoadingComponent);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvVUkvTG9hZGluZ0NvbXBvbmVudC5qcy5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7O1NBQVNBLGdCQUFnQixHQUFHLENBQUM7SUFDNUIsTUFBTTs7d0ZBRUhDLENBQUc7MERBQVcsQ0FBUzs7Ozs7Ozs7Ozs7O0FBZ0UzQixDQUFDO0FBRUQsaUVBQWVELGdCQUFnQixFQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vaW1lcnNhby1yZWFjdC00Ly4vc3JjL1VJL0xvYWRpbmdDb21wb25lbnQuanM/MGE4NCJdLCJzb3VyY2VzQ29udGVudCI6WyJmdW5jdGlvbiBMb2FkaW5nQ29tcG9uZW50KCkge1xyXG5cdHJldHVybiAoXHJcblx0XHQ8PlxyXG5cdFx0XHQ8ZGl2IGNsYXNzTmFtZT1cInNwaW5uZXJcIj48L2Rpdj5cclxuXHRcdFx0PHN0eWxlIGpzeD57YFxyXG5cdFx0XHRcdC5zcGlubmVyIHtcclxuXHRcdFx0XHRcdHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuXHRcdFx0XHRcdG1hcmdpbjogYXV0bztcclxuXHRcdFx0XHRcdGJveC1zaXppbmc6IGJvcmRlci1ib3g7XHJcblx0XHRcdFx0XHRiYWNrZ3JvdW5kLWNsaXA6IHBhZGRpbmctYm94O1xyXG5cdFx0XHRcdFx0d2lkdGg6IDIwMHB4O1xyXG5cdFx0XHRcdFx0aGVpZ2h0OiAyMDBweDtcclxuXHRcdFx0XHRcdGJvcmRlci1yYWRpdXM6IDEwMHB4O1xyXG5cdFx0XHRcdFx0Ym9yZGVyOiA0cHggc29saWQgcmdiYSgyNTUsIDI1NSwgMjU1LCAwLjEpO1xyXG5cdFx0XHRcdFx0LXdlYmtpdC1tYXNrOiBsaW5lYXItZ3JhZGllbnQoXHJcblx0XHRcdFx0XHRcdHJnYmEoMCwgMCwgMCwgMC4xKSxcclxuXHRcdFx0XHRcdFx0IzAwMDAwMCA5MCVcclxuXHRcdFx0XHRcdCk7XHJcblx0XHRcdFx0XHR0cmFuc2Zvcm0tb3JpZ2luOiA1MCUgNjAlO1xyXG5cdFx0XHRcdFx0dHJhbnNmb3JtOiBwZXJzcGVjdGl2ZSgyMDBweCkgcm90YXRlWCg2NmRlZyk7XHJcblx0XHRcdFx0XHRhbmltYXRpb246IHNwaW5uZXItd2lnZ2xlIDEuMnMgaW5maW5pdGU7XHJcblx0XHRcdFx0fVxyXG5cdFx0XHRcdC5zcGlubmVyOmJlZm9yZSxcclxuXHRcdFx0XHQuc3Bpbm5lcjphZnRlciB7XHJcblx0XHRcdFx0XHRjb250ZW50OiBcIlwiO1xyXG5cdFx0XHRcdFx0cG9zaXRpb246IGFic29sdXRlO1xyXG5cdFx0XHRcdFx0bWFyZ2luOiAtNHB4O1xyXG5cdFx0XHRcdFx0Ym94LXNpemluZzogaW5oZXJpdDtcclxuXHRcdFx0XHRcdHdpZHRoOiBpbmhlcml0O1xyXG5cdFx0XHRcdFx0aGVpZ2h0OiBpbmhlcml0O1xyXG5cdFx0XHRcdFx0Ym9yZGVyLXJhZGl1czogaW5oZXJpdDtcclxuXHRcdFx0XHRcdG9wYWNpdHk6IDAuMDU7XHJcblx0XHRcdFx0XHRib3JkZXI6IGluaGVyaXQ7XHJcblx0XHRcdFx0XHRib3JkZXItY29sb3I6IHRyYW5zcGFyZW50O1xyXG5cdFx0XHRcdFx0YW5pbWF0aW9uOiBzcGlubmVyLXNwaW4gMS4ycyBjdWJpYy1iZXppZXIoMC42LCAwLjIsIDAsIDAuOClcclxuXHRcdFx0XHRcdFx0XHRpbmZpbml0ZSxcclxuXHRcdFx0XHRcdFx0c3Bpbm5lci1mYWRlIDEuMnMgbGluZWFyIGluZmluaXRlO1xyXG5cdFx0XHRcdH1cclxuXHJcblx0XHRcdFx0LnNwaW5uZXI6YmVmb3JlIHtcclxuXHRcdFx0XHRcdGJvcmRlci10b3AtY29sb3I6ICM2NmU2ZmY7XHJcblx0XHRcdFx0fVxyXG5cclxuXHRcdFx0XHQuc3Bpbm5lcjphZnRlciB7XHJcblx0XHRcdFx0XHRib3JkZXItdG9wLWNvbG9yOiAjZjBkYjc1O1xyXG5cdFx0XHRcdFx0YW5pbWF0aW9uLWRlbGF5OiAwLjNzO1xyXG5cdFx0XHRcdH1cclxuXHJcblx0XHRcdFx0QGtleWZyYW1lcyBzcGlubmVyLXNwaW4ge1xyXG5cdFx0XHRcdFx0MTAwJSB7XHJcblx0XHRcdFx0XHRcdHRyYW5zZm9ybTogcm90YXRlKDM2MGRlZyk7XHJcblx0XHRcdFx0XHR9XHJcblx0XHRcdFx0fVxyXG5cdFx0XHRcdEBrZXlmcmFtZXMgc3Bpbm5lci1mYWRlIHtcclxuXHRcdFx0XHRcdDIwJSB7XHJcblx0XHRcdFx0XHRcdG9wYWNpdHk6IDAuMTtcclxuXHRcdFx0XHRcdH1cclxuXHRcdFx0XHRcdDQwJSB7XHJcblx0XHRcdFx0XHRcdG9wYWNpdHk6IDE7XHJcblx0XHRcdFx0XHR9XHJcblx0XHRcdFx0XHQ2MCUge1xyXG5cdFx0XHRcdFx0XHRvcGFjaXR5OiAwLjE7XHJcblx0XHRcdFx0XHR9XHJcblx0XHRcdFx0fVxyXG5cdFx0XHRgfTwvc3R5bGU+XHJcblx0XHQ8Lz5cclxuXHQpO1xyXG59XHJcblxyXG5leHBvcnQgZGVmYXVsdCBMb2FkaW5nQ29tcG9uZW50O1xyXG4iXSwibmFtZXMiOlsiTG9hZGluZ0NvbXBvbmVudCIsImRpdiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/UI/LoadingComponent.js\n");
 
 /***/ }),
 
-/***/ 704:
+/***/ "./src/UI/LoadingPage.js":
+/*!*******************************!*\
+  !*** ./src/UI/LoadingPage.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"react/jsx-dev-runtime\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _skynexui_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @skynexui/components */ \"@skynexui/components\");\n/* harmony import */ var _skynexui_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_skynexui_components__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _LoadingComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LoadingComponent */ \"./src/UI/LoadingComponent.js\");\n\n\n\nfunction LoadingPage() {\n    return(/*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_skynexui_components__WEBPACK_IMPORTED_MODULE_1__.Box, {\n        styleSheet: {\n            width: \"100vw\",\n            height: \"100vh\",\n            backgroundColor: \"#111111\",\n            display: \"flex\",\n            justifyContent: \"center\",\n            alignItems: \"center\"\n        },\n        children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_LoadingComponent__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {}, void 0, false, {\n            fileName: \"C:\\\\Users\\\\vini-\\\\OneDrive\\\\Documentos\\\\Alura\\\\imersao-react-4\\\\src\\\\UI\\\\LoadingPage.js\",\n            lineNumber: 16,\n            columnNumber: 4\n        }, this)\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\vini-\\\\OneDrive\\\\Documentos\\\\Alura\\\\imersao-react-4\\\\src\\\\UI\\\\LoadingPage.js\",\n        lineNumber: 6,\n        columnNumber: 3\n    }, this));\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LoadingPage);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvVUkvTG9hZGluZ1BhZ2UuanMuanMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7OztBQUEwQztBQUNPO1NBRXhDRSxXQUFXLEdBQUcsQ0FBQztJQUN2QixNQUFNLDZFQUNKRixxREFBRztRQUNIRyxVQUFVLEVBQUUsQ0FBQztZQUNaQyxLQUFLLEVBQUUsQ0FBTztZQUNkQyxNQUFNLEVBQUUsQ0FBTztZQUNmQyxlQUFlLEVBQUUsQ0FBUztZQUMxQkMsT0FBTyxFQUFFLENBQU07WUFDZkMsY0FBYyxFQUFFLENBQVE7WUFDeEJDLFVBQVUsRUFBRSxDQUFRO1FBQ3JCLENBQUM7OEZBRUFSLHlEQUFnQjs7Ozs7Ozs7OztBQUdwQixDQUFDO0FBRUQsaUVBQWVDLFdBQVcsRUFBQyIsInNvdXJjZXMiOlsid2VicGFjazovL2ltZXJzYW8tcmVhY3QtNC8uL3NyYy9VSS9Mb2FkaW5nUGFnZS5qcz9iYzU5Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEJveCB9IGZyb20gXCJAc2t5bmV4dWkvY29tcG9uZW50c1wiO1xyXG5pbXBvcnQgTG9hZGluZ0NvbXBvbmVudCBmcm9tIFwiLi9Mb2FkaW5nQ29tcG9uZW50XCI7XHJcblxyXG5mdW5jdGlvbiBMb2FkaW5nUGFnZSgpIHtcclxuXHRyZXR1cm4gKFxyXG5cdFx0PEJveFxyXG5cdFx0XHRzdHlsZVNoZWV0PXt7XHJcblx0XHRcdFx0d2lkdGg6IFwiMTAwdndcIixcclxuXHRcdFx0XHRoZWlnaHQ6IFwiMTAwdmhcIixcclxuXHRcdFx0XHRiYWNrZ3JvdW5kQ29sb3I6IFwiIzExMTExMVwiLFxyXG5cdFx0XHRcdGRpc3BsYXk6IFwiZmxleFwiLFxyXG5cdFx0XHRcdGp1c3RpZnlDb250ZW50OiBcImNlbnRlclwiLFxyXG5cdFx0XHRcdGFsaWduSXRlbXM6IFwiY2VudGVyXCIsXHJcblx0XHRcdH19XHJcblx0XHQ+XHJcblx0XHRcdDxMb2FkaW5nQ29tcG9uZW50IC8+XHJcblx0XHQ8L0JveD5cclxuXHQpO1xyXG59XHJcblxyXG5leHBvcnQgZGVmYXVsdCBMb2FkaW5nUGFnZTtcclxuIl0sIm5hbWVzIjpbIkJveCIsIkxvYWRpbmdDb21wb25lbnQiLCJMb2FkaW5nUGFnZSIsInN0eWxlU2hlZXQiLCJ3aWR0aCIsImhlaWdodCIsImJhY2tncm91bmRDb2xvciIsImRpc3BsYXkiLCJqdXN0aWZ5Q29udGVudCIsImFsaWduSXRlbXMiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/UI/LoadingPage.js\n");
+
+/***/ }),
+
+/***/ "./src/pages/_app.js":
+/*!***************************!*\
+  !*** ./src/pages/_app.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ MyApp)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"react/jsx-dev-runtime\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-jsx/style */ \"styled-jsx/style\");\n/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_jsx_style__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var nextjs_progressbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! nextjs-progressbar */ \"nextjs-progressbar\");\n/* harmony import */ var nextjs_progressbar__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nextjs_progressbar__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/head */ \"next/head\");\n/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _config_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../config.json */ \"./config.json\");\n/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! next/router */ \"next/router\");\n/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_5__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_6__);\n/* harmony import */ var _UI_LoadingPage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../UI/LoadingPage */ \"./src/UI/LoadingPage.js\");\n\n\n\n\n\n\n\n\nfunction GlobalStyle() {\n    return (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)((styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default()), {\n        id: \"bb42e76dec0a303c\",\n        children: \"*{margin:0;\\npadding:0;\\nbox-sizing:border-box;\\nlist-style:none}\\nbody{font-family:\\\"Open Sans\\\", sans-serif}\\nhtml, body, #__next{min-height:100vh;\\ndisplay:-webkit-box;\\ndisplay:-webkit-flex;\\ndisplay:-ms-flexbox;\\ndisplay:flex;\\n-webkit-flex:1;\\n-ms-flex:1;\\nflex:1}\\n#__next{-webkit-flex:1;\\n-ms-flex:1;\\nflex:1}\\n#__next>*{-webkit-flex:1;\\n-ms-flex:1;\\nflex:1}\"\n    }, void 0, false, void 0, this);\n}\nfunction MyApp({ Component , pageProps  }) {\n    const { /*#__PURE__*/ 0: loading , 1: setLoading  } = (0,react__WEBPACK_IMPORTED_MODULE_6__.useState)();\n    const route = (0,next_router__WEBPACK_IMPORTED_MODULE_5__.useRouter)();\n    (0,react__WEBPACK_IMPORTED_MODULE_6__.useEffect)(()=>{\n        route.events.on('routeChangeStart', ()=>setLoading(true)\n        );\n        // route.events.off('routeChangeStart', handleRouteChangeComplete);\n        route.events.on('routeChangeComplete', ()=>setLoading(false)\n        );\n    }, []);\n    return(/*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {\n        children: [\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)((next_head__WEBPACK_IMPORTED_MODULE_3___default()), {\n                children: [\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"title\", {\n                        children: \"VinChat - Plataforma de Conversas\"\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\vini-\\\\OneDrive\\\\Documentos\\\\Alura\\\\imersao-react-4\\\\src\\\\pages\\\\_app.js\",\n                        lineNumber: 52,\n                        columnNumber: 17\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"meta\", {\n                        name: \"viewport\",\n                        content: \"initial-scale=1.0, width=device-width\"\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\vini-\\\\OneDrive\\\\Documentos\\\\Alura\\\\imersao-react-4\\\\src\\\\pages\\\\_app.js\",\n                        lineNumber: 53,\n                        columnNumber: 17\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"link\", {\n                        rel: \"icon\",\n                        href: \"/flaticon.png\"\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\vini-\\\\OneDrive\\\\Documentos\\\\Alura\\\\imersao-react-4\\\\src\\\\pages\\\\_app.js\",\n                        lineNumber: 54,\n                        columnNumber: 17\n                    }, this)\n                ]\n            }, void 0, true, {\n                fileName: \"C:\\\\Users\\\\vini-\\\\OneDrive\\\\Documentos\\\\Alura\\\\imersao-react-4\\\\src\\\\pages\\\\_app.js\",\n                lineNumber: 51,\n                columnNumber: 13\n            }, this),\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(GlobalStyle, {}, void 0, false, {\n                fileName: \"C:\\\\Users\\\\vini-\\\\OneDrive\\\\Documentos\\\\Alura\\\\imersao-react-4\\\\src\\\\pages\\\\_app.js\",\n                lineNumber: 56,\n                columnNumber: 13\n            }, this),\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)((nextjs_progressbar__WEBPACK_IMPORTED_MODULE_2___default()), {\n                color: `linear-gradient(90deg, ${_config_json__WEBPACK_IMPORTED_MODULE_4__.theme.colors.secondary[700]} 30%, ${_config_json__WEBPACK_IMPORTED_MODULE_4__.theme.colors.primary[600]} 100%)`,\n                height: 5\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\vini-\\\\OneDrive\\\\Documentos\\\\Alura\\\\imersao-react-4\\\\src\\\\pages\\\\_app.js\",\n                lineNumber: 57,\n                columnNumber: 13\n            }, this),\n            !loading ? /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(Component, {\n                ...pageProps\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\vini-\\\\OneDrive\\\\Documentos\\\\Alura\\\\imersao-react-4\\\\src\\\\pages\\\\_app.js\",\n                lineNumber: 61,\n                columnNumber: 26\n            }, this) : /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_UI_LoadingPage__WEBPACK_IMPORTED_MODULE_7__[\"default\"], {}, void 0, false, {\n                fileName: \"C:\\\\Users\\\\vini-\\\\OneDrive\\\\Documentos\\\\Alura\\\\imersao-react-4\\\\src\\\\pages\\\\_app.js\",\n                lineNumber: 61,\n                columnNumber: 59\n            }, this)\n        ]\n    }, void 0, true));\n};\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvcGFnZXMvX2FwcC5qcy5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUE4QztBQUNsQjtBQUNhO0FBQ0Y7QUFDSTtBQUNBO1NBRWxDTyxXQUFXLEdBQUcsQ0FBQztJQUN2QixNQUFNLENBQUMsOERBQUM7Ozs7QUE0QlQsQ0FBQztBQUVjLFFBQVEsQ0FBQ0MsS0FBSyxDQUFDLENBQUMsQ0FBQ0MsU0FBUyxHQUFFQyxTQUFTLEVBQUMsQ0FBQyxFQUFFLENBQUM7SUFDckQsS0FBSyxvQkFBRUMsT0FBTyxNQUFFQyxVQUFVLE1BQUlQLCtDQUFRO0lBQ3RDLEtBQUssQ0FBQ1EsS0FBSyxHQUFHVixzREFBUztJQUV2QkMsZ0RBQVMsS0FBTyxDQUFDO1FBQ2JTLEtBQUssQ0FBQ0MsTUFBTSxDQUFDQyxFQUFFLENBQUMsQ0FBa0IsdUJBQVFILFVBQVUsQ0FBQyxJQUFJOztRQUN6RCxFQUFtRTtRQUNuRUMsS0FBSyxDQUFDQyxNQUFNLENBQUNDLEVBQUUsQ0FBQyxDQUFxQiwwQkFBUUgsVUFBVSxDQUFDLEtBQUs7O0lBQ2pFLENBQUMsRUFBRSxDQUFDLENBQUM7SUFFTCxNQUFNOzt3RkFFR1gsa0RBQUk7O2dHQUNBZSxDQUFLO2tDQUFDLENBQWlDOzs7Ozs7Z0dBQ3ZDQyxDQUFJO3dCQUFDQyxJQUFJLEVBQUMsQ0FBVTt3QkFBQ0MsT0FBTyxFQUFDLENBQXVDOzs7Ozs7Z0dBQ3BFQyxDQUFJO3dCQUFDQyxHQUFHLEVBQUMsQ0FBTTt3QkFBQ0MsSUFBSSxFQUFDLENBQWU7Ozs7Ozs7Ozs7Ozt3RkFFeENmLFdBQVc7Ozs7O3dGQUNYUCwyREFBYTtnQkFDVnVCLEtBQUssR0FBRyx1QkFBdUIsRUFBRXJCLHFFQUFxQyxDQUFDLE1BQU0sRUFBRUEsbUVBQW1DLENBQUMsTUFBTTtnQkFDekgwQixNQUFNLEVBQUUsQ0FBQzs7Ozs7O2FBRVhqQixPQUFPLCtFQUFLRixTQUFTO21CQUFLQyxTQUFTOzs7OzttR0FBVUosdURBQVc7Ozs7Ozs7QUFHdEUsQ0FBQyIsInNvdXJjZXMiOlsid2VicGFjazovL2ltZXJzYW8tcmVhY3QtNC8uL3NyYy9wYWdlcy9fYXBwLmpzPzhmZGEiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IE5leHROUHJvZ3Jlc3MgZnJvbSBcIm5leHRqcy1wcm9ncmVzc2JhclwiO1xyXG5pbXBvcnQgSGVhZCBmcm9tIFwibmV4dC9oZWFkXCI7XHJcbmltcG9ydCBhcHBDb25maWcgZnJvbSAnLi4vLi4vY29uZmlnLmpzb24nO1xyXG5pbXBvcnQgeyB1c2VSb3V0ZXIgfSBmcm9tIFwibmV4dC9yb3V0ZXJcIjtcclxuaW1wb3J0IHsgdXNlRWZmZWN0LCB1c2VTdGF0ZSB9IGZyb20gXCJyZWFjdFwiO1xyXG5pbXBvcnQgTG9hZGluZ1BhZ2UgZnJvbSBcIi4uL1VJL0xvYWRpbmdQYWdlXCI7XHJcblxyXG5mdW5jdGlvbiBHbG9iYWxTdHlsZSgpIHtcclxuXHRyZXR1cm4gKFxyXG5cdFx0PHN0eWxlIGdsb2JhbCBqc3g+e2BcclxuXHRcdFx0KiB7XHJcblx0XHRcdFx0bWFyZ2luOiAwO1xyXG5cdFx0XHRcdHBhZGRpbmc6IDA7XHJcblx0XHRcdFx0Ym94LXNpemluZzogYm9yZGVyLWJveDtcclxuXHRcdFx0XHRsaXN0LXN0eWxlOiBub25lO1xyXG5cdFx0XHR9XHJcblx0XHRcdGJvZHkge1xyXG5cdFx0XHRcdGZvbnQtZmFtaWx5OiBcIk9wZW4gU2Fuc1wiLCBzYW5zLXNlcmlmO1xyXG5cdFx0XHR9XHJcblx0XHRcdC8qIEFwcCBmaXQgSGVpZ2h0ICovXHJcblx0XHRcdGh0bWwsXHJcblx0XHRcdGJvZHksXHJcblx0XHRcdCNfX25leHQge1xyXG5cdFx0XHRcdG1pbi1oZWlnaHQ6IDEwMHZoO1xyXG5cdFx0XHRcdGRpc3BsYXk6IGZsZXg7XHJcblx0XHRcdFx0ZmxleDogMTtcclxuXHRcdFx0fVxyXG5cdFx0XHQjX19uZXh0IHtcclxuXHRcdFx0XHRmbGV4OiAxO1xyXG5cdFx0XHR9XHJcblx0XHRcdCNfX25leHQgPiAqIHtcclxuXHRcdFx0XHRmbGV4OiAxO1xyXG5cdFx0XHR9XHJcblx0XHRcdC8qIC4vQXBwIGZpdCBIZWlnaHQgKi9cclxuXHRcdGB9PC9zdHlsZT5cclxuXHQpO1xyXG59XHJcblxyXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBNeUFwcCh7IENvbXBvbmVudCwgcGFnZVByb3BzIH0pIHtcclxuICAgIGNvbnN0IFtsb2FkaW5nLCBzZXRMb2FkaW5nXSA9IHVzZVN0YXRlKCk7XHJcbiAgICBjb25zdCByb3V0ZSA9IHVzZVJvdXRlcigpO1xyXG4gICAgXHJcbiAgICB1c2VFZmZlY3QoKCkgPT4ge1xyXG4gICAgICAgIHJvdXRlLmV2ZW50cy5vbigncm91dGVDaGFuZ2VTdGFydCcsICgpID0+IHNldExvYWRpbmcodHJ1ZSkpO1xyXG4gICAgICAgIC8vIHJvdXRlLmV2ZW50cy5vZmYoJ3JvdXRlQ2hhbmdlU3RhcnQnLCBoYW5kbGVSb3V0ZUNoYW5nZUNvbXBsZXRlKTtcclxuICAgICAgICByb3V0ZS5ldmVudHMub24oJ3JvdXRlQ2hhbmdlQ29tcGxldGUnLCAoKSA9PiBzZXRMb2FkaW5nKGZhbHNlKSk7XHJcbiAgICB9LCBbXSlcclxuXHJcbiAgICByZXR1cm4gKFxyXG4gICAgICAgIDw+XHJcbiAgICAgICAgICAgIDxIZWFkPlxyXG4gICAgICAgICAgICAgICAgPHRpdGxlPlZpbkNoYXQgLSBQbGF0YWZvcm1hIGRlIENvbnZlcnNhczwvdGl0bGU+XHJcbiAgICAgICAgICAgICAgICA8bWV0YSBuYW1lPVwidmlld3BvcnRcIiBjb250ZW50PVwiaW5pdGlhbC1zY2FsZT0xLjAsIHdpZHRoPWRldmljZS13aWR0aFwiIC8+XHJcbiAgICAgICAgICAgICAgICA8bGluayByZWw9XCJpY29uXCIgaHJlZj0nL2ZsYXRpY29uLnBuZycvPlxyXG4gICAgICAgICAgICA8L0hlYWQ+XHJcbiAgICAgICAgICAgIDxHbG9iYWxTdHlsZSAvPlxyXG4gICAgICAgICAgICA8TmV4dE5Qcm9ncmVzcyBcclxuICAgICAgICAgICAgICAgIGNvbG9yPXtgbGluZWFyLWdyYWRpZW50KDkwZGVnLCAke2FwcENvbmZpZy50aGVtZS5jb2xvcnMuc2Vjb25kYXJ5WzcwMF19IDMwJSwgJHthcHBDb25maWcudGhlbWUuY29sb3JzLnByaW1hcnlbNjAwXX0gMTAwJSlgfVxyXG4gICAgICAgICAgICAgICAgaGVpZ2h0PXs1fVxyXG4gICAgICAgICAgICAvPlxyXG4gICAgICAgICAgICB7IWxvYWRpbmcgPyAoPENvbXBvbmVudCB7Li4ucGFnZVByb3BzfSAvPikgOiAoPExvYWRpbmdQYWdlIC8+KX1cclxuICAgICAgICA8Lz5cclxuICAgICk7XHJcbn0iXSwibmFtZXMiOlsiTmV4dE5Qcm9ncmVzcyIsIkhlYWQiLCJhcHBDb25maWciLCJ1c2VSb3V0ZXIiLCJ1c2VFZmZlY3QiLCJ1c2VTdGF0ZSIsIkxvYWRpbmdQYWdlIiwiR2xvYmFsU3R5bGUiLCJNeUFwcCIsIkNvbXBvbmVudCIsInBhZ2VQcm9wcyIsImxvYWRpbmciLCJzZXRMb2FkaW5nIiwicm91dGUiLCJldmVudHMiLCJvbiIsInRpdGxlIiwibWV0YSIsIm5hbWUiLCJjb250ZW50IiwibGluayIsInJlbCIsImhyZWYiLCJjb2xvciIsInRoZW1lIiwiY29sb3JzIiwic2Vjb25kYXJ5IiwicHJpbWFyeSIsImhlaWdodCJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/pages/_app.js\n");
+
+/***/ }),
+
+/***/ "@skynexui/components":
+/*!***************************************!*\
+  !*** external "@skynexui/components" ***!
+  \***************************************/
 /***/ ((module) => {
 
 module.exports = require("@skynexui/components");
 
 /***/ }),
 
-/***/ 853:
+/***/ "next/head":
+/*!****************************!*\
+  !*** external "next/head" ***!
+  \****************************/
+/***/ ((module) => {
+
+module.exports = require("next/head");
+
+/***/ }),
+
+/***/ "next/router":
+/*!******************************!*\
+  !*** external "next/router" ***!
+  \******************************/
 /***/ ((module) => {
 
 module.exports = require("next/router");
 
 /***/ }),
 
-/***/ 689:
+/***/ "nextjs-progressbar":
+/*!*************************************!*\
+  !*** external "nextjs-progressbar" ***!
+  \*************************************/
+/***/ ((module) => {
+
+module.exports = require("nextjs-progressbar");
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "react" ***!
+  \************************/
 /***/ ((module) => {
 
 module.exports = require("react");
 
 /***/ }),
 
-/***/ 997:
+/***/ "react/jsx-dev-runtime":
+/*!****************************************!*\
+  !*** external "react/jsx-dev-runtime" ***!
+  \****************************************/
 /***/ ((module) => {
 
-module.exports = require("react/jsx-runtime");
+module.exports = require("react/jsx-dev-runtime");
 
 /***/ }),
 
-/***/ 816:
+/***/ "styled-jsx/style":
+/*!***********************************!*\
+  !*** external "styled-jsx/style" ***!
+  \***********************************/
 /***/ ((module) => {
 
 module.exports = require("styled-jsx/style");
+
+/***/ }),
+
+/***/ "./config.json":
+/*!*********************!*\
+  !*** ./config.json ***!
+  \*********************/
+/***/ ((module) => {
+
+module.exports = JSON.parse('{"name":"VinChat","theme":{"colors":{"primary":{"100":"#E87D6A","200":"#EC7863","300":"#FF8067","400":"#FF6648","500":"#FE4824","600":"#FF320B","700":"#D51F00","800":"#B71D03","900":"#AC2E18","050":"#FFA191"},"secondary":{"100":"#01A3CC","200":"#048CB0","300":"#047795","400":"#0F7691","500":"#115F73","600":"#17434F","700":"#08495A","800":"#081F25","900":"#031A20","050":"#00BCED"},"neutrals":{"100":"#E4E7EB","200":"#CBD2D9","300":"#9AA5B1","400":"#52667A","500":"#313D49","600":"#29333D","700":"#212931","800":"#181F25","900":"#101418","999":"#080A0C","000":"#FFFFFF","050":"#F5F7FA"}}},"emojis":["😀","😁","😂","🤣","😃","😄","😅","😆","😉","😊","😋","😎","😍","😘","🥰","😗","😙","😚","🙂","🤗","🤩","🤔","🤨","😐","😑","😶","🙄","😏","😣","😥","😮","🤐","😯","😪","😫","🥱","😴","😌","😛","😜","😝","🤤","😒","😓","😔","😕","🙃","🤑","😲","🙁","😖","😞","😟","😤","😢","😭","😦","😧","😨","😩","🤯","😬","😰","😱","🥵","😈","👿","👾","👽","👻"],"stickers":["https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_1.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_2.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_3.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_4.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_5.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_6.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_7.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_8.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_9.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_10.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_11.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_12.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_13.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_14.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_15.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_16.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_17.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_18.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_19.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_20.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_21.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_22.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_23.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_24.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_25.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_26.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_27.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_28.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_29.png","https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_30.png","http://2.bp.blogspot.com/-d21tffsTIQo/U_H9QjC69gI/AAAAAAAAKqM/wnvOyUr6a_I/s1600/Pikachu%2B2.gif","https://media1.giphy.com/media/BdghqxNFV4efm/200.gif","https://c.tenor.com/TKpmh4WFEsAAAAAC/alura-gaveta-filmes.gif","https://i.pinimg.com/originals/0b/1c/23/0b1c2307c83e1ebdeed72e41b9a058ad.gif","https://c.tenor.com/VylWt5lyjBoAAAAC/omg-yes.gif","https://i.pinimg.com/originals/96/34/c5/9634c520c9a3cd4e7f23190bb2c96500.gif"]}');
 
 /***/ })
 
@@ -155,7 +130,7 @@ module.exports = require("styled-jsx/style");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [181,59], () => (__webpack_exec__(640)));
+var __webpack_exports__ = (__webpack_exec__("./src/pages/_app.js"));
 module.exports = __webpack_exports__;
 
 })();

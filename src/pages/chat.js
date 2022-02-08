@@ -24,8 +24,8 @@ export default function ChatPage() {
 		y: "",
 	});
 	const [dims, setDims] = useState({
-		w: 480,
-		h: 600,
+		w: 600,
+		h: 700,
 	});
 	const startResize = (e) => {
 		setDrag({
