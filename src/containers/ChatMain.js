@@ -36,9 +36,9 @@ import ListaStickers from "../components/ListaStickers";
 // });
 
 function ChatMain() {
-    // const roteamento = useRouter();
-	// const { username, provider } = roteamento.query;
-    // const [ userImage, setUserImage] = useState('');
+    const roteamento = useRouter();
+	const { username, provider } = roteamento.query;
+    const [ userImage, setUserImage] = useState('');
     // const [isOpen, setOpenState] = useState(false);
     // const [randomEmoji, setRandomEmoji] = useState(0);
 
@@ -57,18 +57,18 @@ function ChatMain() {
 	// 	[userImage, username]
 	// );
 
-    // useEffect(() => {
-    //     if(provider === 'google'){
-    //         setUserImage(pegaImageGoogle());
-    //     } else if (username) {
-    //         setUserImage(`https://github.com/${username}.png`);
-    //     }
-    // }, [])
+    useEffect(() => {
+        if(provider === 'google'){
+            setUserImage(pegaImageGoogle());
+        } else if (username) {
+            setUserImage(`https://github.com/${username}.png`);
+        }
+    }, [])
 
 	// console.log(userImage);
 	return (
         <>
-            {/* <ChatHeader userImage={userImage} /> */}
+            <ChatHeader userImage={userImage} />
             <Box
                 styleSheet={{
                     position: "relative",
@@ -118,19 +118,19 @@ function ChatMain() {
                     />
                 </Box>
                 
-                <CSSTransition
+                {/* <CSSTransition
                     // in={isOpen}
                     timeout={300}
                     classNames="alert"
                     unmountOnExit
-                >
+                > */}
                     {/* <ListaStickers
                         onStickerClick={(sticker) => {
                             handleNovaMensagem(`:sticker:${sticker}`);
                         }}
                         setOpenState={setOpenState}
                     /> */}
-                </CSSTransition>
+                {/* </CSSTransition> */}
                 <style global jsx>
                     {`
                         .alert-enter {
