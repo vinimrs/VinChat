@@ -124,16 +124,16 @@ function ChatMain() {
                     classNames="alert"
                     unmountOnExit
                 > */}
-                {isOpen && (
+                {/* {isOpen && (
                     <ListaStickers
-                        // onStickerClick={(sticker) => {
-                        //     handleNovaMensagem(`:sticker:${sticker}`);
-                        // }}
+                        onStickerClick={(sticker) => {
+                            handleNovaMensagem(`:sticker:${sticker}`);
+                        }}
                         setOpenState={
                             () => setOpenState(!isOpen)
                         }
                     />
-                )}
+                )} */}
                 {/* </CSSTransition> */}
                 <style global jsx>
                     {`
