@@ -45,9 +45,7 @@ function ListaStickers({ onStickerClick, setOpenState }) {
 				{appConfig.stickers.map((sticker) => (
 					<Text
 						onClick={() => {
-							if (onStickerClick) {
 								onStickerClick(sticker);
-							}
 						}}
 						tag="li"
 						key={sticker}
