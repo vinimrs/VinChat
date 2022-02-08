@@ -86,7 +86,10 @@ function Mensagem({ mensagem, handleDeletaMensagem, userImage }) {
             {mensagem.texto.startsWith(":sticker:") ? (
                 <Image
                     styleSheet={{
-                        maxWidth: "130px",
+                        maxWidth: {
+                            sm: "130px",
+                            md: "160px"
+                        },
                     }}
                     src={mensagem.texto.replace(
                         ":sticker:",

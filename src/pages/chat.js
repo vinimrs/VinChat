@@ -11,10 +11,6 @@ export default function ChatPage() {
     const roteamento = useRouter();
 	const { username, provider } = roteamento.query;
     const [ userImage, setUserImage] = useState('');
-    const [ windowDims, setWindowDims] = useState({
-        w: null,
-        h: null
-    });
 
     function pegaImageGoogle () {
         const user = api.checkUser();
@@ -28,8 +24,8 @@ export default function ChatPage() {
 		y: "",
 	});
 	const [dims, setDims] = useState({
-		w: windowDims.w <= 992 ? 480 : 700 || 480,
-		h: windowDims.w <= 992 ? 600 : 700 || 600,
+		w: 480,
+		h: 600,
 	});
 	const startResize = (e) => {
 		setDrag({
@@ -61,7 +57,7 @@ export default function ChatPage() {
 	}
 
     useEffect(() => {
-        setWindowDims({w:window.screen.width, h:window.screen.height})
+        setDims({w:window.screen.width <= 992 ? 480 : 700, h:window.screen.height <= 992 ? 600 : 700});
         if(provider == 'google'){
             setUserImage(pegaImageGoogle());
         } else {
@@ -76,7 +72,7 @@ export default function ChatPage() {
 				alignItems: "center",
 				justifyContent: "center",
 				backgroundPosition: "center",
-				backgroundImage: `url(${bgImg.src})`,
+				backgroundImage: `url(/bg2.jpg)`,
 				backgroundRepeat: "no-repeat",
 				backgroundSize: "cover",
 				backgroundBlendMode: "multiply",
