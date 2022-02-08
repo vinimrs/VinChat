@@ -12,11 +12,6 @@ function IndexMain() {
 	const [userValido, setUserValido] = useState(false);
 	const roteamento = useRouter();
 
-	function handleChange(e) {
-		setUsername(e.target.value);
-		carregaDadosUser(e.target.value);
-	}
-
 	function handleSubmit(e) {
 		e.preventDefault();
 		roteamento.push(
@@ -50,13 +45,10 @@ function IndexMain() {
 			});
 	}
 
-	// function githubLogin() {
-		
-	// }
-
-	// function googleLogin() {
-	// 	api.googleLogin().then();
-	// }
+	function handleChange(e) {
+		setUsername(e.target.value);
+		carregaDadosUser(e.target.value);
+	}
 
 	useEffect(() => {
 		const checaEstaLogado = async () => {
@@ -189,7 +181,6 @@ function IndexMain() {
 						fontSize: "18px",
 						fontWeight: "bold",
 						margin: "10px 0 10px 0",
-						// textDecoration: `underline ${appConfig.theme.colors.primary[600]}`,
 					}}
 				>
 					Ou
@@ -211,7 +202,7 @@ function IndexMain() {
 							color: appConfig.theme.colors.neutrals["100"],
 						},
 					}}
-					onClick={api.githubLogin}
+					onClick={() => api.githubLogin}
 				/>
 				<Button
 					label="Login with Google"
@@ -230,7 +221,7 @@ function IndexMain() {
 							color: appConfig.theme.colors.neutrals["100"],
 						},
 					}}
-					onClick={api.googleLogin}
+					onClick={() => api.googleLogin}
 				/>
 			</Box>
 		</>

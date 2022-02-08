@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import ChatHeader from "../containers/ChatHeader";
 import ChatMain from "../containers/ChatMain";
 import appConfig from "../../config.json";
-import bgImg from "../../public/bg2.jpg";
 import { useRouter } from "next/router";
 import api from "../api";
 
@@ -58,7 +57,7 @@ export default function ChatPage() {
 
     useEffect(() => {
         // setDims({w:window.screen.width <= 992 ? 480 : 700, h:window.screen.height <= 992 ? 600 : 700});
-        if(provider == 'google'){
+        if(provider === 'google'){
             setUserImage(pegaImageGoogle());
         } else {
             setUserImage(`https://github.com/${username}.png`);

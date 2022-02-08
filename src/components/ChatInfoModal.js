@@ -6,8 +6,8 @@ function ChatInfoModal({ user }) {
 	const [userData, setUserData] = useState({});
 
 	useEffect(() => {
-		function carregaDadosUser(user) {
-			fetch(`https://api.github.com/users/${user}`).then((resp) => {
+		function carregaDadosUser(usuario) {
+			fetch(`https://api.github.com/users/${usuario}`).then((resp) => {
 				resp.json().then((respConvert) => {
 					setUserData(respConvert);
 				});
@@ -57,6 +57,7 @@ function ChatInfoModal({ user }) {
 					}}
 				>
 					<a
+                    rel="noreferrer"
 						target="_blank"
 						style={{
 							color: appConfig.theme.colors.neutrals[100],
@@ -166,6 +167,7 @@ function ChatInfoModal({ user }) {
 							}}
 						>
 							<a
+                            rel="noreferrer"
 								target="_blank"
 								style={{
 									color: appConfig.theme.colors.neutrals[100],

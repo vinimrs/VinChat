@@ -49,7 +49,7 @@ function ListaMensagens({ userImage }) {
 		>
 			{listaMensagens.map((mensagem) => {
 				return (
-					<Mensagem mensagem={mensagem} userImage={userImage} handleDeletaMensagem={handleDeletaMensagem} />
+					<Mensagem key={mensagem.id} mensagem={mensagem} userImage={userImage} handleDeletaMensagem={handleDeletaMensagem} />
 				);
 			})}
 		</Box>

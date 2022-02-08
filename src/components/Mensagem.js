@@ -40,10 +40,8 @@ function Mensagem({ mensagem, handleDeletaMensagem, userImage }) {
 		return `${time} ${data}`;
 	}
 
-    console.log(modalIsOpen);
     return ( 
     <Text
-        key={mensagem.id}
         tag="li"
         styleSheet={{
             borderRadius: "5px",
@@ -73,7 +71,7 @@ function Mensagem({ mensagem, handleDeletaMensagem, userImage }) {
         }}
         onDoubleClick={() => {
             if (mensagem.userImage === userImage)
-                filtraMensagens(mensagem.id);
+                handleDeletaMensagem(mensagem.id);
         }}
     >
         <Box
@@ -184,12 +182,8 @@ function Mensagem({ mensagem, handleDeletaMensagem, userImage }) {
 						mensagem.provider !== "google" ? "pointer" : "inherit",
 				}}
 				src={mensagem.userImage}
-				onClick={() => {
-					mensagem.provider !== "google" && userImage !== mensagem.userImage
-						? setModalIsOpen(!modalIsOpen)
-						: ""
-                }
-				}
+                disabled={mensagem.provider !== "google" && userImage !== mensagem.userImage}
+				onClick={() => setModalIsOpen(!modalIsOpen)}
 			/>
                 <Text
                     tag="strong"

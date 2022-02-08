@@ -18,7 +18,7 @@ const setMensagem = (textoMensagem, usuario, userImage) => {
     const provider = user ? user.app_metadata.provider : 'none';
 	return supabaseClient
 		.from("mensagens")
-		.insert({ de: usuario, texto: textoMensagem, provider: provider, userImage: userImage })
+		.insert({ de: usuario, texto: textoMensagem, provider, userImage })
 		.then(({ data }) => data[0]);
 };
 

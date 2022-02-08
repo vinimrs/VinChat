@@ -1,11 +1,9 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { Box, TextField, Icon } from "@skynexui/components";
 import appConfig from "../../config.json";
-import api from "../api";
 
-function FormularioChat({ username, userImage, handleNovaMensagem }) {
+function FormularioChat({ handleNovaMensagem }) {
 	const [mensagem, setMensagem] = useState("");
-
 
 	return (
 		<Box
@@ -15,7 +13,6 @@ function FormularioChat({ username, userImage, handleNovaMensagem }) {
 				alignItems: "center",
 				position: "relative",
                 flex: '1',
-				// overflow: "hidden",
 			}}
 		>
 			<TextField
@@ -63,11 +60,6 @@ function FormularioChat({ username, userImage, handleNovaMensagem }) {
 					},
 				}}
 			/>
-			{/* <BotaoAbreStickers
-				onStickerClick={useCallback((sticker) => {
-					handleNovaMensagem(`:sticker:${sticker}`);
-				}, [])}
-			/> */}
 		</Box>
 	);
 }
