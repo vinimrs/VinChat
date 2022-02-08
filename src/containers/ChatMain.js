@@ -47,15 +47,15 @@ function ChatMain() {
     //     return user.user_metadata.avatar_url;
     // }
 
-	// const handleNovaMensagem = useCallback(
-	// 	(novaMensagem) => {
-	// 		if (novaMensagem) {
-	// 			api.setMensagem(novaMensagem, username, userImage);
-	// 			console.log(userImage);
-	// 		}
-	// 	},
-	// 	[userImage, username]
-	// );
+	const handleNovaMensagem = useCallback(
+		(novaMensagem) => {
+			if (novaMensagem) {
+				api.setMensagem(novaMensagem, username, userImage);
+				console.log(userImage);
+			}
+		},
+		[userImage, username]
+	);
 
     useEffect(() => {
         if(provider === 'google'){
@@ -91,11 +91,11 @@ function ChatMain() {
                         display: "flex",
                     }}
                 >
-                    {/* <FormularioChat
+                    <FormularioChat
                         handleNovaMensagem={handleNovaMensagem}
                         username={username}
                         userImage={userImage}
-                    /> */}
+                    />
                     <Button
                         styleSheet={{
                             borderRadius: "50%",
