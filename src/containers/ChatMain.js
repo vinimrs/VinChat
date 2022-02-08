@@ -113,8 +113,8 @@ function ChatMain() {
                         }}
                         label={appConfig.emojis.at(randomEmoji)}
                         onClick={() => {
-                            setRandomEmoji(Math.floor(Math.random() * 10));
-                            setOpenState(!isOpen);
+                            // setRandomEmoji(Math.floor(Math.random() * 10));
+                            // setOpenState(!isOpen);
                         }}
                     />
                 </Box>
