@@ -64,14 +64,13 @@ function ChatHeader({ userImage }) {
 						borderRadius: "50%",
 						maxWidth: "30px",
 					}}
-					src={userImage}
+					src={userImage ? userImage : '/github.png'}
 				/>
 				<Text
 					variant="heading5"
 					styleSheet={{
 						paddingLeft: "10px",
 						fontSize: "15px",
-						// color: appConfig.theme.colors.neutrals["050"],
 					}}
 				>
 					Logout

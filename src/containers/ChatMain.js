@@ -32,7 +32,7 @@ const ListaStickers = dynamic(() => import("../components/ListaStickers"), {
 	),
 });
 
-function ChatMain({ username, userImage }) {
+function ChatMain({ username = '', userImage }) {
 	const [isOpen, setOpenState] = useState(false);
 	const [randomEmoji, setRandomEmoji] = useState(0);
 
@@ -62,7 +62,7 @@ function ChatMain({ username, userImage }) {
 			}}
 		>
 			<ListaMensagens
-				userImage={userImage}
+				userImage={userImage ? userImage : '/github.png'}
 			/>
 
 			<Box
@@ -73,7 +73,7 @@ function ChatMain({ username, userImage }) {
 				<FormularioChat
 					handleNovaMensagem={handleNovaMensagem}
 					username={username}
-					userImage={userImage}
+					userImage={userImage ? userImage : '/github.png'}
 				/>
 				<Button
 					styleSheet={{
