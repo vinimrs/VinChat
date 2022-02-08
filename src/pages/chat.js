@@ -98,7 +98,7 @@ export default function ChatPage() {
 					}}
 				/>
 				
-				<ChatMain />
+				{/* <ChatMain /> */}
 			</Box>
 		</Box>
 	);
