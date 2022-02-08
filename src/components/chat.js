@@ -92,7 +92,7 @@ export default function ChatPage() {
 					maxWidth: boxStyle.maxWidth,
 					height: boxStyle.height,
 					minWidth: {
-                        sx: "350px",
+                        sm: "350px",
                         lg: '500px'
                     },
 					minHeight: "400px",
