@@ -129,7 +129,8 @@ function ChatMain() {
                         onStickerClick={(sticker) => {
                             handleNovaMensagem(`:sticker:${sticker}`);
                         }}
-                        setOpenState={setOpenState}
+                        setOpenState={
+                            () => setOpenState(!isOpen)}
                     />
                 )}
                 {/* </CSSTransition> */}
