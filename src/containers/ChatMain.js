@@ -59,7 +59,7 @@ function ChatMain() {
             const user = api.checkUser();
             return user.user_metadata.avatar_url;
         }
-        
+
         if(provider === 'google'){
             setUserImage(pegaImageGoogle());
         } else if (username) {
@@ -83,20 +83,20 @@ function ChatMain() {
                     overflow: "hidden",
                 }}
             >
-                <ListaMensagens
+                {/* <ListaMensagens
                     userImage={userImage}
-                />
+                /> */}
 
                 <Box
                     styleSheet={{
                         display: "flex",
                     }}
                 >
-                    <FormularioChat
+                    {/* <FormularioChat
                         handleNovaMensagem={handleNovaMensagem}
                         username={username}
                         userImage={userImage}
-                    />
+                    /> */}
                     <Button
                         styleSheet={{
                             borderRadius: "50%",
@@ -118,14 +118,13 @@ function ChatMain() {
                         }}
                     />
                 </Box>
-                
+{/*                 
                 <CSSTransition
                     in={isOpen}
                     timeout={300}
                     classNames="alert"
                     unmountOnExit
                 >
-                {isOpen && (
                     <ListaStickers
                         onStickerClick={(sticker) => {
                             handleNovaMensagem(`:sticker:${sticker}`);
@@ -134,8 +133,7 @@ function ChatMain() {
                             () => setOpenState(!isOpen)
                         }
                     />
-                )}
-                </CSSTransition>
+                </CSSTransition> */}
                 <style global jsx>
                     {`
                         .alert-enter {
