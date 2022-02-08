@@ -90,11 +90,11 @@ function ChatMain() {
                         display: "flex",
                     }}
                 >
-                    <FormularioChat
+                    {/* <FormularioChat
                         handleNovaMensagem={handleNovaMensagem}
                         username={username}
                         userImage={userImage}
-                    />
+                    /> */}
                     <Button
                         styleSheet={{
                             borderRadius: "50%",
@@ -123,12 +123,12 @@ function ChatMain() {
                     classNames="alert"
                     unmountOnExit
                 >
-                    <ListaStickers
+                    {/* <ListaStickers
                         onStickerClick={(sticker) => {
                             handleNovaMensagem(`:sticker:${sticker}`);
                         }}
                         setOpenState={setOpenState}
-                    />
+                    /> */}
                 </CSSTransition>
                 <style global jsx>
                     {`
