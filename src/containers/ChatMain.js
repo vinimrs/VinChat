@@ -65,7 +65,7 @@ function ChatMain() {
     //     }
     // }, [])
 
-	console.log(userImage);
+	// console.log(userImage);
 	return (
         <>
             {/* <ChatHeader userImage={userImage} /> */}
@@ -110,7 +110,7 @@ function ChatMain() {
                             justifyContent: "center",
                             backgroundColor: appConfig.theme.colors.neutrals[400],
                         }}
-                        label={appConfig.emojis.at(randomEmoji)}
+                        // label={appConfig.emojis.at(randomEmoji)}
                         onClick={() => {
                             // setRandomEmoji(Math.floor(Math.random() * 10));
                             // setOpenState(!isOpen);
