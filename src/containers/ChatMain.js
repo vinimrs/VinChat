@@ -57,13 +57,13 @@ function ChatMain() {
 		[userImage, username]
 	);
 
-    useEffect(() => {
-        if(provider === 'google'){
-            setUserImage(pegaImageGoogle());
-        } else if (username) {
-            setUserImage(`https://github.com/${username}.png`);
-        }
-    }, [])
+    // useEffect(() => {
+    //     if(provider === 'google'){
+    //         setUserImage(pegaImageGoogle());
+    //     } else if (username) {
+    //         setUserImage(`https://github.com/${username}.png`);
+    //     }
+    // }, [])
 
 	// console.log(userImage);
 	return (

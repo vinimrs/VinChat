@@ -62,7 +62,7 @@ export default function ChatPage() {
 				backdropFilter: "blur( 4px )",
 				transition: ".5s all",
 			}}
-			onMouseMove={(e) => resizeFrame(e)}
+			onMouseMove={resizeFrame}
 			onMouseUp={stopResize}
 		>
 			<Box
