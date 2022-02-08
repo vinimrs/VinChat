@@ -79,7 +79,11 @@ function ChatMain() {
                     backgroundColor: appConfig.theme.colors.secondary[800],
                     flexDirection: "column",
                     borderRadius: "5px",
-                    padding: "16px",
+                    padding: {
+                        sm: "8px",
+                        md: "16px"
+                    }
+                    ,
                     overflow: "hidden",
                 }}
             >

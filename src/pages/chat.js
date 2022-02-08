@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import api from "../api";
 
 export default function ChatPage() {
-
+    const [windowDims, setWindowDims] = useState({});
     
     // possibilitando redimensionar o container
 	const [drag, setDrag] = useState({
@@ -16,8 +16,8 @@ export default function ChatPage() {
 		y: "",
 	});
 	const [dims, setDims] = useState({
-		w: 600,
-		h: 700,
+		w: windowDims.w <= 992 ? 480 : 600,
+		h: windowDims.w <= 992 ? 600 : 700,
 	});
 	const startResize = (e) => {
 		setDrag({
@@ -48,6 +48,14 @@ export default function ChatPage() {
 		setDrag({ ...drag, active: false });
 	}
 
+    useEffect(() => {
+        window.addEventListener('resize', () => {
+            const { innerWidth: width, innerHeight: height } = window;
+            setWindowDims({w: width, h: height});
+        })
+    }, [])
+
+    console.log(windowDims);
 	return (
 		<Box
 			styleSheet={{
@@ -79,7 +87,10 @@ export default function ChatPage() {
                         lg: '500px'
                     },
 					minHeight: "400px",
-					padding: "32px",
+					padding: {
+                        sm: "12px",
+                        md: "32px"
+                    },
 					position: "relative",
 				}}
 			>
@@ -94,7 +105,7 @@ export default function ChatPage() {
 						filter: "invert(100%)",
 						cursor: drag.active ? "grabbing" : "grab",
 						opacity: ".3",
-						display: { md: "inherit", sm: "none" },
+						display: { sm: "none", md: "inherit" },
 					}}
 				/>
 				

@@ -14,6 +14,9 @@ export default function PaginaInicial() {
 				backgroundSize: "cover",
 				backgroundPosition: "center",
 				backgroundBlendMode: "multiply",
+                height: {
+                    sm: '100vh'
+                },
 			}}
 		>
 			<Box
@@ -27,6 +30,7 @@ export default function PaginaInicial() {
 						"0 0 32px 0 appConfig.theme.colors.secondary[800]",
 					backdropFilter: "blur( 4px )",
 					maxWidth: "400px",
+            
 					borderRadius: "10px",
 					padding: "32px",
 					margin: "16px",

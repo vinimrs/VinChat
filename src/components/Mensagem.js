@@ -145,7 +145,7 @@ function Mensagem({ mensagem, handleDeletaMensagem, userImage }) {
                         classNames="display"
                         unmountOnExit
                     >
-                    <ChatInfoModal user={mensagem.de} /> 
+                    <ChatInfoModal user={mensagem.de} setModalIsOpen={() => setModalIsOpen(!modalIsOpen)} /> 
                         
                     </CSSTransition>
                     <style global jsx>

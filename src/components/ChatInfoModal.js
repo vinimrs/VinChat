@@ -2,7 +2,7 @@ import { Box, Icon, Image, Text } from "@skynexui/components";
 import { useEffect, useState } from "react";
 import appConfig from "../../config.json";
 
-function ChatInfoModal({ user }) {
+function ChatInfoModal({ user, setModalIsOpen }) {
 	const [userData, setUserData] = useState({});
 
 	useEffect(() => {
@@ -35,6 +35,17 @@ function ChatInfoModal({ user }) {
 				borderRadius: "10px",
 			}}
 		>
+            <Icon name="FaSignOutAlt" size="3ch" onClick={setModalIsOpen} styleSheet={{
+                position: 'absolute',
+                top: '8px',
+                right: '5px',
+                cursor: 'pointer',
+                opacity: '.8',
+                transition: '.5s',
+                hover: {
+                    opacity: '1'
+                }
+            }} />
 			<Box
 				styleSheet={{
 					display: "flex",
@@ -94,7 +105,7 @@ function ChatInfoModal({ user }) {
 						styleSheet={{
 							width: {
                                 sm: "150px",
-                                md: '250px'
+                                md: '190px'
                         },
 							// height: '120px',
 							borderRadius: "50%",
@@ -102,7 +113,10 @@ function ChatInfoModal({ user }) {
 					/>
 					<Text
 						styleSheet={{
-							paddingTop: "15px",
+							paddingTop: {
+                                sm:"12px",
+                                md: '7px'
+                            },
 							fontSize: "15px",
 						}}
 					>
@@ -142,8 +156,8 @@ function ChatInfoModal({ user }) {
 									marginLeft: "8px",
 								}}
 							>
-								{userData.bio.length > 55
-									? `${userData.bio.substring(0, 55)}...`
+								{userData.bio.length > 45
+									? `${userData.bio.substring(0, 45)}...`
 									: userData.bio}
 							</Text>
 						</Box>
