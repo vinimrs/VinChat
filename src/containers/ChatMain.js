@@ -69,7 +69,7 @@ function ChatMain() {
 
 	return (
         <>
-            <ChatHeader userImage={userImage} />
+            {/* <ChatHeader userImage={userImage} /> */}
             <Box
                 styleSheet={{
                     position: "relative",
@@ -111,11 +111,11 @@ function ChatMain() {
                             justifyContent: "center",
                             backgroundColor: appConfig.theme.colors.neutrals[400],
                         }}
-                        label={appConfig.emojis.at(randomEmoji)}
-                        onClick={() => {
-                            // setRandomEmoji(Math.floor(Math.random() * 10));
-                            // setOpenState(!isOpen);
-                        }}
+                        // label={appConfig.emojis.at(randomEmoji)}
+                        // onClick={() => {
+                        //     setRandomEmoji(Math.floor(Math.random() * 10));
+                        //     setOpenState(!isOpen);
+                        // }}
                     />
                 </Box>
 {/*                 
