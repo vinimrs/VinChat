@@ -56,10 +56,11 @@ export default function ChatPage() {
 	}
 
     useEffect(() => {
+        const { username } = roteamento.query;
         // setDims({w:window.screen.width <= 992 ? 480 : 700, h:window.screen.height <= 992 ? 600 : 700});
-        if(provider === 'google'){
+        if(provider && provider === 'google'){
             setUserImage(pegaImageGoogle());
-        } else {
+        } else if (username) {
             setUserImage(`https://github.com/${username}.png`);
         }
     }, [])
