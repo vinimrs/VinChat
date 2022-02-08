@@ -111,7 +111,7 @@ function ChatMain() {
                             justifyContent: "center",
                             backgroundColor: appConfig.theme.colors.neutrals[400],
                         }}
-                        // label={appConfig.emojis.at(randomEmoji)}
+                        label={appConfig.emojis[randomEmoji]}
                         onClick={() => {
                             const random = Math.floor(Math.random() * 10);
                             setRandomEmoji(random);
