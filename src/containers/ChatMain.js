@@ -9,31 +9,31 @@ import LoadingComponent from "../UI/LoadingComponent";
 import { CSSTransition } from "react-transition-group";
 import { useRouter } from "next/router";
 import ChatHeader from "../components/ChatHeader";
-import ListaStickers from "../components/ListaStickers";
+// import ListaStickers from "../components/ListaStickers";
 
-// const ListaStickers = dynamic(() => import("../components/ListaStickers"), {
-// 	loading: () => (
-// 		<Box
-// 			styleSheet={{
-// 				display: "flex",
-// 				flexDirection: "column",
-// 				borderRadius: "5px",
-// 				backgroundColor: appConfig.theme.colors.neutrals[800],
-// 				width: "100%",
-// 				height: "300px",
-// 				right: "30px",
-// 				overflow: "hidden",
-// 				zIndex: "1000",
-// 				bottom: "30px",
-// 				padding: "16px",
-// 				boxShadow:
-// 					"rgba(4, 4, 5, 0.15) 0px 0px 0px 1px, rgba(0, 0, 0, 0.24) 0px 8px 16px 0px",
-// 			}}
-// 		>
-// 			<LoadingComponent />
-// 		</Box>
-// 	),
-// });
+const ListaStickers = dynamic(() => import("../components/ListaStickers"), {
+	loading: () => (
+		<Box
+			styleSheet={{
+				display: "flex",
+				flexDirection: "column",
+				borderRadius: "5px",
+				backgroundColor: appConfig.theme.colors.neutrals[800],
+				width: "100%",
+				height: "300px",
+				right: "30px",
+				overflow: "hidden",
+				zIndex: "1000",
+				bottom: "30px",
+				padding: "16px",
+				boxShadow:
+					"rgba(4, 4, 5, 0.15) 0px 0px 0px 1px, rgba(0, 0, 0, 0.24) 0px 8px 16px 0px",
+			}}
+		>
+			<LoadingComponent />
+		</Box>
+	),
+});
 
 function ChatMain() {
     const roteamento = useRouter();
