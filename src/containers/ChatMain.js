@@ -82,9 +82,9 @@ function ChatMain() {
                     overflow: "hidden",
                 }}
             >
-                {/* <ListaMensagens
+                <ListaMensagens
                     userImage={userImage}
-                /> */}
+                />
 
                 <Box
                     styleSheet={{
