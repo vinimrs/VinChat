@@ -39,13 +39,13 @@ function ChatMain() {
     const roteamento = useRouter();
 	const { username, provider } = roteamento.query;
     const [ userImage, setUserImage] = useState('');
-    // const [isOpen, setOpenState] = useState(false);
-    // const [randomEmoji, setRandomEmoji] = useState(0);
+    const [isOpen, setOpenState] = useState(false);
+    const [randomEmoji, setRandomEmoji] = useState(0);
 
-    // function pegaImageGoogle () {
-    //     const user = api.checkUser();
-    //     return user.user_metadata.avatar_url;
-    // }
+    function pegaImageGoogle () {
+        const user = api.checkUser();
+        return user.user_metadata.avatar_url;
+    }
 
 	const handleNovaMensagem = useCallback(
 		(novaMensagem) => {
@@ -110,26 +110,28 @@ function ChatMain() {
                             justifyContent: "center",
                             backgroundColor: appConfig.theme.colors.neutrals[400],
                         }}
-                        // label={appConfig.emojis.at(randomEmoji)}
+                        label={appConfig.emojis.at(randomEmoji)}
                         onClick={() => {
-                            // setRandomEmoji(Math.floor(Math.random() * 10));
-                            // setOpenState(!isOpen);
+                            setRandomEmoji(Math.floor(Math.random() * 10));
+                            setOpenState(!isOpen);
                         }}
                     />
                 </Box>
                 
                 {/* <CSSTransition
-                    // in={isOpen}
+                    in={isOpen}
                     timeout={300}
                     classNames="alert"
                     unmountOnExit
                 > */}
-                    {/* <ListaStickers
+                {isOpen && (
+                    <ListaStickers
                         onStickerClick={(sticker) => {
                             handleNovaMensagem(`:sticker:${sticker}`);
                         }}
                         setOpenState={setOpenState}
-                    /> */}
+                    />
+                )}
                 {/* </CSSTransition> */}
                 <style global jsx>
                     {`
