@@ -72,7 +72,7 @@ export default function ChatPage() {
 				alignItems: "center",
 				justifyContent: "center",
 				backgroundPosition: "center",
-				backgroundImage: `url(/bg2.jpg)`,
+				backgroundImage: `/bg2.jpg`,
 				backgroundRepeat: "no-repeat",
 				backgroundSize: "cover",
 				backgroundBlendMode: "multiply",
