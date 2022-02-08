@@ -33,7 +33,7 @@ const ListaStickers = dynamic(() => import("../components/ListaStickers"), {
 });
 
 function ChatMain({ username, userImage }) {
-	const [isOpen, setOpenState] = useState("");
+	const [isOpen, setOpenState] = useState(false);
 	const [randomEmoji, setRandomEmoji] = useState(0);
 
 	const handleNovaMensagem = useCallback(
