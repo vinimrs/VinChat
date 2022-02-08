@@ -8,8 +8,19 @@ import LoadingComponent from "../UI/LoadingComponent";
 const ChatInfoModal = dynamic(() => import("./ChatInfoModal"), {
 	loading: () => (
 		<Box
+			as="article"
 			styleSheet={{
-				position: "relative",
+				position: "absolute",
+				zIndex: "100",
+				top: "-250px",
+				left: "-10px",
+				width: {
+					sm: "350px",
+					md: "450px",
+				},
+				height: "250px",
+				backgroundColor: `${appConfig.theme.colors.neutrals["900"]}ea`,
+				borderRadius: "10px",
 			}}
 		>
 			<LoadingComponent />
