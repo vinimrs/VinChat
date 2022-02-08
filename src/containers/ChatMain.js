@@ -112,24 +112,24 @@ function ChatMain() {
                         }}
                         label={appConfig.emojis.at(randomEmoji)}
                         onClick={() => {
-                            setRandomEmoji(Math.floor(Math.random() * 10));
-                            setOpenState(!isOpen);
+                            // setRandomEmoji(Math.floor(Math.random() * 10));
+                            // setOpenState(!isOpen);
                         }}
                     />
                 </Box>
                 
                 <CSSTransition
-                    in={isOpen}
+                    // in={isOpen}
                     timeout={300}
                     classNames="alert"
                     unmountOnExit
                 >
-                    <ListaStickers
+                    {/* <ListaStickers
                         onStickerClick={(sticker) => {
                             handleNovaMensagem(`:sticker:${sticker}`);
                         }}
                         setOpenState={setOpenState}
-                    />
+                    /> */}
                 </CSSTransition>
                 <style global jsx>
                     {`
