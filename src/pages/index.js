@@ -1,6 +1,5 @@
 import { Box } from "@skynexui/components";
 import appConfig from "../../config.json";
-import backgroundImg from "../../public/bg2.jpg";
 import IndexMain from "../containers/IndexMain";
 
 export default function PaginaInicial() {
@@ -10,7 +9,7 @@ export default function PaginaInicial() {
 				display: "flex",
 				alignItems: "center",
 				justifyContent: "center",
-				backgroundImage: `url(${backgroundImg.src})`,
+				backgroundImage: 'url(/bg2.jpg)',
 				backgroundRepeat: "no-repeat",
 				backgroundSize: "cover",
 				backgroundPosition: "center",

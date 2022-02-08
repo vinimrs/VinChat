@@ -1,6 +1,6 @@
 import { Box, Icon } from "@skynexui/components";
 import React, { useEffect, useState } from "react";
-import ChatHeader from "../containers/ChatHeader";
+import ChatHeader from "../components/ChatHeader";
 import ChatMain from "../containers/ChatMain";
 import appConfig from "../../config.json";
 import { useRouter } from "next/router";
@@ -47,7 +47,6 @@ export default function ChatPage() {
 	function stopResize() {
 		setDrag({ ...drag, active: false });
 	}
-
 
 	return (
 		<Box

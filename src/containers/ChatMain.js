@@ -8,7 +8,7 @@ import dynamic from "next/dynamic";
 import LoadingComponent from "../UI/LoadingComponent";
 import { CSSTransition } from "react-transition-group";
 import { useRouter } from "next/router";
-import ChatHeader from "./ChatHeader";
+import ChatHeader from "../components/ChatHeader";
 
 const ListaStickers = dynamic(() => import("../components/ListaStickers"), {
 	loading: () => (
@@ -81,9 +81,9 @@ function ChatMain() {
                     overflow: "hidden",
                 }}
             >
-                <ListaMensagens
-                    userImage={userImage ? userImage : '/github.png'}
-                />
+                {/* <ListaMensagens
+                    userImage={userImage}
+                /> */}
 
                 <Box
                     styleSheet={{
@@ -93,7 +93,7 @@ function ChatMain() {
                     <FormularioChat
                         handleNovaMensagem={handleNovaMensagem}
                         username={username}
-                        userImage={userImage ? userImage : '/github.png'}
+                        userImage={userImage}
                     />
                     <Button
                         styleSheet={{

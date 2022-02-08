@@ -2,7 +2,7 @@ import { Box, Icon, Image, Text } from '@skynexui/components';
 import appConfig from '../../config.json';
 import githubImg from "../../public/github.png";
 
-function InfosPaginaInicial({ username = '', userValido, usernameData }) {
+function InfosPaginaInicial({ username, userValido, usernameData }) {
 	return (
 		<Box
 			styleSheet={{
