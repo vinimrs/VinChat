@@ -57,7 +57,7 @@ export default function ChatPage() {
 	}
 
     useEffect(() => {
-        setDims({w:window.screen.width <= 992 ? 480 : 700, h:window.screen.height <= 992 ? 600 : 700});
+        // setDims({w:window.screen.width <= 992 ? 480 : 700, h:window.screen.height <= 992 ? 600 : 700});
         if(provider == 'google'){
             setUserImage(pegaImageGoogle());
         } else {
