@@ -99,7 +99,8 @@ function Mensagem({ mensagem, handleDeletaMensagem, userImage }) {
 							},
                             width: {
                                 sm: '130px'
-                            }
+                            },
+                            objectFit:'cover'
 						}}
 						src={mensagem.texto.replace(":sticker:", "")}
 						alt="Mensagem com sticker."
