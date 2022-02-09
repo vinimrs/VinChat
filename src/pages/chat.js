@@ -46,6 +46,8 @@ export default function ChatPage() {
 	}
 
     useEffect(() => {
+        const { innerWidth: width, innerHeight: height } = window;
+        setWindowDims({w: width, h: height});
         window.addEventListener('resize', () => {
             const { innerWidth: width, innerHeight: height } = window;
             setWindowDims({w: width, h: height});
