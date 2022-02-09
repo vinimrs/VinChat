@@ -87,7 +87,7 @@ function IndexMain() {
 					flexDirection: "column",
 					alignItems: "center",
 					justifyContent: "center",
-					width: { xs: "100%", sm: "100%" },
+					width: '100%',
 					textAlign: "center",
 					marginTop: "22px",
 				}}

@@ -73,14 +73,14 @@ function ChatMain() {
 					display: "flex",
 					flex: 1,
 					height: {
-						sm: "100%",
-						md: "80%",
+						xs: "100vh",
+						md: "80vh",
 					},
 					backgroundColor: appConfig.theme.colors.secondary[800],
 					flexDirection: "column",
 					borderRadius: "5px",
 					padding: {
-						sm: "8px",
+						xs: "8px",
 						md: "16px",
 					},
 					overflow: "hidden",
