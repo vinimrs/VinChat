@@ -64,7 +64,7 @@ function ListaStickers({ onStickerClick, setOpenState }) {
 							},
 						}}
 					>
-						<Image src={sticker} />
+						<Image src={sticker} alt="Sticker." />
 					</Text>
 				))}
 			</Box>

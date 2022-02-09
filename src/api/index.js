@@ -42,7 +42,6 @@ const escutaEmTempoReal = (adicionaMensagem) => {
 
 function checkUser() {
     const user = supabaseClient.auth.user();
-    console.log(user);
 	return user;
 }
 

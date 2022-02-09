@@ -15,8 +15,7 @@ function ChatInfoModal({ user, setModalIsOpen }) {
 		}
 
 		carregaDadosUser(user);
-	}, []);
-	console.log(userData);
+	}, [user]);
 	return (
 		<Box
 			as="article"
@@ -26,33 +25,37 @@ function ChatInfoModal({ user, setModalIsOpen }) {
 				top: "-250px",
 				left: "-10px",
 				width: {
-                    sm: "350px",
-                    md: '450px'
-            },
+					sm: "350px",
+					md: "450px",
+				},
 				height: "250px",
 				backgroundColor: `${appConfig.theme.colors.neutrals["900"]}ea`,
-				// textAlign: 'center',
 				borderRadius: "10px",
 			}}
 		>
-            <Icon name="FaSignOutAlt" size="3ch" onClick={setModalIsOpen} styleSheet={{
-                position: 'absolute',
-                top: '8px',
-                right: '5px',
-                cursor: 'pointer',
-                opacity: '.8',
-                transition: '.5s',
-                hover: {
-                    opacity: '1'
-                }
-            }} />
+			<Icon
+				name="FaSignOutAlt"
+				size="3ch"
+				onClick={setModalIsOpen}
+				styleSheet={{
+					position: "absolute",
+					top: "8px",
+					right: "5px",
+					cursor: "pointer",
+					opacity: ".8",
+					transition: ".5s",
+					hover: {
+						opacity: "1",
+					},
+				}}
+			/>
 			<Box
 				styleSheet={{
 					display: "flex",
-                    flexDirection: {
-                        sm: 'column',
-                        md: 'row',
-                    },
+					flexDirection: {
+						sm: "column",
+						md: "row",
+					},
 					alignItems: "center",
 					justifyContent: "center",
 					padding: "10px 0 0 0",
@@ -68,7 +71,7 @@ function ChatInfoModal({ user, setModalIsOpen }) {
 					}}
 				>
 					<a
-                    rel="noreferrer"
+						rel="noreferrer"
 						target="_blank"
 						style={{
 							color: appConfig.theme.colors.neutrals[100],
@@ -85,7 +88,7 @@ function ChatInfoModal({ user, setModalIsOpen }) {
 					height: "80%",
 					width: "100%",
 					display: "flex",
-                    flexDirection: 'row',
+					flexDirection: "row",
 					padding: "10px",
 					borderRadius: "10px",
 				}}
@@ -104,19 +107,19 @@ function ChatInfoModal({ user, setModalIsOpen }) {
 						src={`https://github.com/${userData.login}.png`}
 						styleSheet={{
 							width: {
-                                sm: "150px",
-                                md: '190px'
-                        },
-							// height: '120px',
+								sm: "150px",
+								md: "190px",
+							},
 							borderRadius: "50%",
 						}}
+						alt="Imagem do avatar do usuário."
 					/>
 					<Text
 						styleSheet={{
 							paddingTop: {
-                                sm:"12px",
-                                md: '7px'
-                            },
+								sm: "12px",
+								md: "7px",
+							},
 							fontSize: "15px",
 						}}
 					>
@@ -131,10 +134,10 @@ function ChatInfoModal({ user, setModalIsOpen }) {
 						display: "flex",
 						padding: "0px 10px 10px 10px",
 						flexDirection: "column",
-                        alignItems: {
-                            sm: 'flex-start',
-                            md: 'flex-start'
-                    },
+						alignItems: {
+							sm: "flex-start",
+							md: "flex-start",
+						},
 						borderLeft: `1px solid ${appConfig.theme.colors.neutrals["500"]}ea`,
 					}}
 				>
@@ -162,37 +165,39 @@ function ChatInfoModal({ user, setModalIsOpen }) {
 							</Text>
 						</Box>
 					)}
-                    {userData.blog && (
-					<Box
-						as="li"
-						styleSheet={{
-							display: "flex",
-							alignItems: "center",
-							justifyContent: "start",
-							padding: "10px 0 0 0",
-						}}
-					>
-						<Icon name="FaGlobe" size="2ch" />
-						<Text
+					{userData.blog && (
+						<Box
+							as="li"
 							styleSheet={{
-								color: appConfig.theme.colors.neutrals[100],
-								fontSize: "12px",
-								marginLeft: "8px",
+								display: "flex",
+								alignItems: "center",
+								justifyContent: "start",
+								padding: "10px 0 0 0",
 							}}
 						>
-							<a
-                            rel="noreferrer"
-								target="_blank"
-								style={{
+							<Icon name="FaGlobe" size="2ch" />
+							<Text
+								styleSheet={{
 									color: appConfig.theme.colors.neutrals[100],
-									textDecoration: "none",
+									fontSize: "12px",
+									marginLeft: "8px",
 								}}
-								href={userData.blog}
 							>
-								{userData.blog}
-							</a>
-						</Text>
-					</Box> )}
+								<a
+									rel="noreferrer"
+									target="_blank"
+									style={{
+										color: appConfig.theme.colors
+											.neutrals[100],
+										textDecoration: "none",
+									}}
+									href={userData.blog}
+								>
+									{userData.blog}
+								</a>
+							</Text>
+						</Box>
+					)}
 					{userData.created_at && (
 						<Box
 							as="li"

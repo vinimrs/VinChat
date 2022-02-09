@@ -4,15 +4,13 @@ import appConfig from "../../config.json";
 import api from "../api";
 import Mensagem from "./Mensagem";
 
-
-
 function ListaMensagens({ userImage }) {
 	const [listaMensagens, setListaMensagens] = useState([]);
 
 	useEffect(() => {
-        api.getMensagens().then((dados) => setListaMensagens(dados));
-        const subscription = api.escutaEmTempoReal((novaMensagem) => {
-            //Para reusar um valor de referência array/objeto passar função para o setState
+		api.getMensagens().then((dados) => setListaMensagens(dados));
+		const subscription = api.escutaEmTempoReal((novaMensagem) => {
+			//Para reusar um valor de referência array/objeto passar função para o setState
 			// Para pegar o valor atual do estado
 			setListaMensagens((valoratual) => {
 				return [novaMensagem, ...valoratual];
@@ -32,7 +30,6 @@ function ListaMensagens({ userImage }) {
 		});
 	}, []);
 
-
 	return (
 		<Box
 			tag="ul"
@@ -49,7 +46,12 @@ function ListaMensagens({ userImage }) {
 		>
 			{listaMensagens.map((mensagem) => {
 				return (
-					<Mensagem key={mensagem.id} mensagem={mensagem} userImage={userImage} handleDeletaMensagem={handleDeletaMensagem} />
+					<Mensagem
+						key={mensagem.id}
+						mensagem={mensagem}
+						userImage={userImage}
+						handleDeletaMensagem={handleDeletaMensagem}
+					/>
 				);
 			})}
 		</Box>

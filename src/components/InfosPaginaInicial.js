@@ -1,5 +1,5 @@
-import { Box, Icon, Image, Text } from '@skynexui/components';
-import appConfig from '../../config.json';
+import { Box, Icon, Image, Text } from "@skynexui/components";
+import appConfig from "../../config.json";
 import githubImg from "../../public/github.png";
 
 function InfosPaginaInicial({ username, userValido, usernameData }) {
@@ -27,6 +27,7 @@ function InfosPaginaInicial({ username, userValido, usernameData }) {
 						? `https://github.com/${username}.png`
 						: githubImg.src
 				}
+				alt="Imagem de avatar do usuário."
 			/>
 			<Text
 				variant="body4"

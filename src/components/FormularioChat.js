@@ -12,7 +12,7 @@ function FormularioChat({ handleNovaMensagem }) {
 				display: "flex",
 				alignItems: "center",
 				position: "relative",
-                flex: '1',
+				flex: "1",
 			}}
 		>
 			<TextField
@@ -20,13 +20,6 @@ function FormularioChat({ handleNovaMensagem }) {
 				placeholder="Insira sua mensagem aqui..."
 				type="textarea"
 				onChange={(e) => setMensagem(e.target.value)}
-				onKeyPress={(e) => {
-					if (e.key === "Enter" && e.shiftKey === false) {
-						e.preventDefault();
-						handleNovaMensagem(mensagem);
-                        setMensagem('');
-					}
-				}}
 				styleSheet={{
 					width: "100%",
 					border: "0",
@@ -44,7 +37,7 @@ function FormularioChat({ handleNovaMensagem }) {
 				onClick={(e) => {
 					e.preventDefault();
 					handleNovaMensagem(mensagem);
-                    setMensagem('');
+					setMensagem("");
 				}}
 				name="FaPlaneArrival"
 				size="3.2ch"
