@@ -81,12 +81,12 @@ export default function ChatPage() {
 					maxWidth: boxStyle.maxWidth,
 					height: boxStyle.height,
 					minWidth: {
-                        sm: "350px",
+                        xs: "350px",
                         lg: '500px'
                     },
 					minHeight: "400px",
 					padding: {
-                        sm: "12px",
+                        xs: "12px",
                         md: "32px"
                     },
 					position: "relative",
@@ -103,7 +103,7 @@ export default function ChatPage() {
 						filter: "invert(100%)",
 						cursor: drag.active ? "grabbing" : "grab",
 						opacity: ".3",
-						display: { sm: "none", md: "inherit" },
+						display: { xs: "none", md: "inherit" },
 					}}
 				/>
 				

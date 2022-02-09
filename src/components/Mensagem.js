@@ -15,7 +15,7 @@ const ChatInfoModal = dynamic(() => import("./ChatInfoModal"), {
 				top: "-250px",
 				left: "-10px",
 				width: {
-					sm: "350px",
+					xs: "350px",
 					md: "450px",
 				},
 				height: "250px",
@@ -91,20 +91,34 @@ function Mensagem({ mensagem, handleDeletaMensagem, userImage }) {
 				}}
 			>
 				{mensagem.texto.startsWith(":sticker:") ? (
-					<Image
+					<Box
 						styleSheet={{
+                            maxWidth: "130px",
 							maxWidth: {
-								sm: "130px",
+								xs: "130px",
 								md: "160px",
 							},
-                            width: {
-                                sm: '130px'
-                            },
-                            objectFit:'cover'
+                            
+							width: {
+								xs: "130px",
+							},
 						}}
-						src={mensagem.texto.replace(":sticker:", "")}
-						alt="Mensagem com sticker."
-					/>
+					>
+						<Image
+							styleSheet={{
+								maxWidth: {
+									xs: "130px",
+									md: "160px",
+								},
+								width: {
+									xs: "130px",
+								},
+								objectFit: "cover",
+							}}
+							src={mensagem.texto.replace(":sticker:", "")}
+							alt="Mensagem com sticker."
+						/>
+					</Box>
 				) : (
 					<Text
 						styleSheet={{
@@ -148,7 +162,7 @@ function Mensagem({ mensagem, handleDeletaMensagem, userImage }) {
 						position: "relative",
 					}}
 				>
-					{userImage !== mensagem.userImage && (
+					{userImage !== mensagem.userImage && mensagem.provider !== 'google' && (
 						<>
 							<CSSTransition
 								in={modalIsOpen}

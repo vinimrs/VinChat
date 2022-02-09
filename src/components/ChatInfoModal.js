@@ -25,7 +25,7 @@ function ChatInfoModal({ user, setModalIsOpen }) {
 				top: "-250px",
 				left: "-10px",
 				width: {
-					sm: "350px",
+					xs: "350px",
 					md: "450px",
 				},
 				height: "250px",
@@ -53,7 +53,7 @@ function ChatInfoModal({ user, setModalIsOpen }) {
 				styleSheet={{
 					display: "flex",
 					flexDirection: {
-						sm: "column",
+						xs: "column",
 						md: "row",
 					},
 					alignItems: "center",
@@ -107,7 +107,7 @@ function ChatInfoModal({ user, setModalIsOpen }) {
 						src={`https://github.com/${userData.login}.png`}
 						styleSheet={{
 							width: {
-								sm: "150px",
+								xs: "150px",
 								md: "190px",
 							},
 							borderRadius: "50%",
@@ -117,7 +117,7 @@ function ChatInfoModal({ user, setModalIsOpen }) {
 					<Text
 						styleSheet={{
 							paddingTop: {
-								sm: "12px",
+								xs: "12px",
 								md: "7px",
 							},
 							fontSize: "15px",
@@ -135,7 +135,7 @@ function ChatInfoModal({ user, setModalIsOpen }) {
 						padding: "0px 10px 10px 10px",
 						flexDirection: "column",
 						alignItems: {
-							sm: "flex-start",
+							xs: "flex-start",
 							md: "flex-start",
 						},
 						borderLeft: `1px solid ${appConfig.theme.colors.neutrals["500"]}ea`,
