@@ -97,6 +97,9 @@ function Mensagem({ mensagem, handleDeletaMensagem, userImage }) {
 								sm: "130px",
 								md: "160px",
 							},
+                            width: {
+                                sm: '130px'
+                            }
 						}}
 						src={mensagem.texto.replace(":sticker:", "")}
 						alt="Mensagem com sticker."
