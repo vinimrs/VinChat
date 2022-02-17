@@ -50,7 +50,6 @@ Ideias de melhorias para o projeto:
 - Visualização do perfil atraves do icone no chat ✅
 - Adicionar opção de deletar, copiar a mensagem
 - Adicionar componente de carregamento dos dados ✅
-- Upload de background com integração com pexels
 - Adicionar OAuth do Google ✅
 - Adicionar testes na aplicação
 

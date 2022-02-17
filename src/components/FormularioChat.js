@@ -19,9 +19,11 @@ function FormularioChat({ handleNovaMensagem }) {
 				value={mensagem}
 				placeholder="Insira sua mensagem aqui..."
 				type="textarea"
-				onChange={(e) => setMensagem(e.target.value)}
+				onChange={(e) =>
+                    setMensagem(e.target.value)}
 				styleSheet={{
 					width: "100%",
+
 					border: "0",
 					resize: "none",
 					borderRadius: "5px",
@@ -30,6 +32,15 @@ function FormularioChat({ handleNovaMensagem }) {
 					marginRight: "12px",
 					color: appConfig.theme.colors.neutrals[200],
 				}}
+                onKeyPress={(e) => {
+                    console.log(e);
+                    if(e.key === "Enter"){
+                        e.preventDefault();
+                        handleNovaMensagem(mensagem);
+					    setMensagem("");
+
+                    }
+                }}
 			/>
 
 			<Icon
