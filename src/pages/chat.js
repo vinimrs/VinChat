@@ -5,8 +5,7 @@ import appConfig from "../../config.json";
 
 export default function ChatPage() {
     const [windowDims, setWindowDims] = useState({});
-    
-    // possibilitando redimensionar o container
+
 	const [drag, setDrag] = useState({
 		active: false,
 		x: "",

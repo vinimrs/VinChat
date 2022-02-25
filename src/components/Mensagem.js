@@ -123,7 +123,7 @@ function Mensagem({ mensagem, handleDeletaMensagem, userImage }) {
 					<Text
 						styleSheet={{
 							whiteSpace: "pre-line",
-							width: "10%",
+							width: "80%",
 						}}
 					>
 						{mensagem.texto}
