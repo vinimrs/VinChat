@@ -3,8 +3,8 @@
 Projeto de um chat online com interação ao vivo, criado durante a imersão react da @alura com @omariosouto e @peas.
 
 ## Confira 🔦
-<img src="https://github.com/ViniR07/VinChat/blob/master/Screenshots/scree_vinChat.png" width="900"/>
-<img src="https://github.com/ViniR07/VinChat/blob/master/Screenshots/screen_vinchat2.png" width="900"/>
+<!-- <img src="https://github.com/ViniR07/VinChat/blob/master/Screenshots/scree_vinChat.png" width="900"/>
+<img src="https://github.com/ViniR07/VinChat/blob/master/Screenshots/screen_vinchat2.png" width="900"/> -->
 <img src="https://user-images.githubusercontent.com/92659173/152045984-f7741d95-1223-4a0a-8226-bb52134e5a60.gif" width="900" />
 
 
