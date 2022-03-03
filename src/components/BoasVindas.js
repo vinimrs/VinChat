@@ -11,6 +11,7 @@ export default function BoasVindas({ username, userValido }) {
 				flexDirection: "column",
 				alignItems: "center",
 				justifyContent: "center",
+                width: '100%'
 			}}
 		>
 			<Image
@@ -26,10 +27,11 @@ export default function BoasVindas({ username, userValido }) {
 					color: appConfig.theme.colors.neutrals["100"],
 					fontSize: "25px",
 					fontWeight: "bold",
-					margin: "0px 0 20px 0",
+					margin: "0px 20px 20px 20px",
+                    width: '100%'
 				}}
 			>
-				{userValido.valido && username.length > 2
+				{username.length > 2 && userValido
 					? `Bem-Vindo(a) ${username}, ao `
 					: "Bem-Vindo(a) ao "}
 				<Text
