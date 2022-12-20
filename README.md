@@ -6,7 +6,7 @@
    <img src="https://img.shields.io/github/license/vinimrs/VinChat?color=black" align="center" />
 </h1>
 
-Aplicação de chat online com interação _in live_, login com _OAuth_, entre outras features. Foi criado durante a imersão react da @alura com @omariosouto e @peas.
+**Aplicação de chat online com interação _in live_, login com _OAuth_, entre outras features. Foi criado durante a imersão react da @alura com @omariosouto e @peas.**
 
 <p align="center">
    <img src="https://user-images.githubusercontent.com/92659173/208542361-f7d1047a-49e2-4525-a794-d01f83690f42.png"  width="450"/>
