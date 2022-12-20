@@ -1,59 +1,84 @@
-# VinChat - Plataforma de Chat Online
+<h1>
+   <p> 
+      <img src="https://github.com/ViniR07/VinChat/blob/master/public/flaticon.png" width="60" align="center" />
+      VinChat - Plataforma de Chat Online 
+   </p>
+   <img src="https://img.shields.io/github/license/vinimrs/VinChat?color=black" align="center" />
+</h1>
 
-Projeto de um chat online com interação ao vivo, criado durante a imersão react da @alura com @omariosouto e @peas.
+Aplicação de chat online com interação _in live_, login com _OAuth_, entre outras features. Foi criado durante a imersão react da @alura com @omariosouto e @peas.
 
-## Confira 🔦
-<!-- <img src="https://github.com/ViniR07/VinChat/blob/master/Screenshots/scree_vinChat.png" width="900"/>
-<img src="https://github.com/ViniR07/VinChat/blob/master/Screenshots/screen_vinchat2.png" width="900"/> -->
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/92659173/208542361-f7d1047a-49e2-4525-a794-d01f83690f42.png"  width="450"/>
+   <p align="center">
+      <i>Página inicial - VinChat</i>
+   </p>
+</p>
+
+<!--
+![Screenshot from 2022-12-19 19-52-32](https://user-images.githubusercontent.com/92659173/208542361-f7d1047a-49e2-4525-a794-d01f83690f42.png)
+![Screenshot from 2022-12-19 19-55-34](https://user-images.githubusercontent.com/92659173/208542591-32cf3b0f-c94b-4a79-a01c-61229564c210.png)
 <img src="https://user-images.githubusercontent.com/92659173/152045984-f7741d95-1223-4a0a-8226-bb52134e5a60.gif" width="900" />
+-->
 
+## :hammer: Funcionalidades
 
-## Tecnologias ⚡
+- `Autenticação integrada com o Github e Google`: permite fazer o login sem digitar senha ou criar uma nova conta!
+- `Baseado no realtime`: dado dois usuários logados eles podem conversar com atualização em tempo real!
+- `Stickers`: banco de figurinhas para envio em mensagens!
+- `Resizer`: é possível decidir o tamanho da janela de chat dinamicamente!
+- `Responsivo`: segue os padrões de responsividade!
+- `Página e barra de carregamento`: permite um melhor feedback em relação aos eventos do aplicativo!
+
+## :zap: Tecnologias
 
 - [React](https://pt-br.reactjs.org)
 - [Next](https://nextjs.org)
 - [SkynexUI](https://skynexui.dev)
 - [Supabase](https://supabase.com/)
 
-## Features :hammer:
+## 📁 Acesso ao projeto
 
-- `Autenticação integrada com o Github`: faça o login rapidamente!
-- `Baseado no realtime`: converse em tempo real com seu amigo!
-- `Stickers`: reaja do jeito que quiser!
-- `Resizer`: determine do seu jeito o tamanho da janela do chat!
-- `Responsivo`: acesse de qualquer aparelho!
-- `Página e barra de carregamento de página`: Melhor experiência para o usuário!
+Você pode visualizar a <a href="https://vinchat.vercel.app/" target="_blank">última versao da aplicação</a> ou seguir o próximo tópico e rodá-la localmente.
 
-## Como rodar a aplicação :arrow_forward:
+## 🛠 Abrir e rodar o projeto
 
-No terminal, clone o projeto:
+No terminal, clone o projeto e acesse o diretório:
 
 ```bash
-git clone https://github.com/ViniR07/VinChat.git
+git clone https://github.com/vinimrs/VinChat.git
+cd VinChat/
 ```
 
-Depois disso você pode ir no repositório e rodar o comando `npm install` para instalar as dependências:
+Após isso, instale as dependências do projeto com o comando `npm install` ou `npm i`:
 
 ```bash
-npm install
+npm i
 ```
-Finalmente, rode o comando  `npm run dev` para iniciar a aplicação:
+
+Finalmente, execute o comando `npm run dev` para iniciar a aplicação:
 
 ```bash
 npm run dev
 ```
 
-## Melhorias 🛠
+A aplicação deve estar visível em seu navegador, por padrão, no endereço `http://localhost:3000`.
+
+## ✅ Melhorias
 
 Ideias de melhorias para o projeto:
+
 - Barra de sticker dinâmica ✅
 - Visualização do perfil atraves do icone no chat ✅
 - Adicionar opção de deletar, copiar a mensagem
 - Adicionar componente de carregamento dos dados ✅
 - Adicionar OAuth do Google ✅
 - Adicionar testes na aplicação
+- Criar uma versão mobile
+- Atualizar o chat se uma mensagem for removida
 
 ## Participação 👇
+
 <p align="center">
    <img src="https://user-images.githubusercontent.com/60992933/151864472-ebe431a4-4412-45eb-9d12-d3c45574c1b9.svg" alt="Imersão react" width="280"/>
 </p>
