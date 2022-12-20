@@ -23,18 +23,16 @@
 
 ## :hammer: Funcionalidades
 
-- `Autenticação integrada com o Github e Google`: permite fazer o login sem digitar senha ou criar uma nova conta!
-- `Baseado no realtime`: dado dois usuários logados eles podem conversar com atualização em tempo real!
-- `Stickers`: banco de figurinhas para envio em mensagens!
-- `Resizer`: é possível decidir o tamanho da janela de chat dinamicamente!
-- `Responsivo`: segue os padrões de responsividade!
-- `Página e barra de carregamento`: permite um melhor feedback em relação aos eventos do aplicativo!
+- `Funcionalidade 1` `Autenticação integrada com o Github e Google`: permite fazer o login sem digitar senha ou criar uma nova conta!
+- `Funcionalidade 2` `Baseado no realtime`: dado dois usuários logados eles podem conversar com atualização em tempo real!
+- `Funcionalidade 3` `Stickers`: banco de figurinhas para envio em mensagens!
+- `Funcionalidade 4` `Resizer`: é possível decidir o tamanho da janela de chat dinamicamente!
+- `Funcionalidade 5` `Responsivo`: segue os padrões de responsividade!
+- `Funcionalidade 6` `Página e barra de carregamento`: permite um melhor feedback em relação aos eventos do aplicativo!
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/92659173/208553230-c28a386a-db9d-4871-9f38-1606c4b4f3c4.gif" />
+   <img src="https://user-images.githubusercontent.com/92659173/208553230-c28a386a-db9d-4871-9f38-1606c4b4f3c4.gif" />
 </p>
-
-
 
 ## :zap: Tecnologias
 
@@ -49,7 +47,14 @@ Você pode visualizar a <a href="https://vinchat.vercel.app/" target="_blank">ú
 
 ## 🛠 Abrir e rodar o projeto
 
-No terminal, clone o projeto e acesse o diretório:
+Primeiro, você deve ter o [`node`](https://nodejs.org/en/) e o [`npm`](https://www.npmjs.com) instalados em sua máquina, confirme executando os seguintes comandos (se houver erro precisa instalá-los):
+
+```bash
+node -v
+npm -v
+```
+
+Agora, navegue até o diretório que o projeto ficará e clone o projeto:
 
 ```bash
 git clone https://github.com/vinimrs/VinChat.git
