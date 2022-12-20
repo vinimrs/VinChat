@@ -18,7 +18,6 @@ Aplicação de chat online com interação _in live_, login com _OAuth_, entre o
 <!--
 ![Screenshot from 2022-12-19 19-52-32](https://user-images.githubusercontent.com/92659173/208542361-f7d1047a-49e2-4525-a794-d01f83690f42.png)
 ![Screenshot from 2022-12-19 19-55-34](https://user-images.githubusercontent.com/92659173/208542591-32cf3b0f-c94b-4a79-a01c-61229564c210.png)
-
 <img src="https://user-images.githubusercontent.com/92659173/152045984-f7741d95-1223-4a0a-8226-bb52134e5a60.gif" width="900" />
 -->
 
