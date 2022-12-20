@@ -30,6 +30,12 @@ Aplicação de chat online com interação _in live_, login com _OAuth_, entre o
 - `Responsivo`: segue os padrões de responsividade!
 - `Página e barra de carregamento`: permite um melhor feedback em relação aos eventos do aplicativo!
 
+<p align="center">
+<img src="https://user-images.githubusercontent.com/92659173/208553230-c28a386a-db9d-4871-9f38-1606c4b4f3c4.gif" />
+</p>
+
+
+
 ## :zap: Tecnologias
 
 - [React](https://pt-br.reactjs.org)
