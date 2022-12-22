@@ -1,12 +1,12 @@
 <h1>
    <p> 
-      <img src="https://github.com/ViniR07/VinChat/blob/master/public/flaticon.png" width="60" align="center" />
+      <img src="https://github.com/vinimrs/VinChat/blob/master/public/flaticon.png" width="60" align="center" />
       VinChat - Plataforma de Chat Online 
    </p>
    <img src="https://img.shields.io/github/license/vinimrs/VinChat?color=black" align="center" />
 </h1>
 
-**Aplicação de chat online com interação _in live_, login com _OAuth_, entre outras features. Foi criado durante a imersão react da @alura com @omariosouto e @peas.**
+**Aplicação de chat online com interação _[Realtime]_, login com _[OAuth2]_, entre outras features. Foi criado durante a imersão react da @alura com @omariosouto e @peas.**
 
 <p align="center">
    <img src="https://user-images.githubusercontent.com/92659173/208542361-f7d1047a-49e2-4525-a794-d01f83690f42.png"  width="450"/>
@@ -36,10 +36,10 @@
 
 ## :zap: Tecnologias
 
-- [React](https://pt-br.reactjs.org)
-- [Next](https://nextjs.org)
-- [SkynexUI](https://skynexui.dev)
-- [Supabase](https://supabase.com/)
+- [React]
+- [Next]
+- [SkynexUI]
+- [Supabase]
 
 ## 📁 Acesso ao projeto
 
@@ -47,11 +47,10 @@ Você pode visualizar a <a href="https://vinchat.vercel.app/" target="_blank">ú
 
 ## 🛠 Abrir e rodar o projeto
 
-Primeiro, você deve ter o [`node`](https://nodejs.org/en/) e o [`npm`](https://www.npmjs.com) instalados em sua máquina, confirme executando os seguintes comandos (se houver erro precisa instalá-los):
+Primeiro, você deve ter o [`node`](https://nodejs.org/en/), [`npm`](https://www.npmjs.com) e [`git`](https://git-scm.com/) instalados em sua máquina, confirme executando os seguintes comandos (se houver erro precisa instalá-los):
 
 ```bash
-node -v
-npm -v
+node -v && npm -v && git -v
 ```
 
 Agora, navegue até o diretório que o projeto ficará e clone o projeto:
@@ -93,3 +92,10 @@ Ideias de melhorias para o projeto:
 <p align="center">
    <img src="https://user-images.githubusercontent.com/60992933/151864472-ebe431a4-4412-45eb-9d12-d3c45574c1b9.svg" alt="Imersão react" width="280"/>
 </p>
+
+[Realtime]: https://dev.to/rachel_cheuk/getting-started-with-realtime-events-and-streaming-data-in-js-4j6l
+[OAuth2]: https://oauth.net/2/
+[React]: https://pt-br.reactjs.org
+[Next]: https://nextjs.org
+[SkynexUI]: https://skynexui.dev
+[Supabase]: https://supabase.com/
